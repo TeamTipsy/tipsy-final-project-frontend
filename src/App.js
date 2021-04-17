@@ -11,8 +11,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    Redirect,
+    // Link,
+    // Redirect,
   } from 'react-router-dom';
 
 
@@ -44,3 +44,5 @@ import {
           </Router>
       )
   }
+
+  export default App
