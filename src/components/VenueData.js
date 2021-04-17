@@ -1,4 +1,4 @@
-{
+const Venues = {
     "venue_name":"ponysaurus",
     "venue_id":4,
     "bdw_type":"brewery"

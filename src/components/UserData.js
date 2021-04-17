@@ -1,4 +1,4 @@
-{
+const User = {
     "username":"poppy_boozin",
     "user_id":1,
     "bio_text":"my name is poppy i like to party",
