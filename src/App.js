@@ -16,28 +16,28 @@ import {
   } from 'react-router-dom';
 
 
-  function App() {
-      return (
-          <Router>
-              <div className="App">
-                  <header>
-                      <h1 id="title">Tipsy</h1>
-                  </header>
-                  <Switch>
-                      <Route path="/" exact>
-                          <Home />
-                      </Route>
-                      <Route path="/UserProfile" component={UserProfile} />
-                      <Route path="/VenueProfile" component={VenueProfile} />
-                      <Route path="/TopRatedUsers" component={TopRatedUsers} />
-                      <Route path="/TopRatedVenues" component={TopRatedVenues} />
-                      <Route path="/login" component={login}>
-                          
-                      </Route>
-                      <Route path="/registration" component={registration}>
+function App() {
+    return (
+        <Router>
+            <div className="App">
+                <header>
+                    <h1 id="title">Tipsy</h1>
+                </header>
+                <Switch>
+                    <Route path="/" exact>
+                    <Home />
+                    </Route>
+                    <Route path="/UserProfile" component={UserProfile} />
+                    <Route path="/VenueProfile" component={VenueProfile} />
+                    <Route path="/TopRatedUsers" component={TopRatedUsers} />
+                    <Route path="/TopRatedVenues" component={TopRatedVenues} />
+                    <Route path="/login" component={login}>
+                    
+                    </Route>
+                    <Route path="/registration" component={registration}>
                             
-                      </Route>
-                      <Route path="/search" component={search} />
+                    </Route>
+                    <Route path="/search" component={search} />
 
                   </Switch>
               </div> 
