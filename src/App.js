@@ -3,16 +3,17 @@ import Home from "./components/Home"
 import UserProfile from './components/UserProfile'
 import VenueProfile from './components/VenueProfile'
 import login from './components/login'
+import search from './components/search'
 import TopRatedUsers from './components/TopRatedUsers'
 import TopRatedVenues from './components/TopRatedVenues'
 import registration from './components/registration'
-import search from './components/search'
+// import search from './components/search'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    // Link,
-    // Redirect,
+    Link,
+    Redirect,
   } from 'react-router-dom';
 
 
@@ -45,4 +46,4 @@ import {
       )
   }
 
-  export default App
+  
