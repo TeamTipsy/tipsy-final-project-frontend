@@ -40,7 +40,7 @@ const User = {
                         "author_ID": 1,
                         "body": "nice patio, not as dog-friendly as i hoped. barely got any bacon bits",
                         "date_created":"2020-03-07T05:13:43.798283Z",
-                        }
+                        },
                     {
                         "id": 234,
                         "venue": 4,
@@ -52,4 +52,4 @@ const User = {
     },
 }   
 
-export default UserData
+export default User

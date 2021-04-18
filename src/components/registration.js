@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-// import { Link } from 'react-router-dom'
+
+import React from 'react'
+import { useState, useEffect } from 'react'
 
 
 function registration() {
@@ -23,3 +24,4 @@ function registration() {
 }
 
 export default registration
+

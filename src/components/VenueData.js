@@ -43,4 +43,4 @@ const Venues = {
     },    
 }
 
-export default VenueData
+export default Venues
