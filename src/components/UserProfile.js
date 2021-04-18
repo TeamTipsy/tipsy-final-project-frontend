@@ -20,6 +20,7 @@ function UserProfile() {
 
                        <div>{user.location_info.country}</div>
                        <div>{user.bio_text}</div>
+                       <div><b>Venues Followed:</b>{user.bdws_following.length}</div>
                        <h2 class="font-bold">{user.username}'s Feed:</h2>
                        
                        </>
