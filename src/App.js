@@ -22,7 +22,7 @@ function App() {
         <Router>
             <div className="App">
                 <header>
-                    <h1 id="title">Tipsy</h1>
+                    <h1 id="title" class="font-bold text-6xl">Tipsy</h1>
                 </header>
                 <Switch>
                     <Route path="/" exact>
