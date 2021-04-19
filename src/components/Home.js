@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import Search from './search.js'
 
 
 function Home() {
-    return (null)
+    return (<Search/>)
 }
 
 export default Home
