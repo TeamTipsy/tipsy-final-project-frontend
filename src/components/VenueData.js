@@ -1,4 +1,4 @@
-const Venues = {
+const Venues = [{
     venue_name:"ponysaurus",
     venue_id:4,
     bdw_type:"brewery",
@@ -41,6 +41,6 @@ const Venues = {
             id:"user1venue4img212312.jpg",
             id:"user6venue4img1231231.jpg",
     },    
-}
+}]
 
 export default Venues
