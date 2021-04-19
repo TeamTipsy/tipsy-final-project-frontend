@@ -14,8 +14,28 @@ function registration() {
                     <input
                     type='text'
                     id='username'
-                    // value={username.username}
                     />
+                    <label to='first-name'>First Name:</label>
+                    <input
+                    type='text'
+                    id='firstname'
+                    />
+                    <label to='last-name'>Last Name:</label>
+                    <input
+                    type='text'
+                    id='lastname'
+                    />
+                    <label to='city'>City:</label>
+                    <input
+                    type='text'
+                    id='city'
+                    />
+                    <label to='State'>State:</label>
+                    <input
+                    type='text'
+                    id='state'
+                    />
+
                 </div>
                 <button type='submit'>Creat Account</button>
             </form>
