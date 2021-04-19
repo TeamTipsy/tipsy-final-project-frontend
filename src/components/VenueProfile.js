@@ -14,7 +14,8 @@ function VenueProfile() {
                 <div className='info-card'>
                     <h1>{venue.venue_name}</h1>
                     <h2>{venue.venue_info.street_address}</h2>
-                    <h2>Followers:{venue.venue_info.follows_count}</h2>
+
+                    <h2>Followers:{venue.followers.length}</h2>
                     <h4>{venue.venue_type}</h4>
                 </div>
                 
