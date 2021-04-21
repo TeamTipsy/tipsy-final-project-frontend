@@ -8,7 +8,7 @@ import Login from './components/login.js';
 import search from './components/search'
 import TopRatedUsers from './components/TopRatedUsers'
 import TopRatedVenues from './components/TopRatedVenues'
-import Registration from './components/Registration'
+import Registration from './components/registration'
 import NewHeader from './components/NewHeader'
 // import search from './components/search'
 import {
