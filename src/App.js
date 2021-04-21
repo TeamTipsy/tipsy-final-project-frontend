@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import useLocalStorageState from 'use-local-storage-state'
 import Home from "./components/Home"
 import UserProfile from './components/UserProfile'
 import VenueProfile from './components/VenueProfile'
-import login from './components/login'
+import Login from './components/login.js';
 import search from './components/search'
 import TopRatedUsers from './components/TopRatedUsers'
 import TopRatedVenues from './components/TopRatedVenues'
@@ -14,12 +15,28 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    // Link,
+    //Link,
     // Redirect,
   } from 'react-router-dom';
   
   
 function App() {
+
+    const [username, setUsername] = useLocalStorageState('username', '')
+    const [token, setToken] = useLocalStorageState('token', '')
+
+    function setAuth(username, token) {
+        setUsername(username)
+        setToken(token)
+      };
+    
+      function logOut() {
+        setUsername(null)
+        setToken(null)
+      }
+    
+      const isLoggedIn = username && token 
+  
     
     return (
         <Router>
@@ -38,11 +55,13 @@ function App() {
                     <Route path="/VenueProfile" component={VenueProfile} />
                     <Route path="/TopRatedUsers" component={TopRatedUsers} />
                     <Route path="/TopRatedVenues" component={TopRatedVenues} />
-                    <Route path="/Login" component={Login}>
-                    
+                    <Route path="/login" component={Login}>
+                    <Login setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
+
                     </Route>
                     <Route path="/Registration" component={Registration}>
-                            
+                       <Register setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
+       
                     </Route>
                     <Route path="/search" component={search} />
 

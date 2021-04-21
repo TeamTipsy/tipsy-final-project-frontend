@@ -22,7 +22,7 @@ function UserProfile() {
         // More items...
     ]
     useEffect(() => {
-        axios.get(`https://tipsy-backend.herokuapp.com/users/2/`).then((response) => {
+        axios.get(`https://tipsy-backend.herokuapp.com/users/3/`).then((response) => {
             console.log('resp', response)
             setUser(response.data)
             console.log('user', user)
