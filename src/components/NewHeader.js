@@ -2,6 +2,14 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  // Redirect,
+} from 'react-router-dom';
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -30,9 +38,9 @@ export default function NewHeader() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <a href="#" className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow">
+                    <Link to ="/login" className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow">
                       Login
-                    </a>
+                    </Link>
                     <a
                       href="#"
                       className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
