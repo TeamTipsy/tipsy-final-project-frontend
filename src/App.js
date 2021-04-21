@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 import Home from "./components/Home"
 import UserProfile from './components/UserProfile'
 import VenueProfile from './components/VenueProfile'
@@ -19,6 +20,7 @@ import {
   
   
 function App() {
+    
     return (
         <Router>
             <div className="App">
