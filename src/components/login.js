@@ -28,7 +28,18 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
 }
     return (
         <>
-<div className="min-h-screen flex items-center justify-center bg-brand-beau-blue py-12 px-4 sm:px-6 lg:px-8">
+<h1 style={isLoggedIn ? {} : {display: 'none'}} className="min-h-screen text-4xl text-brand-dark-blue flex items-center justify-center bg-brand-beau-blue py-12 px-4 sm:px-6 lg:px-8">Don't worry, you're logged in and ready to get Tipsy.
+<a
+                                onClick={() => logOut()}
+                                  href="#"
+                                  className=
+                                    'block px-4 py-2 text-sm text-gray-700'
+                               
+                                >
+                                  Sign out
+                                </a>
+</h1>
+<div  style={isLoggedIn ? { display: 'none' } : {}} className="min-h-screen flex items-center justify-center bg-brand-beau-blue py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
         <div>
         <img
@@ -82,7 +93,7 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
         </div>
         </form>
         </div>
-        {/* {errors && <p>{errors}</p>} */}
+        {errors && <p>{errors}</p>}
     </div>
 
 
