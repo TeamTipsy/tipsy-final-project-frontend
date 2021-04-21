@@ -2,7 +2,6 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -16,44 +15,49 @@ export default function NewHeader() {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <img
+                  {/* <img
                     className="block w-auto h-8 lg:hidden"
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                     alt="Workflow"
                   />
                   <img
                     className="hidden w-auto h-8 lg:block"
-                    // src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                     alt="Tipsy"
-                  />
+                  /> */}
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <a href="#" className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow">
-                      Login
-                    </a>
+        
                     <a
                       href="#"
-                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
                     >
                       Discover
                     </a>
                     <a
-                      href="/"
-                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+                      href="/userprofile"
+                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
                     >
                       Me
                     </a>
                     <a
-                      href="#"
-                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+                      href="/"
+                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
                     >
                       Search
                     </a>
+                    <>
+                    <a href="#" className="px-3 py-2 text-sm font-medium text-white rounded-md hover:bg-brand-dark-blue bg-brand-yellow hover:from-transparent">
+                      Logout
+                    </a>
+              
+                    </>
                   </div>
                 </div>
               </div>
+            
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex items-center">
                   <button className="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
