@@ -8,15 +8,15 @@ import Login from './components/login.js';
 import search from './components/search'
 import TopRatedUsers from './components/TopRatedUsers'
 import TopRatedVenues from './components/TopRatedVenues'
-import registration from './components/registration'
+import Registration from './components/Registration'
 import NewHeader from './components/NewHeader'
 // import search from './components/search'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    //Link,
-    // Redirect,
+    Link,
+    Redirect,
   } from 'react-router-dom';
   
   
@@ -60,7 +60,7 @@ function App() {
 
                     </Route>
                     <Route path="/Registration" component={Registration}>
-                       <Register setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
+                       <Registration setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
        
                     </Route>
                     <Route path="/search" component={search} />
