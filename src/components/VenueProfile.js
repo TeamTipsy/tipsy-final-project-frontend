@@ -56,6 +56,8 @@ const user = {
     { name: 'Public Feed', href: '#', current: false },
   ]
 
+  
+
 function VenueProfile() {
     const [venues, setVenue] = useState(Venues)
      console.log(venues)
