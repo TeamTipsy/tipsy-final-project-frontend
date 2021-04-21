@@ -52,7 +52,9 @@ function App() {
                     <Route path="/" exact>
                     <Home />
                     </Route>
-                    <Route path="/UserProfile" component={UserProfile} />
+                    <Route path="/UserProfile" component={UserProfile}>
+                        <UserProfile token={token}/>
+                    </Route>
                     <Route path="/VenueProfile" component={VenueProfile} />
                     <Route path="/TopRatedUsers" component={TopRatedUsers} />
                     <Route path="/TopRatedVenues" component={TopRatedVenues} />

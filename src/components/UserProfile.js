@@ -7,7 +7,7 @@ import lodash from 'lodash'
 
 
 
-function UserProfile() {
+function UserProfile({ token }) {
     const [user, setUser] = useState({})
     const people = [
         {
@@ -22,7 +22,11 @@ function UserProfile() {
         // More items...
     ]
     useEffect(() => {
-        axios.get(`https://tipsy-backend.herokuapp.com/users/dee067d3-dc4c-4092-9ce8-e861a9bc28ca/`).then((response) => {
+        axios.get(
+            `https://tipsy-backend.herokuapp.com/users/dee067d3-dc4c-4092-9ce8-e861a9bc28ca/`, 
+            {
+                headers: { Authorization: `Token ${token}`}
+            }).then((response) => {
             console.log('resp', response)
             setUser(response.data)
             console.log('user', user)
