@@ -38,10 +38,10 @@ function App() {
                     <Route path="/VenueProfile" component={VenueProfile} />
                     <Route path="/TopRatedUsers" component={TopRatedUsers} />
                     <Route path="/TopRatedVenues" component={TopRatedVenues} />
-                    <Route path="/login" component={login}>
+                    <Route path="/Login" component={Login}>
                     
                     </Route>
-                    <Route path="/registration" component={registration}>
+                    <Route path="/Registration" component={Registration}>
                             
                     </Route>
                     <Route path="/search" component={search} />
