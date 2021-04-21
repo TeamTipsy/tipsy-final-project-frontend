@@ -4,7 +4,7 @@ import useLocalStorageState from 'use-local-storage-state'
 import Home from "./components/Home"
 import UserProfile from './components/UserProfile'
 import VenueProfile from './components/VenueProfile'
-import Login from './components/Login'
+import Login from './components/login.js';
 import search from './components/search'
 import TopRatedUsers from './components/TopRatedUsers'
 import TopRatedVenues from './components/TopRatedVenues'
