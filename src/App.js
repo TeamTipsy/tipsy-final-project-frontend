@@ -7,6 +7,7 @@ import search from './components/search'
 import TopRatedUsers from './components/TopRatedUsers'
 import TopRatedVenues from './components/TopRatedVenues'
 import registration from './components/registration'
+import NewHeader from './components/NewHeader'
 // import search from './components/search'
 import {
     BrowserRouter as Router,
@@ -15,15 +16,18 @@ import {
     // Link,
     // Redirect,
   } from 'react-router-dom';
-
-
+  
+  
 function App() {
     return (
         <Router>
             <div className="App">
-                <header>
+                <NewHeader />
+                
+                
+                {/* <header>
                     <h1 id="title" class="font-bold text-6xl m-5">Tipsy</h1>
-                </header>
+                </header> */}
                 <Switch>
                     <Route path="/" exact>
                     <Home />

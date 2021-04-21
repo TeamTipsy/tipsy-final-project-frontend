@@ -8,6 +8,7 @@ module.exports = {
         'brand-beau-blue': '#BFDBF7',
         'brand-dark-blue': '#004E9A',
         'brand-yellow': '#FFBF00',
+        'navbar-gray': '#454442',
       }
     },
   },
