@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { useState, useEffect } from 'react'
-import Venues from './VenueData.js'
+import axios from 'axios'
 import { Fragment } from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import {
@@ -57,213 +57,217 @@ const user = {
   ]
 
 function VenueProfile() {
-    const [venues, setVenue] = useState(Venues)
-     console.log(venues)
+    const [venue, setVenue] = useState({})
+     
+     useEffect(() => {
+         axios.get(`https://tipsy-backend.herokuapp.com/venues/3/`).then((response) => {
+             console.log('resp', response)
+             setVenue(response.data)
+         
+         })},[])
+    
     return (
-        <div className="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
-            {venues.map((venue) => {
+        <div>
+            <div className="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
             
-            return <>
-            <div className="max-w-4xl mx-auto py-7 flex-wrap content-evenly	bg-brand-beau-blue rounded-r-md rounded-l-md">
-                
-                <div className='text-black text-right px-20 pl-20 '>
-                <div className='image px-20 inline-block'>
-                <img
-                    className="inline-block h-500 w-500 shadow-md rounded-full"
-                    src="https://onthegrid.city/imager/s3_amazonaws_com/onthegrid.city/assets/grid/durham/downtown-durham/ponysaurus-brewing/Ponysaurus-11_299006722e285f47655d17d1c9136337.jpg"
-                    alt=""
-                />
-                
-                </div>
-                <div className='inline-block'>
-                    <h1 className='text-4xl font-black'>{venue.venue_name}</h1>
-                    <h2 className='text-xl'>{venue.venue_info.street_address}</h2>
-                    <h2 className='text-xl'>Followers:{venue.followers.length}</h2>
-                    <h4>{venue.bdw_type}</h4>
-                </div>
-                <br />
-                <button
-                    type="button"
-                    className="inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-brand-red hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200"
-                > Follow
+                <div className="max-w-4xl mx-auto py-7 flex-wrap content-evenly	bg-brand-beau-blue rounded-r-md rounded-l-md">
                     
-                </button>
-                
-               </div>
+                    <div className='text-black text-right px-20 pl-20 '>
+                        <div className='image px-20 inline-block'>
+                            <img
+                            className="inline-block h-500 w-500 shadow-md rounded-full"
+                            src={venue.prof_pic}
+                            alt=""
+                            />
+                        </div>
+                        <div className='inline-block'>
+                            <h1 className='text-4xl font-black'>{venue.venue_name}</h1>
+                            <h2 className='text-xl'>{venue.street_address}</h2>  
+                            <h2 className='text-xl'>Followers:{venue.followers_num}</h2>
+                            <h4>{venue.venue_type}</h4>
+                        </div>
+                    <br />
+                        <button
+                            type="button"
+                            className="inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-brand-red hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200"
+                        > Follow
+                            
+                        </button>
+                    </div>
             </div>   
-      </>      
-     })} 
-<section aria-labelledby="notes-title">
-              <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden max-w-4xl mx-auto ">
-                <div className="divide-y divide-gray-200">
-                  <div className="px-4 py-5 sm:px-6">
-                    <h2 id="notes-title" className="text-lg font-medium text-brand-dark-blue font-black">
-                      Updates
-                    </h2>
-                  </div>
-                  <div className="px-4 py-6 sm:px-6">
-                    <ul className="space-y-8">
-                      {comments.map((comment) => (
-                        <li key={comment.id}>
-                          <div className="flex space-x-3">
-                            <div className="flex-shrink-0">
-                              <img
-                                className="h-10 w-10 rounded-full"
-                                src={`https://images.unsplash.com/photo-${comment.imageId}?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80`}
-                                alt=""
-                              />
+         </div>  
+      
+            <section aria-labelledby="notes-title">
+                        <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden max-w-4xl mx-auto ">
+                            <div className="divide-y divide-gray-200">
+                            <div className="px-4 py-5 sm:px-6">
+                                <h2 id="notes-title" className="text-lg font-medium text-brand-dark-blue font-black">
+                                Updates
+                                </h2>
                             </div>
-                            <div>
-                              <div className="text-sm">
-                                <a href="#" className="font-medium text-gray-900">
-                                  {comment.name}
-                                </a>
-                              </div>
-                              <div className="mt-1 text-sm text-gray-700">
-                                <p>{comment.body}</p>
-                              </div>
-                              <div className="mt-2 text-sm space-x-2">
-                                <span className="text-gray-500 font-medium">{comment.date}</span>{' '}
-                                <span className="text-gray-500 font-medium">&middot;</span>{' '}
-                                <button type="button" className="text-gray-900 font-medium">
-                                  Reply
-                                </button>
-                              </div>
+                            <div className="px-4 py-6 sm:px-6 ">
+                                <ul className="space-y-8 overflow-y-auto">
+                                {comments.map((comment) => (
+                                    <li key={comment.id}>
+                                    <div className="flex space-x-3">
+                                        <div className="flex-shrink-0">
+                                        <img
+                                            className="h-10 w-10 rounded-full"
+                                            src={`https://images.unsplash.com/photo-${comment.imageId}?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80`}
+                                            alt=""
+                                        />
+                                        </div>
+                                        <div>
+                                        <div className="text-sm">
+                                            <a href="#" className="font-medium text-gray-900">
+                                            {comment.name}
+                                            </a>
+                                        </div>
+                                        <div className="mt-1 text-sm text-gray-700">
+                                            <p>{comment.body}</p>
+                                        </div>
+                                        <div className="mt-2 text-sm space-x-2">
+                                            <span className="text-gray-500 font-medium">{comment.date}</span>{' '}
+                                            <span className="text-gray-500 font-medium">&middot;</span>{' '}
+                                            <button type="button" className="text-gray-900 font-medium">
+                                            Reply
+                                            </button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </li>
+                                ))}
+                                </ul>
                             </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="bg-gray-50 px-4 py-6 sm:px-6">
-                  <div className="flex space-x-3">
-                    <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <form action="#">
-                        <div>
-                          <label htmlFor="comment" className="sr-only">
-                            About
-                          </label>
-                          <textarea
-                            id="comment"
-                            name="comment"
-                            rows={3}
-                            className="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md"
-                            placeholder="Add a note"
-                            defaultValue={''}
-                          />
-                        </div>
-                        <div className="mt-3 flex items-center justify-between">
-                          <a
-                            href="#"
-                            className="group inline-flex items-start text-sm space-x-2 text-gray-500 hover:text-gray-900"
-                          >
-                            
-                            
-                          </a>
-                          <button
-                            type="submit"
-                            className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                          >
-                            Comment
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-<section aria-labelledby="notes-title">
-              <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden max-w-4xl mx-auto ">
-                <div className="divide-y divide-gray-200">
-                  <div className="px-4 py-5 sm:px-6">
-                    <h2 id="notes-title" className="text-lg font-medium text-brand-dark-blue font-black">
-                      Feed
-                    </h2>
-                  </div>
-                  <div className="px-4 py-6 sm:px-6">
-                    <ul className="space-y-8">
-                      {comments.map((comment) => (
-                        <li key={comment.id}>
-                          <div className="flex space-x-3">
-                            <div className="flex-shrink-0">
-                              <img
-                                className="h-10 w-10 rounded-full"
-                                src={`https://images.unsplash.com/photo-${comment.imageId}?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80`}
-                                alt=""
-                              />
                             </div>
-                            <div>
-                              <div className="text-sm">
-                                <a href="#" className="font-medium text-gray-900">
-                                  {comment.name}
-                                </a>
-                              </div>
-                              <div className="mt-1 text-sm text-gray-700">
-                                <p>{comment.body}</p>
-                              </div>
-                              <div className="mt-2 text-sm space-x-2">
-                                <span className="text-gray-500 font-medium">{comment.date}</span>{' '}
-                                <span className="text-gray-500 font-medium">&middot;</span>{' '}
-                                <button type="button" className="text-gray-900 font-medium">
-                                  Reply
-                                </button>
-                              </div>
+                            <div className="bg-gray-50 px-4 py-6 sm:px-6">
+                            <div className="flex space-x-3">
+                                <div className="flex-shrink-0">
+                                <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                <form action="#">
+                                    <div>
+                                    <label htmlFor="comment" className="sr-only">
+                                        About
+                                    </label>
+                                    <textarea
+                                        id="comment"
+                                        name="comment"
+                                        rows={3}
+                                        className="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md"
+                                        placeholder="Add a note"
+                                        defaultValue={''}
+                                    />
+                                    </div>
+                                    <div className="mt-3 flex items-center justify-between">
+                                    <a
+                                        href="#"
+                                        className="group inline-flex items-start text-sm space-x-2 text-gray-500 hover:text-gray-900"
+                                    >
+                                        
+                                        
+                                    </a>
+                                    <button
+                                        type="submit"
+                                        className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                    >
+                                        Comment
+                                    </button>
+                                    </div>
+                                </form>
+                                </div>
                             </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="bg-gray-50 px-4 py-6 sm:px-6">
-                  <div className="flex space-x-3">
-                    <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <form action="#">
-                        <div>
-                          <label htmlFor="comment" className="sr-only">
-                            About
-                          </label>
-                          <textarea
-                            id="comment"
-                            name="comment"
-                            rows={3}
-                            className="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md"
-                            placeholder="Add a note"
-                            defaultValue={''}
-                          />
+                            </div>
                         </div>
-                        <div className="mt-3 flex items-center justify-between">
-                          <a
-                            href="#"
-                            className="group inline-flex items-start text-sm space-x-2 text-gray-500 hover:text-gray-900"
-                          >
-                            
-                            
-                          </a>
-                          <button
-                            type="submit"
-                            className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                          >
-                            Comment
-                          </button>
+                        </section>
+            <section aria-labelledby="notes-title">
+                        <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden max-w-4xl mx-auto ">
+                            <div className="divide-y divide-gray-200">
+                            <div className="px-4 py-5 sm:px-6">
+                                <h2 id="notes-title" className="text-lg font-medium text-brand-dark-blue font-black">
+                                Feed
+                                </h2>
+                            </div>
+                            <div className="px-4 py-6 sm:px-6">
+                                <ul className="space-y-8">
+                                {comments.map((comment) => (
+                                    <li key={comment.id}>
+                                    <div className="flex space-x-3">
+                                        <div className="flex-shrink-0">
+                                        <img
+                                            className="h-10 w-10 rounded-full"
+                                            src={`https://images.unsplash.com/photo-${comment.imageId}?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80`}
+                                            alt=""
+                                        />
+                                        </div>
+                                        <div>
+                                        <div className="text-sm">
+                                            <a href="#" className="font-medium text-gray-900">
+                                            {comment.name}
+                                            </a>
+                                        </div>
+                                        <div className="mt-1 text-sm text-gray-700">
+                                            <p>{comment.body}</p>
+                                        </div>
+                                        <div className="mt-2 text-sm space-x-2">
+                                            <span className="text-gray-500 font-medium">{comment.date}</span>{' '}
+                                            <span className="text-gray-500 font-medium">&middot;</span>{' '}
+                                            <button type="button" className="text-gray-900 font-medium">
+                                            Reply
+                                            </button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </li>
+                                ))}
+                                </ul>
+                            </div>
+                            </div>
+                            <div className="bg-gray-50 px-4 py-6 sm:px-6">
+                            <div className="flex space-x-3">
+                                <div className="flex-shrink-0">
+                                <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                <form action="#">
+                                    <div>
+                                    <label htmlFor="comment" className="sr-only">
+                                        About
+                                    </label>
+                                    <textarea
+                                        id="comment"
+                                        name="comment"
+                                        rows={3}
+                                        className="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md"
+                                        placeholder="Add a note"
+                                        defaultValue={''}
+                                    />
+                                    </div>
+                                    <div className="mt-3 flex items-center justify-between">
+                                    <a
+                                        href="#"
+                                        className="group inline-flex items-start text-sm space-x-2 text-gray-500 hover:text-gray-900"
+                                    >
+                                        
+                                        
+                                    </a>
+                                    <button
+                                        type="submit"
+                                        className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                    >
+                                        Comment
+                                    </button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                            </div>
                         </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-        </div>    
-       
-    )
+                        </section>
+                    </div>    
+                )     
+                
 }
 
 export default VenueProfile

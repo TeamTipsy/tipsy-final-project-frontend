@@ -65,7 +65,7 @@ function registration() {
             </div>
             <div>
               <label htmlFor="state" className="block text-sm font-medium text-gray-700">
-                First Name
+                State
               </label>
               <div className="mt-1">
                 <input
