@@ -57,9 +57,11 @@ function App() {
                     <Route path="/TopRatedVenues" component={TopRatedVenues} />
                     <Route path="/login" component={Login}>
                     <Login setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
+
                     </Route>
-                    <Route path="/registration" component={registration}>
-                            
+                    <Route path="/Registration" component={Registration}>
+                       <Register setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
+       
                     </Route>
                     <Route path="/search" component={search} />
 
