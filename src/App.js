@@ -24,9 +24,10 @@ function App() {
 
     const [username, setUsername] = useLocalStorageState('username', '')
     const [token, setToken] = useLocalStorageState('token', '')
+    const [email, setEmail] = useLocalStorageState('email', '')
 
     function setAuth(username, token) {
-        setUsername(username)
+
         setToken(token)
       };
     
@@ -36,17 +37,17 @@ function App() {
       }
     
       const isLoggedIn = username && token 
+
+      function logOut() {
+        setUsername(null)
+        setToken(null)
+      }
   
     
     return (
         <Router>
             <div className="App">
-                <NewHeader />
-                
-                
-                {/* <header>
-                    <h1 id="title" class="font-bold text-6xl m-5">Tipsy</h1>
-                </header> */}
+                <NewHeader lsetAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
                 <Switch>
                     <Route path="/" exact>
                     <Home />

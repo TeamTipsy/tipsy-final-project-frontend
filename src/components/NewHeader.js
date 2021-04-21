@@ -15,7 +15,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NewHeader() {
+export default function NewHeader({ isLoggedIn, token, setAuth, username, logOut, setUsername }) {
   return (
     <Disclosure as="nav" className="bg-brand-red">
       {({ open }) => (
@@ -126,6 +126,7 @@ export default function NewHeader() {
                             <Menu.Item>
                               {({ active }) => (
                                 <a
+                                onClick={() => logOut()}
                                   href="#"
                                   className={classNames(
                                     active ? 'bg-gray-100' : '',
