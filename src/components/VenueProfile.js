@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import { Fragment } from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import {
@@ -80,7 +80,7 @@ function VenueProfile() {
     
     return (
         <div>
-            <div className="max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
+            <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
             
                 <div className="max-w-5xl mx-auto py-2 grid grid-cols-2	bg-brand-yellow rounded-r-md rounded-l-md">
                     
@@ -88,6 +88,7 @@ function VenueProfile() {
                         <div className='image pl-20'>
                             <img
                             className="h-auto-8 w-auto-8 shadow-md rounded-full"
+
                             src={venue.prof_pic}
                             alt=""
                             />
@@ -107,14 +108,17 @@ function VenueProfile() {
                                 </button>
                                 </div>
                         </div>
+
+
             </div>   
          </div>  
       
             <section aria-labelledby="notes-title">
+
                         <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden max-w-5xl mx-auto ">
                             <div className="divide-y divide-gray-200">
                             <div className="px-4 py-5 sm:px-6">
-                                <h2 id="notes-title" className="text-lg font-medium text-brand-dark-blue font-black">
+                                <h2 id="notes-title" className="text-lg font-medium font-black text-brand-dark-blue">
                                 Updates
                                 </h2>
                             </div>
@@ -131,6 +135,7 @@ function VenueProfile() {
                                             <span className="text-gray-500 font-medium">{update.date}</span>{' '}
                                             <span className="text-gray-500 font-medium">&middot;</span>{' '}
                                             <button type="button" className="text-gray-900 font-medium">
+
                                             Reply
                                             </button>
                                         </div>
@@ -141,9 +146,11 @@ function VenueProfile() {
                                 </ul>
                             </div>
                             </div>
-                            <div className="bg-gray-50 px-4 py-6 sm:px-6">
+                            <div className="px-4 py-6 bg-gray-50 sm:px-6">
                             <div className="flex space-x-3">
+
                                 <div className="min-w-0 flex-1">
+
                                 <form action="#">
                                     <div>
                                     <label htmlFor="comment" className="sr-only">
@@ -153,22 +160,22 @@ function VenueProfile() {
                                         id="comment"
                                         name="comment"
                                         rows={3}
-                                        className="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md"
+                                        className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                                         placeholder="Add a note"
                                         defaultValue={''}
                                     />
                                     </div>
-                                    <div className="mt-3 flex items-center justify-between">
+                                    <div className="flex items-center justify-between mt-3">
                                     <a
                                         href="#"
-                                        className="group inline-flex items-start text-sm space-x-2 text-gray-500 hover:text-gray-900"
+                                        className="inline-flex items-start space-x-2 text-sm text-gray-500 group hover:text-gray-900"
                                     >
                                         
                                         
                                     </a>
                                     <button
                                         type="submit"
-                                        className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                        className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                     >
                                         Comment
                                     </button>
@@ -180,10 +187,10 @@ function VenueProfile() {
                         </div>
                         </section>
             <section aria-labelledby="notes-title">
-                        <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden max-w-4xl mx-auto ">
+                        <div className="max-w-4xl mx-auto bg-white shadow sm:rounded-lg sm:overflow-hidden ">
                             <div className="divide-y divide-gray-200">
                             <div className="px-4 py-5 sm:px-6">
-                                <h2 id="notes-title" className="text-lg font-medium text-brand-dark-blue font-black">
+                                <h2 id="notes-title" className="text-lg font-medium font-black text-brand-dark-blue">
                                 Feed
                                 </h2>
                             </div>
@@ -194,7 +201,7 @@ function VenueProfile() {
                                     <div className="flex space-x-3">
                                         <div className="flex-shrink-0">
                                         <img
-                                            className="h-10 w-10 rounded-full"
+                                            className="w-10 h-10 rounded-full"
                                             src={`https://images.unsplash.com/photo-${comment.imageId}?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80`}
                                             alt=""
                                         />
@@ -208,10 +215,10 @@ function VenueProfile() {
                                         <div className="mt-1 text-sm text-gray-700">
                                             <p>{comment.body}</p>
                                         </div>
-                                        <div className="mt-2 text-sm space-x-2">
-                                            <span className="text-gray-500 font-medium">{comment.date}</span>{' '}
-                                            <span className="text-gray-500 font-medium">&middot;</span>{' '}
-                                            <button type="button" className="text-gray-900 font-medium">
+                                        <div className="mt-2 space-x-2 text-sm">
+                                            <span className="font-medium text-gray-500">{comment.date}</span>{' '}
+                                            <span className="font-medium text-gray-500">&middot;</span>{' '}
+                                            <button type="button" className="font-medium text-gray-900">
                                             Reply
                                             </button>
                                         </div>
@@ -222,12 +229,12 @@ function VenueProfile() {
                                 </ul>
                             </div>
                             </div>
-                            <div className="bg-gray-50 px-4 py-6 sm:px-6">
+                            <div className="px-4 py-6 bg-gray-50 sm:px-6">
                             <div className="flex space-x-3">
                                 <div className="flex-shrink-0">
-                                <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                                <img className="w-10 h-10 rounded-full" src={user.imageUrl} alt="" />
                                 </div>
-                                <div className="min-w-0 flex-1">
+                                <div className="flex-1 min-w-0">
                                 <form action="#">
                                     <div>
                                     <label htmlFor="comment" className="sr-only">
@@ -237,22 +244,22 @@ function VenueProfile() {
                                         id="comment"
                                         name="comment"
                                         rows={3}
-                                        className="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md"
+                                        className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                                         placeholder="Add a note"
                                         defaultValue={''}
                                     />
                                     </div>
-                                    <div className="mt-3 flex items-center justify-between">
+                                    <div className="flex items-center justify-between mt-3">
                                     <a
                                         href="#"
-                                        className="group inline-flex items-start text-sm space-x-2 text-gray-500 hover:text-gray-900"
+                                        className="inline-flex items-start space-x-2 text-sm text-gray-500 group hover:text-gray-900"
                                     >
                                         
                                         
                                     </a>
                                     <button
                                         type="submit"
-                                        className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                        className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                     >
                                         Comment
                                     </button>
