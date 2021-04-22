@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { useState, useEffect } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 import { Fragment } from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import {
@@ -72,7 +72,7 @@ function VenueProfile() {
     const [venue, setVenue] = useState({})
      
      useEffect(() => {
-         axios.get(`https://tipsy-backend.herokuapp.com/venues/33bb140e-842a-471a-a9f0-53b519e9f304/`).then((response) => {
+         axios.get(`https://tipsy-backend.herokuapp.com/venues/fd182a28-63f5-4497-9db5-3f6ee8f7c724/`).then((response) => {
              console.log('resp', response)
              setVenue(response.data)
          
@@ -88,7 +88,6 @@ function VenueProfile() {
                         <div className='image pl-20'>
                             <img
                             className="h-auto-8 w-auto-8 shadow-md rounded-full"
-
                             src={venue.prof_pic}
                             alt=""
                             />
@@ -98,8 +97,8 @@ function VenueProfile() {
                                 <div className='info'>
                                 <h2 className='text-4xl'>{venue.followers_num} Followers</h2>
                                 <h2 className='text-xl'>Hours - {venue.venue_info.hours_of_operation}</h2>
-                                <h2 className='text-xl'> {venue.venue_info.venue_address.street_address}</h2>
-                                <h2 className='text-xl'> {venue.venue_info.venue_address.city}, {venue.venue_info.venue_address.state}</h2>
+                                <h2 className='text-xl'> {venue.venue_info.venue_address.street_address}</h2> 
+                                <h2 className='text-xl'> {venue.venue_info.venue_address.city}, {venue.venue_info.venue_address.state}</h2> 
                                 <h4>{venue.venue_type}</h4>
                                 <button
                                 type="button"
