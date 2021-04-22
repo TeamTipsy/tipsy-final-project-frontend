@@ -59,12 +59,12 @@ const user = {
 function VenueProfile() {
     const [venue, setVenue] = useState({})
      
-    //  useEffect(() => {
-    //      axios.get(`https://tipsy-backend.herokuapp.com/venues/3/`).then((response) => {
-    //          console.log('resp', response)
-    //          setVenue(response.data)
+     useEffect(() => {
+         axios.get(`https://tipsy-backend.herokuapp.com/venues/214c6f09-9022-4f09-9e76-90c53e29afd8/`).then((response) => {
+             console.log('resp', response)
+             setVenue(response.data)
          
-    //      })},[])
+         })},[])
     
     return (
         <div>

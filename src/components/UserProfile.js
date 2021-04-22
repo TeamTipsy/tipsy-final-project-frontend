@@ -7,7 +7,7 @@ import lodash from 'lodash'
 
 
 
-function UserProfile() {
+function UserProfile({ token }) {
     const [user, setUser] = useState({})
     const people = [
         {
@@ -21,19 +21,17 @@ function UserProfile() {
         { id: 1, person: people[0], project: 'Workcation', commit: '2d89f0c8', environment: 'production', time: '1h' },
         // More items...
     ]
-    // useEffect(() => {
-    //     // axios.get(`https://tipsy-backend.herokuapp.com/users/2/`).then((response) => {
-    //         console.log('resp', response)
-    //         setUser(response.data)
-    //         console.log('user', user)
+    useEffect(() => {
+        axios.get(
+            `https://tipsy-backend.herokuapp.com/users/dee067d3-dc4c-4092-9ce8-e861a9bc28ca/`, 
+            {
+                headers: { Authorization: `Token ${token}`}
+            }).then((response) => {
+            console.log('resp', response)
+            setUser(response.data)
+            console.log('user', user)
             
-            
-            
-    //     })}, [])
-
-
-
-    
+        })}, [])
 
     return (
         <div>
@@ -74,10 +72,10 @@ function UserProfile() {
         {activityItems.map((activityItem) => (
         <li key={activityItem.id} className="py-4">
             <div className="flex space-x-3">
-            <img className="w-6 h-6 rounded-full" src={activityItem.person.imageUrl} alt="" />
+            <img className="w-6 h-6 rounded-full" src={user.prof_pic} alt="" />
             <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium">{activityItem.person.name}</h3>
+                <h3 className="text-sm font-medium">{user.username}</h3>
                 <p className="text-sm text-gray-500">{activityItem.time}</p>
                 </div>
                 <p className="text-sm text-gray-500">

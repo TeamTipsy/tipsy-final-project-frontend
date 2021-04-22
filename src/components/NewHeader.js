@@ -2,11 +2,20 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  // Redirect,
+} from 'react-router-dom';
+
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NewHeader() {
+export default function NewHeader({ isLoggedIn, token, setAuth, username, logOut, setUsername }) {
   return (
     <Disclosure as="nav" className="bg-brand-red">
       {({ open }) => (
@@ -29,7 +38,9 @@ export default function NewHeader() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-        
+                    <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue">
+                      Login
+                    </Link>
                     <a
                       href="#"
                       className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
@@ -49,8 +60,8 @@ export default function NewHeader() {
                       Search
                     </a>
                     <>
-                    <a href="#" className="px-3 py-2 text-sm font-medium text-white rounded-md hover:bg-brand-dark-blue bg-brand-yellow hover:from-transparent">
-                      Logout
+                    <a style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()} className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue">
+                      Sign Out
                     </a>
               
                     </>
@@ -122,6 +133,7 @@ export default function NewHeader() {
                             <Menu.Item>
                               {({ active }) => (
                                 <a
+                                onClick={() => logOut()}
                                   href="#"
                                   className={classNames(
                                     active ? 'bg-gray-100' : '',
