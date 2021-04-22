@@ -60,7 +60,7 @@ function VenueProfile() {
     const [venue, setVenue] = useState({})
      
      useEffect(() => {
-         axios.get(`https://tipsy-backend.herokuapp.com/venues/214c6f09-9022-4f09-9e76-90c53e29afd8/`).then((response) => {
+         axios.get(`https://tipsy-backend.herokuapp.com/venues/33bb140e-842a-471a-a9f0-53b519e9f304/`).then((response) => {
              console.log('resp', response)
              setVenue(response.data)
          
