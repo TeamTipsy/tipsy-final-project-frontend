@@ -18,26 +18,26 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
         password: password
     })
     .then((data) => {
+        console.log(data)
         if (data && data.data.auth_token) {
         setAuth(username, data.data.auth_token)
+        // setCurrentUSer(data.user)
         }
     })
     .catch((error) => {
         setErrors(error.message)
     })
+
 }
+
+// when a user logs in the backend api needs to return key fields for that user, such as 
+//username and profile pic. const [loggedInUser, setLoggedInUser]
+// an object for the user containing username, profile picture, etc.
+// data.user = { username: 'myusername', profile_picture_link: 'http://linktomypick.blah/blah' }
+
     return (
         <>
 <h1 style={isLoggedIn ? {} : {display: 'none'}} className="min-h-screen text-4xl text-brand-dark-blue flex items-center justify-center bg-brand-beau-blue py-12 px-4 sm:px-6 lg:px-8">Don't worry, you're logged in and ready to get Tipsy.
-<a
-                                onClick={() => logOut()}
-                                  href="#"
-                                  className=
-                                    'block px-4 py-2 text-sm text-gray-700'
-                               
-                                >
-                                  Sign out
-                                </a>
 </h1>
 <div  style={isLoggedIn ? { display: 'none' } : {}} className="min-h-screen flex items-center justify-center bg-brand-beau-blue py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">

@@ -17,9 +17,9 @@ import {
     Route,
     Link,
     Redirect,
-  } from 'react-router-dom';
-  
-  
+    } from 'react-router-dom';
+
+
 function App() {
 
     const [username, setUsername] = useLocalStorageState('username', '')
@@ -29,19 +29,21 @@ function App() {
     function setAuth(username, token) {
 
         setToken(token)
-      };
+        };
     
-      function logOut() {
+    function logOut() {
         setUsername(null)
         setToken(null)
-      }
+        }
     
-      const isLoggedIn = username && token 
+    const isLoggedIn = username && token 
 
-      function logOut() {
+    
+
+    function logOut() {
         setUsername(null)
         setToken(null)
-      }
+        }
   
     
     return (
@@ -52,26 +54,29 @@ function App() {
                     <Route path="/" exact>
                     <Home />
                     </Route>
+
                     <Route path="/UserProfile" component={UserProfile}>
                         <UserProfile token={token}/>
                     </Route>
+
                     <Route path="/VenueProfile" component={VenueProfile} />
                     <Route path="/TopRatedUsers" component={TopRatedUsers} />
                     <Route path="/TopRatedVenues" component={TopRatedVenues} />
+
                     <Route path="/login" component={Login}>
                     <Login setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
+                    </Route>
 
-                    </Route>
                     <Route path="/Registration" component={Registration}>
-                       <Registration setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
-       
+                    <Registration setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
                     </Route>
+
                     <Route path="/search" component={search} />
 
-                  </Switch>
-              </div> 
-          </Router>
-      )
-  }
+                    </Switch>
+                </div> 
+            </Router>
+    )
+}
 
-  export default App
+export default App

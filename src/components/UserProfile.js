@@ -78,10 +78,10 @@ function UserProfile({ token }) {
         {activityItems.map((activityItem) => (
         <li key={activityItem.id} className="py-4">
             <div className="flex space-x-3">
-            <img className="h-6 w-6 rounded-full" src={activityItem.person.imageUrl} alt="" />
+            <img className="h-6 w-6 rounded-full" src={user.prof_pic} alt="" />
             <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium">{activityItem.person.name}</h3>
+                <h3 className="text-sm font-medium">{user.username}</h3>
                 <p className="text-sm text-gray-500">{activityItem.time}</p>
                 </div>
                 <p className="text-sm text-gray-500">
