@@ -96,9 +96,9 @@ function VenueProfile() {
                             <h1 className='text-7xl font-black'>{venue.venue_name}</h1>
                                 <div className='info'>
                                 <h2 className='text-4xl'>{venue.followers_num} Followers</h2>
-                                <h2 className='text-xl'>Hours - {venue.venue_info.hours_of_operation}</h2>
-                                <h2 className='text-xl'> {venue.venue_info.venue_address.street_address}</h2> 
-                                <h2 className='text-xl'> {venue.venue_info.venue_address.city}, {venue.venue_info.venue_address.state}</h2> 
+                                <h2 className='text-xl'>Hours - {venue.venue_info.hours_of_operation}</h2> 
+                                 <h2 className='text-xl'> {venue.venue_info.venue_address.street_address}</h2>  
+                                 <h2 className='text-xl'> {venue.venue_info.venue_address.city}, {venue.venue_info.venue_address.state}</h2> 
                                 <h4>{venue.venue_type}</h4>
                                 <button
                                 type="button"

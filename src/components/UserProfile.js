@@ -7,7 +7,7 @@ import lodash from 'lodash'
 
 
 
-function UserProfile({ token }) {
+function UserProfile({ token, selectedUser }) {
     const [user, setUser] = useState({})
     const people = [
         {
@@ -21,24 +21,24 @@ function UserProfile({ token }) {
         { id: 1, person: people[0], project: 'Workcation', commit: '2d89f0c8', environment: 'production', time: '1h' },
         // More items...
     ]
+    console.log('selectedUser', selectedUser)
     useEffect(() => {
         axios.get(
-            `https://tipsy-backend.herokuapp.com/users/dee067d3-dc4c-4092-9ce8-e861a9bc28ca/`, 
+            `https://tipsy-backend.herokuapp.com/users/${selectedUser}/`, 
             {
                 headers: { Authorization: `Token ${token}`}
             }).then((response) => {
             console.log('resp', response)
             setUser(response.data)
             console.log('user', user)
-            
         })}, [])
 
+        
     return (
         <div>
-
-                <div className="flex-wrap max-w-4xl mx-auto py-7 content-evenly bg-brand-beau-blue rounded-r-md rounded-l-md">
+                <div className="flex-wrap max-w-4xl mx-auto py-7 content-evenly bg-brand-yellow rounded-r-md rounded-l-md">
                 
-                <div className='px-20 pl-20 text-right text-black '>
+                <div className='px-20 pl-20 text-right text-brand-dark-blue '>
                 <div className='inline-block px-20 image'>
                 <img
                     className="inline-block w-48 h-48 rounded-full shadow-md"

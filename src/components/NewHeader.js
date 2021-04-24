@@ -24,6 +24,7 @@ export default function NewHeader({ isLoggedIn, token, setAuth, username, logOut
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
+                 <h1 className="text-white text-3xl font-mono">Tipsy</h1> 
                   {/* <img
                     className="block w-auto h-8 lg:hidden"
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
@@ -41,12 +42,12 @@ export default function NewHeader({ isLoggedIn, token, setAuth, username, logOut
                     <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue">
                       Login
                     </Link>
-                    <a
-                      href="#"
+                    <Link
+                      to ="/"
                       className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
                     >
                       Discover
-                    </a>
+                    </Link>
                     <a
                       href="/userprofile"
                       className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
