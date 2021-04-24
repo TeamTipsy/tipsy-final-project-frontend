@@ -57,6 +57,7 @@ function VenueProfile() {
                         <div className='text-brand-dark-blue pl-20'>
                                 <h1 className='text-7xl font-black'>{venue.venue_name}</h1>
                                 <div className='info'>
+
                                     {/* <h2 className='text-4xl'>{venue.followers_list.length}</h2> */}
                                     <h2 className='text-4xl'>{venue.hours_of_operation}</h2>
                                     <h2 className='text-2xl'>{venue.phone_num}</h2>
@@ -65,6 +66,7 @@ function VenueProfile() {
                                     
                                     <h4>{venue.venue_type}</h4>
                                     <h4>{venue.venue_added_by}</h4>
+
                                     <button
                                     type="button"
                                     className="items-center w-24 p-3 border border-transparent rounded-full shadow-sm text-white bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200"
