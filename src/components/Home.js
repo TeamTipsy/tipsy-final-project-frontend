@@ -8,10 +8,12 @@ import Search from './search.js'
 function Home() {
     return ( 
     <>
-    <div className="flex items-center justify-center">
-    <Search/>
+    <div className="mt-10 justify-center"> 
+        <Search/>
+        <Cta/>
     </div>
-    <Cta/>
+   
+ 
         </>
         )
 }
