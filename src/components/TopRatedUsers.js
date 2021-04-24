@@ -26,7 +26,7 @@ function TopRatedUsers({ token }) {
         console.log('top', topUsers)
 
         if (selectedUser) {
-            return <UserProfile selectedUser={selectedUser}/>
+            return <UserProfile selectedUser={selectedUser} token={token}/>
             // if a category is selected render questions 
             //sending questions the selected category
         }
