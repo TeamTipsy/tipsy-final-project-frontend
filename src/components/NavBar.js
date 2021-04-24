@@ -2,6 +2,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import Logo from '../media/Tipsy-2.svg'
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +16,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+
 export default function NewHeader({ isLoggedIn, token, setAuth, username, logOut, setUsername }) {
   return (
     <Disclosure as="nav" className="bg-brand-red">
@@ -24,16 +26,16 @@ export default function NewHeader({ isLoggedIn, token, setAuth, username, logOut
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  {/* <img
+                  <img
                     className="block w-auto h-8 lg:hidden"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    src={Logo}
                     alt="Workflow"
                   />
                   <img
                     className="hidden w-auto h-8 lg:block"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    src={Logo}
                     alt="Tipsy"
-                  /> */}
+                  /> 
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">

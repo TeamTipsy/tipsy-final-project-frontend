@@ -82,27 +82,26 @@ function VenueProfile() {
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
             
-                <div className="max-w-5xl mx-auto py-2 grid grid-cols-2	bg-brand-yellow rounded-r-md rounded-l-md">
+                <div className="grid max-w-5xl grid-cols-2 py-2 mx-auto bg-brand-yellow rounded-r-md rounded-l-md">
                     
                     
-                        <div className='image pl-20'>
+                        <div className='pl-20 image'>
                             <img
-                            className="h-auto-8 w-auto-8 shadow-md rounded-full"
+                            className="rounded-full shadow-md h-auto-8 w-auto-8"
                             src={venue.prof_pic}
                             alt=""
                             />
                         </div>
-                        <div className='text-brand-dark-blue pl-20'>
-                            <h1 className='text-7xl font-black'>{venue.venue_name}</h1>
+                        <div className='pl-20 text-brand-dark-blue'>
+                            <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
                                 <div className='info'>
                                 <h2 className='text-4xl'>{venue.followers_num} Followers</h2>
-                                <h2 className='text-xl'>Hours - {venue.venue_info.hours_of_operation}</h2>
                                 <h2 className='text-xl'> {venue.venue_info.venue_address.street_address}</h2> 
                                 <h2 className='text-xl'> {venue.venue_info.venue_address.city}, {venue.venue_info.venue_address.state}</h2> 
                                 <h4>{venue.venue_type}</h4>
                                 <button
                                 type="button"
-                                className="items-center w-24 p-3 border border-transparent rounded-full shadow-sm text-white bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200"
+                                className="items-center w-24 p-3 text-white border border-transparent rounded-full shadow-sm bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200"
                                 > Follow    
                                 </button>
                                 </div>
@@ -114,7 +113,7 @@ function VenueProfile() {
       
             <section aria-labelledby="notes-title">
 
-                        <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden max-w-5xl mx-auto ">
+                        <div className="max-w-5xl mx-auto bg-white shadow sm:rounded-lg sm:overflow-hidden ">
                             <div className="divide-y divide-gray-200">
                             <div className="px-4 py-5 sm:px-6">
                                 <h2 id="notes-title" className="text-lg font-medium font-black text-brand-dark-blue">
@@ -130,10 +129,10 @@ function VenueProfile() {
                                         <div className="mt-1 text-sm text-gray-700">
                                             <p>{update.body}</p>
                                         </div>
-                                        <div className="mt-2 text-sm space-x-2">
-                                            <span className="text-gray-500 font-medium">{update.date}</span>{' '}
-                                            <span className="text-gray-500 font-medium">&middot;</span>{' '}
-                                            <button type="button" className="text-gray-900 font-medium">
+                                        <div className="mt-2 space-x-2 text-sm">
+                                            <span className="font-medium text-gray-500">{update.date}</span>{' '}
+                                            <span className="font-medium text-gray-500">&middot;</span>{' '}
+                                            <button type="button" className="font-medium text-gray-900">
 
                                             Reply
                                             </button>
@@ -148,7 +147,7 @@ function VenueProfile() {
                             <div className="px-4 py-6 bg-gray-50 sm:px-6">
                             <div className="flex space-x-3">
 
-                                <div className="min-w-0 flex-1">
+                                <div className="flex-1 min-w-0">
 
                                 <form action="#">
                                     <div>
