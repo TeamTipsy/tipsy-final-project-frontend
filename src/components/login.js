@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import Logo from '../media/Tipsy-2.svg'
 import useLocalStorageState from 'use-local-storage-state'
 
 function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
@@ -37,30 +38,31 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
 
     return (
         <>
-<h1 style={isLoggedIn ? {} : {display: 'none'}} className="min-h-screen text-4xl text-brand-dark-blue flex items-center justify-center bg-brand-beau-blue py-12 px-4 sm:px-6 lg:px-8">Don't worry, you're logged in and ready to get Tipsy.
+<h1 style={isLoggedIn ? {} : {display: 'none'}} className="flex items-center justify-center min-h-screen px-4 py-12 text-4xl text-brand-dark-blue bg-brand-beau-blue sm:px-6 lg:px-8">Don't worry, you're logged in and ready to get Tipsy.
 </h1>
-<div  style={isLoggedIn ? { display: 'none' } : {}} className="min-h-screen flex items-center justify-center bg-brand-beau-blue py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+<div  style={isLoggedIn ? { display: 'none' } : {}} className="flex items-center justify-center min-h-screen px-4 py-12 bg-brand-beau-blue sm:px-6 lg:px-8">
+        <div className="w-full max-w-md space-y-8">
         <div>
         <img
-            className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
+            className="w-auto h-12 mx-auto"
+            src={Logo}
+            alt="Tipsy"
         />
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-brand-dark-blue">Sign in to your account</h2>
+        <h2 className="mt-6 text-3xl font-extrabold text-center text-brand-dark-blue">Sign in to your account</h2>
 
         </div>
         <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={handleSubmit}>
         
-        <div className="rounded-md shadow-sm -space-y-px">
+        <div className="-space-y-px rounded-md shadow-sm">
             <div>
             <label htmlFor="email-address" className="sr-only">
                 Username
             </label>
             <input
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 type='text'
                 id='username'
+                placeholder="Enter your username"
                 required
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
@@ -71,8 +73,9 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
                 Password
             </label>
             <input
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     type='text'
+                    placeholder="Password"
                     id='password'
                     required
                     value={password}
@@ -86,7 +89,7 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
         <div>
             <button
             type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md group bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
             Sign in
         </button>
