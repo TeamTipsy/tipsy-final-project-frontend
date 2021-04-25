@@ -44,18 +44,32 @@ function VenueProfile() {
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
             
-                <div className="max-w-5xl mx-auto py-2 px-8 grid grid-cols-2	bg-brand-yellow rounded-r-md rounded-l-md">
+                <div className="grid max-w-5xl grid-cols-2 px-8 py-2 mx-auto bg-brand-yellow rounded-r-md rounded-l-md">
                     
                     
-                        <div className='image pl-20'>
+                        <div className='pl-20 image'>
                             <img
-                            className="h-auto-8 w-auto-8 shadow-md rounded-full"
+                            className="rounded-full shadow-md h-auto-8 w-auto-8"
                             src={venue.prof_pic}
                             alt=""
                             />
                         </div>
-                        <div className='text-brand-dark-blue pl-20'>
-                                <h1 className='text-7xl font-black'>{venue.venue_name}</h1>
+                        <div className='pl-20 text-brand-dark-blue'>
+                            <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
+                                <div className='info'>
+                                <h2 className='text-4xl'>{venue.followers_num} Followers</h2>
+                                <h2 className='text-xl'> {venue.venue_info.venue_address.street_address}</h2> 
+                                <h2 className='text-xl'> {venue.venue_info.venue_address.city}, {venue.venue_info.venue_address.state}</h2> 
+                                <h4>{venue.venue_type}</h4>
+                                <button
+                                type="button"
+                                className="items-center w-24 p-3 text-white border border-transparent rounded-full shadow-sm bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200"
+                                > Follow    
+                                </button>
+                                </div>
+                        </div>
+                        <div className='pl-20 text-brand-dark-blue'>
+                                <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
                                 <div className='info'>
 
                                     {/* <h2 className='text-4xl'>{venue.followers_list.length}</h2> */}
@@ -69,7 +83,7 @@ function VenueProfile() {
 
                                     <button
                                     type="button"
-                                    className="items-center w-24 p-3 border border-transparent rounded-full shadow-sm text-white bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200"
+                                    className="items-center w-24 p-3 text-white border border-transparent rounded-full shadow-sm bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200"
                                     > Follow    
                                     </button>
                                 </div> 
@@ -77,12 +91,12 @@ function VenueProfile() {
                 </div>   
             </div>  
                     <br />
-                <div className='px-8 mx-auto max-w-5xl sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md'>
+                <div className='max-w-5xl px-8 mx-auto shadow-md sm:px-6 lg:px-8 rounded-r-md rounded-l-md'>
                     <ul className="divide-y divide-gray-200"> 
                     {posts.map((post) => ( 
                         <li className="py-4">
-                        <div className="max-w-5xl flex space-x-3">
-                            <img className="h-6 w-6 rounded-full" src={post.post_author_pic} alt="" />
+                        <div className="flex max-w-5xl space-x-3">
+                            <img className="w-6 h-6 rounded-full" src={post.post_author_pic} alt="" />
                             <div className="flex-1 space-y-1">
                             <div className="flex items-center justify-between">
                                 <h3 className="text-sm font-medium">{post.post_author_username}</h3>
