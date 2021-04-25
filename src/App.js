@@ -49,7 +49,7 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <NavBar lsetAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
+                <NavBar setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
                 <Switch>
                     <Route path="/" exact>
                     <Home />
@@ -60,7 +60,9 @@ function App() {
                     </Route>
 
                     <Route path="/VenueProfile" component={VenueProfile} />
-                    <Route path="/TopRatedUsers" component={TopRatedUsers} />
+                    <Route path="/TopRatedUsers" component={TopRatedUsers}>
+                        <TopRatedUsers token={token} />
+                    </Route>
                     <Route path="/TopRatedVenues" component={TopRatedVenues} />
 
                     <Route path="/login" component={Login}>

@@ -17,7 +17,7 @@ function classNames(...classes) {
 }
 
 
-export default function NewHeader({ isLoggedIn, token, setAuth, username, logOut, setUsername }) {
+export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, setUsername }) {
   return (
     <Disclosure as="nav" className="bg-brand-red">
       {({ open }) => (
