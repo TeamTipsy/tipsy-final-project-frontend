@@ -9,7 +9,7 @@ import search from './components/search'
 import TopRatedUsers from './components/TopRatedUsers'
 import TopRatedVenues from './components/TopRatedVenues'
 import Registration from './components/registration'
-import NewHeader from './components/NewHeader'
+import NavBar from './components/NavBar'
 // import search from './components/search'
 import {
     BrowserRouter as Router,
@@ -49,7 +49,7 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <NewHeader setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
+                <NavBar setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
                 <Switch>
                     <Route path="/" exact>
                     <Home />
