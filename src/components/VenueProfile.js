@@ -23,12 +23,13 @@ import {
 } from '@heroicons/react/solid'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { ChatAltIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
-
+import AddComment from './AddComment.js'
 
 
 function VenueProfile() {
     const [venue, setVenue] = useState([])
     const [posts, setPosts] = useState([]) 
+    const [comment, setComment] =useState(false)
   
 
      useEffect(() => {
@@ -43,8 +44,9 @@ function VenueProfile() {
         
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            
-                <div className="grid max-w-5xl grid-cols-2 px-8 py-2 mx-auto bg-brand-yellow rounded-r-md rounded-l-md">
+
+                <div className="max-w-auto py-2 px-8 grid grid-cols-2 bg-brand-yellow rounded-r-md rounded-l-md">
+
                     
                     
                         <div className='pl-20 image'>
@@ -91,7 +93,9 @@ function VenueProfile() {
                 </div>   
             </div>  
                     <br />
-                <div className='max-w-5xl px-8 mx-auto shadow-md sm:px-6 lg:px-8 rounded-r-md rounded-l-md'>
+
+                <div className='px-8 mx-auto max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md'>
+
                     <ul className="divide-y divide-gray-200"> 
                     {posts.map((post) => ( 
                         <li className="py-4">
@@ -107,10 +111,19 @@ function VenueProfile() {
                             </p> 
                             </div>
                         </div>
+                        
                         </li>
+                        
+                    
                     ))}
+                   
                     </ul>
+                    <AddComment comment={comment} handleDone={(newPost) => {
+                        setPosts([...posts, newPost])
+                    }}/>
+                    
                 </div>    
+                
         </div>
         
 
