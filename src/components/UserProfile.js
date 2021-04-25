@@ -1,8 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import useLocalStorageState from 'use-local-storage-state'
 import User from './UserData.js'
 import lodash from 'lodash'
+import FollowBtn from './FollowBtn.js'
+import { NewspaperIcon } from '@heroicons/react/solid'
 
 
 
@@ -10,6 +13,7 @@ import lodash from 'lodash'
 function UserProfile({ token, selectedUser }) {
     const [user, setUser] = useState([])
     const [allPosts, setAllPosts] = useState([])
+    const [userFollow, setUserFollow] = useLocalStorageState(false)
 
     console.log('selectedUser', selectedUser)
     useEffect(() => {
@@ -26,7 +30,25 @@ function UserProfile({ token, selectedUser }) {
 
         console.log(allPosts)
 
-    
+        const handleFollow = (newThing) => {
+            const isFollowing = newThing.detail === "User Followed"
+            setUserFollow(isFollowing)
+        }
+
+        function follow() {
+            axios
+            .put(`http://tipsy-backend.herokuapp.com/users/${user.user_id}/`,
+            {
+            },
+            {
+                headers: { Authorization: `Token ${token}`},
+            })
+            .then((data) => {
+                console.log('data', data)
+                handleFollow(data.data)
+            })
+        }
+
 
     return (
         <div>
@@ -46,6 +68,7 @@ function UserProfile({ token, selectedUser }) {
                     <h2 className='text-xl'>{user.city}, {user.state}</h2>
                     <h2 className='text-xl'>{user.bio_text}</h2>
                     <h2 className='text-xl'>Venues Following: {user.venues_following_num}</h2>
+                    <button onClick={() =>follow()}>{userFollow ? 'Unfollow' : 'Follow'}</button>
                     
                 
                 </div>
@@ -72,7 +95,7 @@ function UserProfile({ token, selectedUser }) {
                 <ul className="text-sm text-gray-500"><li>posted by: {post.post_author}</li> 
                 
                 <li>Likes: {post.post_likers.length}</li></ul> 
-             
+
                 </div>
 
             </div>
