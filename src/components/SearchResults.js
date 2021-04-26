@@ -1,24 +1,36 @@
 import React from 'react';
 import QueryFromSearch from './QueryFromSearch.js';
+import { useState, useEffect } from 'react'
 import Search from './search.js';
 
 
-export default function SearchResults({ search, testsearchResults }) {
-    // let searchResults = <Search />
-    console.log('search1', search)
-    // if(search && search.length) {
-    //     searchResults.map(venue => <QueryFromSearch key={venue.id} />);
-    // }
+export default function SearchResults(props) {
+    const search = props.location.state.search
+    const searchResults = props.location.state.searchResults
+    console.log(searchResults)
 
     return (
-        <div className="list-of-results">
-            {testsearchResults.map((item) => (
-                <div>{item.city}</div>
-        ))}
-            {/* {testsearchResults.map((result) => {
-                {result.city}
-            })} */}
+        <>
+        
+        <div className="list-of-results mt-5">
+        <Search/>
+            <div className="center text-4xl mt-3 text-brand-dark-blue">Results:</div>
+            <ul className="divide-y divide-gray-200 text-brand-dark-blue h-28">
+            {searchResults.map((result)=> (
+                <li className="py-4">
+                    <div className="flex space-x-3">
+                    <img src={result.prof_pic} className="w-10 h-10 rounded-full"/>
+                    <div className="text-2xl">{result.venue_name}</div>
+                    <div>{result.venue_type}</div>
+                    <div>{result.phone_num}</div>
+                    <p>{result.street_address}, {result.city}, {result.state}</p>
+                    <div>{result.web_url}</div>
+                    </div>
+                </li>
+            ))}
+            </ul>
         </div>
+        </>
     );
 }
 // city: "Cary"

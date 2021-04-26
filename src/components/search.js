@@ -2,11 +2,18 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import SearchResults from './SearchResults.js'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  } from 'react-router-dom';
 
 
 function Search() {
     const [search, setSearch] = useState('')
-    const [testsearchResults, setSearchResults] = useState([])
+    const [searchResults, setSearchResults] = useState([])
 
     
     const doSearch = (search) => {
@@ -35,12 +42,17 @@ function Search() {
         <button onClick={() => doSearch(search)} className="px-3 text-sm font-medium leading-4 text-white border border-transparent rounded-lg h-10px bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
         </div> 
 
-        {testsearchResults && testsearchResults.length > 0 ? (
+        {searchResults && searchResults.length > 0 ? (
 
-<SearchResults testsearchResults={testsearchResults} search={search}/>
+<Redirect
+  to={{
+    pathname: "/SearchResults/",
+    state: { searchResults: searchResults, search:search }
+  }}
+/>
 
 
-) : (<h1>No results</h1>)}
+) : (<div></div>)}
 
 
 

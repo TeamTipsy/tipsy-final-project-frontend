@@ -71,7 +71,7 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
                     <h1 className='text-3xl font-black'>{user.first_name}</h1>
                     <h2 className='text-2xl'>{user.city}, {user.state}</h2>
                     <h2 className='text-2xl'>{user.bio_text}</h2>
-                    <h2 className='text-2xl'>Venues Following: {user.venues_following_list.length}</h2>
+                    {/* <h2 className='text-2xl'>Venues Following: {user.venues_following_list.length}</h2> */}
                     <button onClick={() =>follow()} className="bg-brand-red border-black text-white rounded-md p-2 mt-3">{userFollow ? 'Unfollow' : 'Follow'}</button>
                     
                 

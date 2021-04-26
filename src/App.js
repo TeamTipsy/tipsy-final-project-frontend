@@ -10,6 +10,7 @@ import TopRatedUsers from './components/TopRatedUsers'
 import TopRatedVenues from './components/TopRatedVenues'
 import Registration from './components/registration'
 import NavBar from './components/NavBar'
+import SearchResults from './components/SearchResults'
 // import search from './components/search'
 import {
     BrowserRouter as Router,
@@ -74,6 +75,8 @@ function App() {
                     </Route>
 
                     <Route path="/search" component={search} />
+
+                    <Route path="/SearchResults" component={SearchResults} />
 
                     </Switch>
                 </div> 
