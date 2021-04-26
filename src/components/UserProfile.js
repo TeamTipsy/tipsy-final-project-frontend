@@ -17,6 +17,7 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
     const [user, setUser] = useState([])
     const [allPosts, setAllPosts] = useState([])
     const [userFollow, setUserFollow] = useLocalStorageState(false)
+    // const [likes, setLikes] = useLocalStorageState(false)
 
 
     useEffect(() => {
@@ -38,6 +39,11 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
             setUserFollow(isFollowing)
         }
 
+        // const handleLike = (newThing) => {
+        //     const isLiked = newThing.detail === "Is Liked"
+        //     setUserFollow(isLiked)
+        // }
+
         function follow() {
             axios
             .put(`http://tipsy-backend.herokuapp.com/users/${user.user_id}/`,
@@ -52,7 +58,21 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
             })
         }
 
-  
+        // function like() {
+        //     axios
+        //     .put(`http://tipsy-backend.herokuapp.com/users/${post.post_id}/`,
+        //     {
+        //     },
+        //     {
+        //         headers: { Authorization: `Token ${token}`},
+        //     })
+        //     .then((data) => {
+        //         console.log('data', data)
+        //         // handleLike(data.data)
+        //     })
+        // }
+
+
 
     return (
         <div>
@@ -61,7 +81,7 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
                 <div className='px-20 pl-20 text-right text-brand-dark-blue '>
                 <div className='inline-block px-20 image'>
                 <img
-                    className="inline-block rounded-full shadow-md h-auto w-auto"
+                    className="inline-block rounded-full shadow-md h-32 w-36"
                     src={user.prof_pic}
                     alt=""
                 />
@@ -104,7 +124,15 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
                         <button className="hover:text-brand-red ml-2">{post.posted_to_username} {post.posted_to_venue_name}</button>
                         </li> 
                 
-                <li>Likes: {post.post_likers.length}</li></ul> 
+                <li className="flex">
+                    <a className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                    </svg>
+                    </a> 
+                    {post.post_likers.length} likes
+                    </li>
+                    </ul> 
 
                 </div>
 
