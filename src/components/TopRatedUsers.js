@@ -45,7 +45,7 @@ function TopRatedUsers({ token }) {
             </div>
             <div className="flex-1 min-w-0">
             <a onClick={() =>setSelectedUser(topUser.user_id)}
-            className="text-3xl text-brand-dark-blue hover:text-brand-yellow focus:outline-none">
+            className="text-md font-md text-brand-dark-blue hover:text-brand-yellow focus:outline-none">
             <span className="absolute inset-0" aria-hidden="true" />
             <p>{topUser.username}</p>
 
