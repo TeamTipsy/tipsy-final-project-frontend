@@ -17,6 +17,7 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
     const [user, setUser] = useState([])
     const [allPosts, setAllPosts] = useState([])
     const [userFollow, setUserFollow] = useLocalStorageState(false)
+    // const [likes, setLikes] = useLocalStorageState(false)
 
 
     useEffect(() => {
@@ -38,6 +39,11 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
             setUserFollow(isFollowing)
         }
 
+        // const handleLike = (newThing) => {
+        //     const isLiked = newThing.detail === "Is Liked"
+        //     setUserFollow(isLiked)
+        // }
+
         function follow() {
             axios
             .put(`http://tipsy-backend.herokuapp.com/users/${user.user_id}/`,
@@ -52,7 +58,21 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
             })
         }
 
-  
+        // function like() {
+        //     axios
+        //     .put(`http://tipsy-backend.herokuapp.com/users/${post.post_id}/`,
+        //     {
+        //     },
+        //     {
+        //         headers: { Authorization: `Token ${token}`},
+        //     })
+        //     .then((data) => {
+        //         console.log('data', data)
+        //         // handleLike(data.data)
+        //     })
+        // }
+
+
 
     return (
         <div>
@@ -61,18 +81,18 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
                 <div className='px-20 pl-20 text-right text-brand-dark-blue '>
                 <div className='inline-block px-20 image'>
                 <img
-                    className="inline-block w-48 h-48 rounded-full shadow-md"
+                    className="inline-block rounded-full shadow-md h-32 w-36"
                     src={user.prof_pic}
                     alt=""
                 />
                 
                 </div>
                 <div className='inline-block'>
-                    <h1 className='text-2xl font-black'>{user.first_name}</h1>
-                    <h2 className='text-xl'>{user.city}, {user.state}</h2>
-                    <h2 className='text-xl'>{user.bio_text}</h2>
-                    <h2 className='text-xl'>Venues Following: {user.venues_following_num}</h2>
-                    <button onClick={() =>follow()}>{userFollow ? 'Unfollow' : 'Follow'}</button>
+                    <h1 className='text-3xl font-black'>{user.first_name}</h1>
+                    <h2 className='text-2xl'>{user.city}, {user.state}</h2>
+                    <h2 className='text-2xl'>{user.bio_text}</h2>
+                    {/* <h2 className='text-2xl'>Venues Following: {user.venues_following_list.length}</h2> */}
+                    <button onClick={() =>follow()} className="bg-brand-red border-black text-white rounded-md p-2 mt-3">{userFollow ? 'Unfollow' : 'Follow'}</button>
                     
                 
                 </div>
@@ -99,12 +119,20 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
                     <li className="flex">
                         <img className="w-4 h-4 rounded-full mr-2" src={post.post_author_pic}/>
                         <button 
-                        onClick={() => setSelectedUser(post.post_author_id)} className="hover:text-brand-red">{post.post_author_username}</button> 
+                        onClick={() => setSelectedUser(post.post_author_id)} className="hover:text-brand-red mr-2">{post.post_author_username}</button> 
                         --> 
-                        {post.posted_to_username} {post.posted_to_venue_name}
+                        <button className="hover:text-brand-red ml-2">{post.posted_to_username} {post.posted_to_venue_name}</button>
                         </li> 
                 
-                <li>Likes: {post.post_likers.length}</li></ul> 
+                <li className="flex">
+                    <a className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                    </svg>
+                    </a> 
+                    {post.post_likers.length} likes
+                    </li>
+                    </ul> 
 
                 </div>
 
