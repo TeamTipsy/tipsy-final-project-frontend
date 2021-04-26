@@ -19,7 +19,7 @@ export default function SearchResults(props) {
             {searchResults.map((result)=> (
                 <li className="py-8 w-full">
                     <div className="flex space-x-3">
-                    <img src={result.prof_pic} className="h-10 rounded-full"/>
+                    <img src={result.prof_pic} className="h-10 w-12 rounded-full"/>
                     <div className="text-2xl"><a className="hover:text-brand-red">{result.venue_name}</a><div className="text-sm">{result.venue_type}</div></div>
                     <div className="py-4 pl-36">
                     <div>{result.phone_num}</div>
