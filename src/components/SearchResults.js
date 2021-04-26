@@ -12,19 +12,20 @@ export default function SearchResults(props) {
     return (
         <>
         
-        <div className="list-of-results mt-5">
+        <div className="mt-5 mx-10 ">
         <Search/>
             <div className="center text-4xl mt-3 text-brand-dark-blue">Results:</div>
             <ul className="divide-y divide-gray-200 text-brand-dark-blue h-28">
             {searchResults.map((result)=> (
-                <li className="py-4">
+                <li className="py-8 w-full">
                     <div className="flex space-x-3">
-                    <img src={result.prof_pic} className="w-10 h-10 rounded-full"/>
-                    <div className="text-2xl">{result.venue_name}</div>
-                    <div>{result.venue_type}</div>
+                    <img src={result.prof_pic} className="h-10 rounded-full"/>
+                    <div className="text-2xl"><a className="hover:text-brand-red">{result.venue_name}</a><div className="text-sm">{result.venue_type}</div></div>
+                    <div className="py-4 pl-36">
                     <div>{result.phone_num}</div>
                     <p>{result.street_address}, {result.city}, {result.state}</p>
-                    <div>{result.web_url}</div>
+                    <a className="hover:text-brand-red" href={result.web_url}>{result.web_url}</a>
+                    </div>
                     </div>
                 </li>
             ))}
