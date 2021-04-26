@@ -26,14 +26,14 @@ import { ChatAltIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
 import AddComment from './AddComment.js'
 
 
-function VenueProfile({ token }) {
+function VenueProfile({ selectedVenue, token }) {
     const [venue, setVenue] = useState([])
     const [posts, setPosts] = useState([]) 
     // const [comment, setComment] =useState(false)
   
 
      useEffect(() => {
-         axios.get(`https://tipsy-backend.herokuapp.com/venues/654cf189-e39b-468a-a5d8-70614593e817/`).then((response) => {
+         axios.get(`https://tipsy-backend.herokuapp.com/venues/${selectedVenue}`).then((response) => {
              console.log('resp', response)
              setVenue(response.data)
              setPosts(response.data.posted_to_venue)
