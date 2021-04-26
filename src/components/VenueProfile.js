@@ -26,10 +26,10 @@ import { ChatAltIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
 import AddComment from './AddComment.js'
 
 
-function VenueProfile() {
+function VenueProfile({ token }) {
     const [venue, setVenue] = useState([])
     const [posts, setPosts] = useState([]) 
-    const [comment, setComment] =useState(false)
+    // const [comment, setComment] =useState(false)
   
 
      useEffect(() => {
@@ -38,8 +38,12 @@ function VenueProfile() {
              setVenue(response.data)
              setPosts(response.data.posted_to_venue)
          
-         })},[])
+         })
+            
+        },[])
     
+    
+
     return (
         
         <div>
@@ -80,9 +84,8 @@ function VenueProfile() {
                 </div>   
             </div>  
                     <br />
-
                 <div className='px-8 mx-auto max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md'>
-
+                <label key={venue.venue_id} className='text-brand-dark-blue font-black'>{venue.venue_name}'s Board</label>
                     <ul className="divide-y divide-gray-200"> 
                     {posts.map((post) => ( 
                         <li className="py-4">
@@ -103,11 +106,10 @@ function VenueProfile() {
                         
                     
                     ))}
-                   
+                    <AddComment token={token} handlePost={(newPost) => {setPosts([...posts, newPost])}} venue_id={venue.venue_id}/>
+
                     </ul>
-                    <AddComment comment={comment} handleDone={(newPost) => {
-                        setPosts([...posts, newPost])
-                    }}/>
+                    
                     
                 </div>    
                 
