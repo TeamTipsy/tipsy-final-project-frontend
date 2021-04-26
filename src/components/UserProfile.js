@@ -61,18 +61,18 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
                 <div className='px-20 pl-20 text-right text-brand-dark-blue '>
                 <div className='inline-block px-20 image'>
                 <img
-                    className="inline-block w-48 h-48 rounded-full shadow-md"
+                    className="inline-block rounded-full shadow-md h-auto w-auto"
                     src={user.prof_pic}
                     alt=""
                 />
                 
                 </div>
                 <div className='inline-block'>
-                    <h1 className='text-2xl font-black'>{user.first_name}</h1>
-                    <h2 className='text-xl'>{user.city}, {user.state}</h2>
-                    <h2 className='text-xl'>{user.bio_text}</h2>
-                    <h2 className='text-xl'>Venues Following: {user.venues_following_num}</h2>
-                    <button onClick={() =>follow()}>{userFollow ? 'Unfollow' : 'Follow'}</button>
+                    <h1 className='text-3xl font-black'>{user.first_name}</h1>
+                    <h2 className='text-2xl'>{user.city}, {user.state}</h2>
+                    <h2 className='text-2xl'>{user.bio_text}</h2>
+                    <h2 className='text-2xl'>Venues Following: {user.venues_following_list.length}</h2>
+                    <button onClick={() =>follow()} className="bg-brand-red border-black text-white rounded-md p-2 mt-3">{userFollow ? 'Unfollow' : 'Follow'}</button>
                     
                 
                 </div>
@@ -99,9 +99,9 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
                     <li className="flex">
                         <img className="w-4 h-4 rounded-full mr-2" src={post.post_author_pic}/>
                         <button 
-                        onClick={() => setSelectedUser(post.post_author_id)} className="hover:text-brand-red">{post.post_author_username}</button> 
+                        onClick={() => setSelectedUser(post.post_author_id)} className="hover:text-brand-red mr-2">{post.post_author_username}</button> 
                         --> 
-                        {post.posted_to_username} {post.posted_to_venue_name}
+                        <button className="hover:text-brand-red ml-2">{post.posted_to_username} {post.posted_to_venue_name}</button>
                         </li> 
                 
                 <li>Likes: {post.post_likers.length}</li></ul> 

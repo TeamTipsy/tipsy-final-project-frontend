@@ -7,9 +7,9 @@ import {
     Redirect,
     BrowserRouter,
     } from 'react-router-dom';
-import Search from './components/search.js'
+import Search from './search.js'
 import { useState, useEffect } from 'react'
-import VenueProfile from '/.components/VenueProfile'
+import VenueProfile from './VenueProfile'
 
 export default function QueryFromSearch() {
     const venue = venue;
