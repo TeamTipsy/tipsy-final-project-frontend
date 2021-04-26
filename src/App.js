@@ -60,7 +60,9 @@ function App() {
                         <UserProfile token={token}/>
                     </Route>
 
-                    <Route path="/VenueProfile" component={VenueProfile} />
+                    <Route path="/VenueProfile" component={VenueProfile}>
+                        <VenueProfile token={token}/>
+                    </Route>
                     <Route path="/TopRatedUsers" component={TopRatedUsers}>
                         <TopRatedUsers token={token} />
                     </Route>
