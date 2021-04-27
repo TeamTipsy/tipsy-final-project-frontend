@@ -23,12 +23,14 @@ import {
 } from '@heroicons/react/solid'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { ChatAltIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
-import AddComment from './AddComment.js'
+import AddVenueComment from './AddVenueComment.js'
+import useLocalStorageState from 'use-local-storage-state'
 
 
 function VenueProfile({ selectedVenue, token }) {
     const [venue, setVenue] = useState([])
     const [posts, setPosts] = useState([]) 
+    const [followVenue, setFollowVenue] = useLocalStorageState(false)
     // const [comment, setComment] =useState(false)
   
 
@@ -41,25 +43,46 @@ function VenueProfile({ selectedVenue, token }) {
          })
             
         },[])
+
+    const handlePost = (newPosts) => {
+        setPosts([...posts, newPosts])
+    }    
     
-    
+    const handleFollow = (newFollow) => {
+        const isFollowing = newFollow.detail === 'Venue Followed'
+        setFollowVenue(isFollowing)
+    }
+
+    function follow() {
+        axios
+        .put(`https://tipsy-backend.herokuapp.com/venues/${venue.venue_id}/`,
+        {
+
+        },
+        {
+            headers: { Authorization: `Token ${token}`},
+        }).then((data) => {
+            handleFollow(data.data)
+        })
+        
+    }
+   
+    const image = venue.prof_pic
 
     return (
         
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-                <div className="max-w-auto py-2 px-8 grid grid-cols-2 bg-brand-yellow rounded-r-md rounded-l-md">
-
-                    
-                    
-                        <div className='pl-20 image'>
+                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md bg-cover"> 
+                
+                        
                             <img
-                            className="rounded-full shadow-md h-auto-8 w-auto-8"
+                            className="max-w-sm max-h-sm rounded-sm shadow-md"
                             src={venue.prof_pic}
-                            alt=""
-                            />
-                        </div>
+                            alt=""/> 
+                            
+                       
                         
                         <div className='pl-20 text-brand-dark-blue'>
                                 <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
@@ -73,11 +96,11 @@ function VenueProfile({ selectedVenue, token }) {
                                     
                                     <h4>{venue.venue_type}</h4>
                                     <h4>{venue.venue_added_by}</h4>
-
+                                    
                                     <button
-                                    type="button"
-                                    className="items-center w-24 p-3 text-white border border-transparent rounded-full shadow-sm bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200"
-                                    > Follow    
+                                    onClick={() =>follow()}
+                                    className="items-center w-24 p-3 text-white border border-transparent rounded-full shadow-sm bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200" 
+                                    > {followVenue ? 'Unfollow' : 'Follow'}    
                                     </button>
                                 </div> 
                         </div>
@@ -106,7 +129,7 @@ function VenueProfile({ selectedVenue, token }) {
                         
                     
                     ))}
-                    <AddComment token={token} handlePost={(newPost) => {setPosts([...posts, newPost])}} venue_id={venue.venue_id}/>
+                    <AddVenueComment token={token} handlePost={handlePost} venue_id={venue.venue_id}/>
 
                     </ul>
                     
