@@ -10,7 +10,7 @@ import {
     Redirect,
     } from 'react-router-dom';
 
-function TopRatedVenues() {
+function TopRatedVenues({ token }) {
     const [topVenues, setTopVenues] = useState([])
     const [selectedVenue, setSelectedVenue] = useState(null)
 
@@ -24,8 +24,11 @@ function TopRatedVenues() {
     console.log('venues', topVenues)
 
     if (selectedVenue) {
-        return <VenueProfile selectedVenue={selectedVenue} setSelectedVenue={setSelectedVenue}/>
+        return <VenueProfile selectedVenue={selectedVenue} token={token} setSelectedVenue={setSelectedVenue}/>
     }
+
+
+    console.log('token', token)
 
    return (
        <div>
