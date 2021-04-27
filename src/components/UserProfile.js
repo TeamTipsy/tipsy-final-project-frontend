@@ -13,7 +13,10 @@ import {
 
 
 
-function UserProfile({ token, selectedUser, setSelectedUser }) {
+function UserProfile({ selectedUser, token, setSelectedUser }) {
+    // const token = props.location.state.token
+    // const selectedUser = props.location.state.selectedUser
+    // const setSelectedUser = props.location.state.setSelectedUser
     const [user, setUser] = useState([])
     const [allPosts, setAllPosts] = useState([])
     const [userFollow, setUserFollow] = useLocalStorageState(false)

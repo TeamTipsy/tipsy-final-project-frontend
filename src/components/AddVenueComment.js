@@ -2,15 +2,18 @@ import { useState } from 'react'
 import axios from 'axios'
 
 
-function AddComment({ venue_id, token, handlePost }) {
+function AddVenueComment({ venue_id, token, handlePost }) {
     const [comment, setComment] = useState('')
 
     const handleSubmit = (e) => {
+        // console.log('venue id', venue_id)
+        console.log('comment in handleSubmit', comment)
         e.preventDefault()
-        axios.post('https://tipsy-backend.herokuapp.com/posts/654cf189-e39b-468a-a5d8-70614593e817/',
+        axios
+        .post(`https://tipsy-backend.herokuapp.com/posts/`,
         {
             post_text: comment,
-            posted_to_venue: `${venue_id}`,
+            posted_to_venue: venue_id
         },
         {
             headers: { Authorization: `Token ${token}`},
@@ -18,10 +21,11 @@ function AddComment({ venue_id, token, handlePost }) {
     ).then((data) => {
             handlePost(data.data)
         setComment('')
+
         })
     }
-    
-
+   console.log('comment', comment)
+   console.log('token', token)
     return(
         <div>
             <form onSubmit={handleSubmit}>
@@ -42,4 +46,4 @@ function AddComment({ venue_id, token, handlePost }) {
     )
 }
 
-export default AddComment
+export default AddVenueComment

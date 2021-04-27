@@ -28,19 +28,27 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
           }
         })
       })
+
+      if (isLoggedIn) {
+        return <Redirect pathname="/"
+        />
+    }
     }
 
 
     return (
-        <div className="min-h-screen bg-brand-beau-blue flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="flex flex-col justify-center min-h-screen py-12 bg-brand-beau-blue sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
        
-        <h2 style={isLoggedIn ? { display: 'none' } :{}} className="mt-6 text-center text-3xl font-extrabold text-bg-brand-dark-blue">Don't Have an Account? Create One Here!</h2>
-        <h2 style={isLoggedIn ? {} : { display: 'none' }} className="mt-6 text-center text-3xl font-extrabold text-bg-brand-dark-blue">Logout to Register a New Account</h2>
+        <h2 style={isLoggedIn ? { display: 'none' } :{}} className="mt-6 text-4xl font-extrabold text-center text-bg-brand-dark-blue">Don't Have an Account? Create One Here!</h2>
+        <h2 style={isLoggedIn ? {} : { display: 'none' }} className="mt-6 text-4xl font-extrabold text-center text-brand-dark-blue">Taking Too Long to Load?</h2>
+        <Link 
+        className="mt-2 ml-48 text-base font-light text-center hover:text-brand-red text-brand-dark-blue text-bg-brand-dark-blue" to="/">Click Here 
+        </Link>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit} style={isLoggedIn ? { display: 'none' } : {}}>
             
           <div>
@@ -53,7 +61,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   type="text"
                   autoComplete="firstname"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -68,7 +76,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   type="text"
                   autoComplete="lasttname"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -83,7 +91,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -100,7 +108,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   autoComplete="username"
                   required
                   onChange={(e) => setUsername(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -116,7 +124,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   type="text"
                   autoComplete="city"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -131,7 +139,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   type="text"
                   autoComplete="state"
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -149,7 +157,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -160,9 +168,9 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   id="remember_me"
                   name="remember_me"
                   type="checkbox"
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                  className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                 />
-                <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
+                <label htmlFor="remember_me" className="block ml-2 text-sm text-gray-900">
                   Remember me
                 </label>
               </div>
@@ -175,7 +183,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Create Account
               </button>
@@ -188,15 +196,15 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                <span className="px-2 text-gray-500 bg-white">Or continue with</span>
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-3 mt-6">
               <div>
                 <a
                   href="#"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
                 >
                   <span className="sr-only">Sign in with Facebook</span>
                   <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -212,7 +220,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
               <div>
                 <a
                   href="#"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
                 >
                   <span className="sr-only">Sign in with Twitter</span>
                   <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -224,7 +232,7 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
               <div>
                 <a
                   href="#"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
                 >
                   <span className="sr-only">Sign in with GitHub</span>
                   <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
