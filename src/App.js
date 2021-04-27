@@ -53,7 +53,7 @@ function App() {
                 <NavBar setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
                 <Switch>
                     <Route path="/" exact>
-                    <Home />
+                    <Home token={token} />
                     </Route>
 
                     <Route path="/UserProfile" component={UserProfile}>
