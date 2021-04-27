@@ -45,7 +45,8 @@ function App() {
         setUsername(null)
         setToken(null)
         }
-  
+        
+        console.log('token', token)
     
     return (
         <Router>
@@ -63,10 +64,14 @@ function App() {
                     <Route path="/VenueProfile" component={VenueProfile}>
                         <VenueProfile token={token}/>
                     </Route>
+                    
                     <Route path="/TopRatedUsers" component={TopRatedUsers}>
                         <TopRatedUsers token={token} />
                     </Route>
-                    <Route path="/TopRatedVenues" component={TopRatedVenues} />
+                    
+                    <Route path="/TopRatedVenues" component={TopRatedVenues}>
+                        <TopRatedVenues token={token} />
+                    </Route>
 
                     <Route path="/login" component={Login}>
                     <Login setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
