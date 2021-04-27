@@ -16,6 +16,7 @@ function Home({ token }) {
         <h2 className="text-4xl font-bold mt-20 text-brand-dark-blue ">Top Rated Venues</h2>
         <TopRatedVenues 
         className="col-span-1"
+        token={token}
         />
         <h2 className="mt-12 text-4xl font-bold text-brand-dark-blue ">Top Rated Users</h2>
        <TopRatedUsers 
