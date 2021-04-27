@@ -15,6 +15,7 @@ function Search() {
     const [search, setSearch] = useState('')
     const [endpoint, setEndpoint] = useState('')
     const [searchResults, setSearchResults] = useState([])
+    const [toggleResults, setToggleResults] = useState(false)
 
     
     const doSearch = (search) => {
@@ -23,22 +24,25 @@ function Search() {
           {
               
           }).then((response) => {
+          setToggleResults(true)
           console.log('resp', response)
           setSearchResults([...response.data])
+          
 
       })}
 
 
     const handleChange = (event) => {
+      setToggleResults(false)
       setSearch(event.target.value)
-
     }
 
     const handleEndpoint = (event) => {
-     
+      setToggleResults(false)
       setEndpoint(event.target.value)
       console.log(endpoint)
     }
+
 
 
     return (
@@ -62,12 +66,12 @@ function Search() {
 </form> 
   
 
-        {searchResults && searchResults.length > 0 ? (
+{searchResults && searchResults.length > 0 ? (
 
 <Redirect
   to={{
     pathname: "/SearchResults/",
-    state: { searchResults: searchResults, search:search }
+    state: { searchResults: searchResults, search:search, endpoint: endpoint, toggleResults: toggleResults  }
   }}
 />
 
