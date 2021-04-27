@@ -15,6 +15,7 @@ function Search() {
     const [search, setSearch] = useState('')
     const [endpoint, setEndpoint] = useState('')
     const [searchResults, setSearchResults] = useState([])
+    const [toggleResults, setToggleResults] = useState(false)
 
 
     
@@ -24,6 +25,7 @@ function Search() {
           {
               
           }).then((response) => {
+          setToggleResults(true)
           console.log('resp', response)
           setSearchResults([...response.data])
           
@@ -32,14 +34,16 @@ function Search() {
 
 
     const handleChange = (event) => {
+      setToggleResults(false)
       setSearch(event.target.value)
     }
 
     const handleEndpoint = (event) => {
-     
+      setToggleResults(false)
       setEndpoint(event.target.value)
       console.log(endpoint)
     }
+
 
 
     return (
@@ -50,7 +54,7 @@ function Search() {
 
 
         <button onClick={() => doSearch(search)} className="px-3 text-sm font-medium leading-4 text-white border border-transparent rounded-lg h-10px bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
-       
+        
         </div>
         
         <label for="search" className="h-auto ml-2"></label>
@@ -63,26 +67,12 @@ function Search() {
 </form> 
   
 
-        <button onClick={() => doSearch(search)} type="submit" className="px-3 text-sm font-medium leading-4 text-white border border-transparent rounded-lg h-10px bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
-
-        </div>
-        
-        <label for="search" className="h-auto ml-2"></label>
-
-<form name="searchfilter" id="search" className="mr-3 mt-3 h-6 flex">
-  <input onChange={(event) => setEndpoint('users') } type="radio" value="users"  className="mr-1 p-4"/>
-  <div>{'users'}</div>
-  <input onChange={(event) => setEndpoint('venues') } type="radio" value="venues" className="mr-1"/>
-  {'venues'}
-</form> 
-  
-
 {searchResults && searchResults.length > 0 ? (
 
 <Redirect
   to={{
     pathname: "/SearchResults/",
-    state: { searchResults: searchResults, search:search, endpoint: endpoint, doSearch:doSearch  }
+    state: { searchResults: searchResults, search:search, endpoint: endpoint, toggleResults: toggleResults  }
   }}
 />
 
