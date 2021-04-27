@@ -31,6 +31,8 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
 
 }
 
+
+
 // when a user logs in the backend api needs to return key fields for that user, such as 
 //username and profile pic. const [loggedInUser, setLoggedInUser]
 // an object for the user containing username, profile picture, etc.
