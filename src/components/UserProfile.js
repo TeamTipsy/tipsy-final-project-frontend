@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
+// import AddUserComment from './AddUserComment.js'
 import {
     BrowserRouter as Router,
     Switch,
@@ -38,6 +39,8 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
             const isFollowing = newThing.detail === "User Followed"
             setUserFollow(isFollowing)
         }
+
+       
 
         // const handleLike = (newThing) => {
         //     const isLiked = newThing.detail === "Is Liked"
@@ -140,6 +143,7 @@ function UserProfile({ token, selectedUser, setSelectedUser }) {
             </div>
         </li>
        ))}
+       
     </ul>
     </div>
 
