@@ -27,5 +27,5 @@ export default function QueryFromSearch() {
                 {venueaddress}
             </div>
         </div>
-    )
+    );
 }

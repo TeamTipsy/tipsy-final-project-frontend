@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 import Logo from '../media/Tipsy-2.svg'
 import useLocalStorageState from 'use-local-storage-state'
 
 function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
-
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState('')
-
-
+    
+    if(isLoggedIn) {return <Redirect to="/" />
+    }
     function handleSubmit (event) {
+
     // setAuth1()
     event.preventDefault()
     axios
@@ -22,12 +23,18 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
         console.log(data)
         if (data && data.data.auth_token) {
         setAuth(username, data.data.auth_token)
+        return 
         // setCurrentUSer(data.user)
         }
     })
     .catch((error) => {
         setErrors(error.message)
+    
+        
     })
+    
+   
+    
 
 }
 
@@ -59,7 +66,7 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
                 Username
             </label>
             <input
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="relative block w-full px-3 py-2 mb-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 type='text'
                 id='username'
                 placeholder="Enter your username"
@@ -93,6 +100,9 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
             >
             Sign in
         </button>
+
+        <Link className="content-center mt-2 text-sm text-center text-brand-dark-blue hover:text-brand-yellow " to="/registration">Don't have a Tipsy account? Create one here.</Link>
+        
         </div>
         </form>
         </div>
