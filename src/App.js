@@ -57,11 +57,11 @@ function App() {
                     <Home token={token} />
                     </Route>
 
-                    <Route path="/UserProfile" component={UserProfile}>
+                    <Route path="/UserProfile/:userId" component={UserProfile}>
                         <UserProfile token={token}/>
                     </Route>
 
-                    <Route path="/VenueProfile" component={VenueProfile}>
+                    <Route path="/VenueProfile/:venueId" component={VenueProfile}>
                         <VenueProfile token={token}/>
                     </Route>
                     

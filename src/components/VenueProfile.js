@@ -2,29 +2,13 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Fragment } from 'react'
-import { Menu, Popover, Transition } from '@headlessui/react'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-    } from 'react-router-dom';
-import {
-  ArrowNarrowLeftIcon,
-  CheckIcon,
-  HomeIcon,
-  PaperClipIcon,
-  QuestionMarkCircleIcon,
-  SearchIcon,
-  ThumbUpIcon,
-  UserIcon,
-} from '@heroicons/react/solid'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { ChatAltIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
 import AddVenueComment from './AddVenueComment.js'
 import useLocalStorageState from 'use-local-storage-state'
+import {
+    Link,
+    useParams,
+    } from 'react-router-dom';
+
 
 
 function VenueProfile({ selectedVenue, token }) {
@@ -32,15 +16,15 @@ function VenueProfile({ selectedVenue, token }) {
     const [posts, setPosts] = useState([]) 
     const [followVenue, setFollowVenue] = useLocalStorageState(false)
     // const [comment, setComment] =useState(false)
-  
+    let { venueId } = useParams();
 
-     useEffect(() => {
-         axios.get(`https://tipsy-backend.herokuapp.com/venues/${selectedVenue}`).then((response) => {
-             console.log('resp', response)
-             setVenue(response.data)
-             setPosts(response.data.posted_to_venue)
-         
-         })
+    useEffect(() => {
+        axios.get(`https://tipsy-backend.herokuapp.com/venues/${venueId}`).then((response) => {
+            console.log('resp', response)
+            setVenue(response.data)
+            setPosts(response.data.posted_to_venue)
+        
+        })
             
         },[])
 
@@ -66,25 +50,16 @@ function VenueProfile({ selectedVenue, token }) {
         })
         
     }
-   
-    const image = venue.prof_pic
+
 
     return (
         
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md bg-cover"> 
-                
+                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-2xl filter saturate-200 contrast-40  sepia-0 " style={{ backgroundImage: `url(${venue.prof_pic})` }}>
                         
-                            <img
-                            className="max-w-sm max-h-sm rounded-sm shadow-md"
-                            src={venue.prof_pic}
-                            alt=""/> 
-                            
-                       
-                        
-                        <div className='pl-20 text-brand-dark-blue'>
+                        <div className='bg-brand-yellow bg-opacity-40 rounded-r-md rounded-l-md pl-20 py-2 text-white contrast-200 backdrop-blur-sm'>
                                 <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
                                 <div className='info'>
 

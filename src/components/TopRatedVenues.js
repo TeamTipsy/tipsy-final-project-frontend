@@ -23,16 +23,16 @@ function TopRatedVenues({ token }) {
     }, [])
     console.log('venues', topVenues)
 
-    if (selectedVenue) {
-        return <VenueProfile selectedVenue={selectedVenue} token={token} setSelectedVenue={setSelectedVenue}/>
-    }
+    // if (selectedVenue) {
+    //     return <VenueProfile selectedVenue={selectedVenue} token={token} setSelectedVenue={setSelectedVenue}/>
+    // }
 
 
     console.log('token', token)
 
-   return (
-       <div>
-             <div className="max-w-auto py-2 px-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+  return (
+      <div>
+            <div className="max-w-auto py-2 px-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {topVenues.map((topVenue) => (
         <div
           key={topVenue.email}
@@ -42,12 +42,12 @@ function TopRatedVenues({ token }) {
             <img className="h-10 w-10 rounded-full" src={topVenue.prof_pic} alt="" />
           </div>
           <div className="flex-1 min-w-0">
-            <a href="#" onClick={() => setSelectedVenue(topVenue.venue_id)}className="focus:outline-none">
+            <Link to={`/VenueProfile/${topVenue.venue_id}`}  className="focus:outline-none">
               <span className="absolute inset-0" aria-hidden="true" />
               <p className="text-sm font-medium text-gray-900">{topVenue.venue_name}</p>
               <p className="text-sm text-gray-500 truncate">{topVenue.venue_type}</p>
               <p className='text-sm text-gray-500'>{topVenue.city}, {topVenue.state}</p>
-            </a>
+            </Link>
           </div>
         </div>
       ))}
