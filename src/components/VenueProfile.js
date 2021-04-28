@@ -46,7 +46,7 @@ function VenueProfile({ selectedVenue, token }) {
         
     }
    
-    const image = venue.prof_pic
+    
 
     return (
         
