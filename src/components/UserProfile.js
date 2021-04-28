@@ -4,11 +4,7 @@ import { useState, useEffect } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
 // import AddUserComment from './AddUserComment.js'
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
-    Redirect,
     useParams,
     } from 'react-router-dom';
 

@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import AddVenueComment from './AddVenueComment.js'
 import useLocalStorageState from 'use-local-storage-state'
+import {
+    Link,
+    useParams,
+    } from 'react-router-dom';
 
 
 function VenueProfile({ selectedVenue, token }) {
