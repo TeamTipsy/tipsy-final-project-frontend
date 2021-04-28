@@ -15,9 +15,6 @@ import {
 
 
 function UserProfile({ token }) {
-    // const token = props.location.state.token
-    // const selectedUser = props.location.state.selectedUser
-    // const setSelectedUser = props.location.state.setSelectedUser
     const [user, setUser] = useState([])
     const [allPosts, setAllPosts] = useState([])
     const [userFollow, setUserFollow] = useLocalStorageState(false)
@@ -124,12 +121,11 @@ function UserProfile({ token }) {
                 <ul className="text-sm text-gray-500">
                     <li className="flex">
                         <img className="w-4 h-4 rounded-full mr-2" src={post.post_author_pic}/>
-                        {/* <Link 
-                        onClick={() => setSelectedUser(post.post_author_id)} className="hover:text-brand-red mr-2">{post.post_author_username}</button> 
+                        <Link 
+                        to={`/UserProfile/${post.post_author_id}`} className="hover:text-brand-red mr-2">{post.post_author_username}</Link> 
                         --> 
-                        <Link className="hover:text-brand-red ml-2">{post.posted_to_username} {post.posted_to_venue_name}</button>
-                         */}
-                         </li>
+                        <Link className="hover:text-brand-red ml-2">{post.posted_to_username} {post.posted_to_venue_name}</Link>
+</li>
                 
                 <li className="flex">
                     <a className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
@@ -146,7 +142,7 @@ function UserProfile({ token }) {
             </div>
             </div>
         </li>
-       ))}
+))}
     </ul>
     </div>
 

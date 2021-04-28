@@ -10,6 +10,7 @@ import {
     Route,
     Link,
     Redirect,
+    useParams,
     } from 'react-router-dom';
 import {
   ArrowNarrowLeftIcon,
@@ -32,15 +33,15 @@ function VenueProfile({ selectedVenue, token }) {
     const [posts, setPosts] = useState([]) 
     const [followVenue, setFollowVenue] = useLocalStorageState(false)
     // const [comment, setComment] =useState(false)
-  
+    let { venueId } = useParams();
 
-     useEffect(() => {
-         axios.get(`https://tipsy-backend.herokuapp.com/venues/${selectedVenue}`).then((response) => {
-             console.log('resp', response)
-             setVenue(response.data)
-             setPosts(response.data.posted_to_venue)
-         
-         })
+    useEffect(() => {
+        axios.get(`https://tipsy-backend.herokuapp.com/venues/${venueId}`).then((response) => {
+            console.log('resp', response)
+            setVenue(response.data)
+            setPosts(response.data.posted_to_venue)
+        
+        })
             
         },[])
 
