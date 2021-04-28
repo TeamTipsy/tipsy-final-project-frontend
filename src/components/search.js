@@ -13,9 +13,10 @@ import {
 
 function Search() {
     const [search, setSearch] = useState('')
-    const [endpoint, setEndpoint] = useState('')
+    let [endpoint, setEndpoint] = useState('')
+    // let endpoint = ''
     const [searchResults, setSearchResults] = useState([])
-    const [toggleResults, setToggleResults] = useState(false)
+
 
     
     const doSearch = (search) => {
@@ -24,7 +25,6 @@ function Search() {
           {
               
           }).then((response) => {
-          setToggleResults(true)
           console.log('resp', response)
           setSearchResults([...response.data])
           
@@ -33,15 +33,13 @@ function Search() {
 
 
     const handleChange = (event) => {
-      setToggleResults(false)
       setSearch(event.target.value)
     }
 
-    const handleEndpoint = (event) => {
-      setToggleResults(false)
-      setEndpoint(event.target.value)
-      console.log(endpoint)
-    }
+    // const handleEndpoint = (event) => {
+    //   setEndpoint(event.target.value)
+    //   console.log(endpoint)
+    // }
 
 
 
@@ -51,17 +49,16 @@ function Search() {
         <div className="flex h-12 lg:mx-72 sm:mx-12">
         <input type="text" value={search} onChange={handleChange} className="w-full h-12 pl-4 mr-3 border-2 rounded-full border-brand-beau-blue" placeholder="Find a drink" />
 
+        <button onClick={() => doSearch(search)} type="submit" className="px-3 text-sm font-medium leading-4 text-white border border-transparent rounded-lg h-10px bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
 
-        <button onClick={() => doSearch(search)} className="px-3 text-sm font-medium leading-4 text-white border border-transparent rounded-lg h-10px bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
-       
         </div>
         
         <label for="search" className="h-auto ml-2"></label>
 
 <form name="searchfilter" id="search" className="mr-3 mt-3 h-6 flex">
-  <input onChange={handleEndpoint} type="radio" value="users"  className="mr-1 p-4" checked={endpoint === 'users'}/>
+  <input onChange={(event) => setEndpoint('users') } type="radio" value="users"  className="mr-1 p-4"/>
   <div>{'users'}</div>
-  <input onChange={handleEndpoint} type="radio" value="venues" className="mr-1" checked={endpoint === 'venues'}/>
+  <input onChange={(event) => setEndpoint('venues') } type="radio" value="venues" className="mr-1"/>
   {'venues'}
 </form> 
   
@@ -71,7 +68,7 @@ function Search() {
 <Redirect
   to={{
     pathname: "/SearchResults/",
-    state: { searchResults: searchResults, search:search, endpoint: endpoint, toggleResults: toggleResults  }
+    state: { searchResults: searchResults, search:search, endpoint: endpoint, doSearch:doSearch  }
   }}
 />
 

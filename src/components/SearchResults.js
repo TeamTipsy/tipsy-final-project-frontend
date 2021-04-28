@@ -8,13 +8,14 @@ export default function SearchResults(props) {
     const search = props.location.state.search
     const searchResults = props.location.state.searchResults
     const endpoint = props.location.state.endpoint
-    const toggleResults = props.location.state.toggleResults
+    const doSearch = props.location.state.doSearch
+
     console.log(searchResults)
 
 
     return (
         <>
-        {endpoint === "venues"  ? (
+        {doSearch && endpoint === "venues"  ? (
         <div className="mt-5 mx-10 ">
         <Search/>
             <div className="center text-4xl mt-3 text-brand-dark-blue">Results:</div>
