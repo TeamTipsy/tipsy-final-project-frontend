@@ -61,7 +61,7 @@ function App() {
                         <UserProfile token={token}/>
                     </Route>
 
-                    <Route path="/VenueProfile" component={VenueProfile}>
+                    <Route path="/VenueProfile/:venueId" component={VenueProfile}>
                         <VenueProfile token={token}/>
                     </Route>
                     
