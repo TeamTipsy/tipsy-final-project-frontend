@@ -30,7 +30,7 @@ function AddVenueComment({ venue_id, token, handlePost }) {
         <div>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <textarea className='mx-auto max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md'
+                    <textarea className='mx-auto'
                     value={comment}
                     type='text'
                     placeholder='Spill Here'
