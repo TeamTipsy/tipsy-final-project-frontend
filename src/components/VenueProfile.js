@@ -5,13 +5,11 @@ import axios from 'axios'
 import AddVenueComment from './AddVenueComment.js'
 import useLocalStorageState from 'use-local-storage-state'
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
-    Redirect,
     useParams,
     } from 'react-router-dom';
+
+
 
 function VenueProfile({ selectedVenue, token }) {
     const [venue, setVenue] = useState([])
