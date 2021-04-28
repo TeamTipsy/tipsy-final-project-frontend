@@ -11,15 +11,15 @@ function VenueProfile({ selectedVenue, token }) {
     const [posts, setPosts] = useState([]) 
     const [followVenue, setFollowVenue] = useLocalStorageState(false)
     // const [comment, setComment] =useState(false)
-  
+    let { venueId } = useParams();
 
-     useEffect(() => {
-         axios.get(`https://tipsy-backend.herokuapp.com/venues/${selectedVenue}`).then((response) => {
-             console.log('resp', response)
-             setVenue(response.data)
-             setPosts(response.data.posted_to_venue)
-         
-         })
+    useEffect(() => {
+        axios.get(`https://tipsy-backend.herokuapp.com/venues/${venueId}`).then((response) => {
+            console.log('resp', response)
+            setVenue(response.data)
+            setPosts(response.data.posted_to_venue)
+        
+        })
             
         },[])
 
@@ -45,25 +45,24 @@ function VenueProfile({ selectedVenue, token }) {
         })
         
     }
-   
-    
+
 
     return (
         
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md bg-cover"> 
+                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-2xl filter saturate-200 contrast-40  sepia-0 " style={{ backgroundImage: `url(${venue.prof_pic})` }}> 
                 
                         
-                            <img
+                            {/* <img
                             className="max-w-sm max-h-sm rounded-sm shadow-md"
                             src={venue.prof_pic}
-                            alt=""/> 
+                            alt=""/>  */}
                             
                        
                         
-                        <div className='pl-20 text-brand-dark-blue'>
+                        <div className='bg-brand-yellow bg-opacity-40 rounded-r-md rounded-l-md pl-20 py-2 text-white contrast-200 backdrop-blur-sm'>
                                 <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
                                 <div className='info'>
 

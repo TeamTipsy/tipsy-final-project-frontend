@@ -10,9 +10,9 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
     
     if(isLoggedIn) {return <Redirect to="/" />
     }
-    function handleSubmit (event) {
 
-    // setAuth1()
+
+    function handleSubmit (event) {
     event.preventDefault()
     axios
     .post('https://tipsy-backend.herokuapp.com/auth/token/login/', {
