@@ -8,7 +8,7 @@ user_id, token, handlePost
     const handleSubmit = (e) => {
         e.preventDefault()
         axios
-        .post(`https://tipsy-backend.herokuapp.com/users/`,
+        .post(`https://tipsy-backend.herokuapp.com/posts/`,
         {
             post_text: comment,
             posted_to_user: user_id

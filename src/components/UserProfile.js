@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
-// import AddUserComment from './AddUserComment.js'
+import AddUserComment from './AddUserComment.js'
 import {
     Link,
     useParams,
@@ -40,10 +40,14 @@ function UserProfile({ token }) {
             setUserFollow(isFollowing)
         }
 
-        const handleLike = (newThing) => {
-            const isLiked = newThing.detail === "Is Liked"
-            setLikes(isLiked)
-        }
+        const handlePost = (newPosts) => {
+            setAllPosts([...allPosts, newPosts])
+        } 
+
+        // const handleLike = (newThing) => {
+        //     const isLiked = newThing.detail === "Is Liked"
+        //     setUserFollow(isLiked)
+        // }
 
         function follow() {
             axios
@@ -144,7 +148,7 @@ function UserProfile({ token }) {
         </li>
 
        ))}
-       
+            <AddUserComment token={token} handlePost={handlePost} user_id={user.user_id}/>       
 
     </ul>
     </div>
