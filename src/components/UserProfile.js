@@ -128,7 +128,8 @@ function UserProfile({ token }) {
                         onClick={() => setSelectedUser(post.post_author_id)} className="hover:text-brand-red mr-2">{post.post_author_username}</button> 
                         --> 
                         <Link className="hover:text-brand-red ml-2">{post.posted_to_username} {post.posted_to_venue_name}</button>
-                        </li>  */}
+                         */}
+                         </li>
                 
                 <li className="flex">
                     <a className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
