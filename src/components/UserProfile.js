@@ -15,10 +15,9 @@ function UserProfile({ token }) {
     const [user, setUser] = useState([])
     const [allPosts, setAllPosts] = useState([])
     const [post, setPost] = useState('')
-    const [userFollow, setUserFollow] = useLocalStorageState(false)
-    const [likes, setLikes] = useLocalStorageState(false)
+    const [userFollow, setUserFollow] = useLocalStorageState('follows', false)
 
- let { userId } = useParams();
+    let { userId } = useParams();
 
 
     useEffect(() => {
@@ -44,10 +43,11 @@ function UserProfile({ token }) {
             setAllPosts([...allPosts, newPosts])
         } 
 
-        // const handleLike = (newThing) => {
-        //     const isLiked = newThing.detail === "Is Liked"
-        //     setUserFollow(isLiked)
-        // }
+        const handleLikeClick = (post_id) => {
+            if (post_id) {
+                like(post_id)
+            }
+        }
 
         function follow() {
             axios
@@ -58,28 +58,37 @@ function UserProfile({ token }) {
                 headers: { Authorization: `Token ${token}`},
             })
             .then((data) => {
-                console.log('data', data)
                 handleFollow(data.data)
             })
         }
 
-        console.log(user.user_id)
+        console.log('allpost', allPosts)
 
-        function like() {
+        function like(post) {
             axios
-            .put(`http://tipsy-backend.herokuapp.com/users/${post}/`,
+            .put(`http://tipsy-backend.herokuapp.com/posts/${post}/`,
             {
             },
             {
                 headers: { Authorization: `Token ${token}`},
             })
             .then((data) => {
-                console.log('data', data)
-                handleLike(data.data)
+                console.log('like endpoint', data)
+                if (data.data.detail === 'Post Liked' || data.data.detail === 'Post Unliked') {
+                    axios.get(
+                        `https://tipsy-backend.herokuapp.com/users/${userId}/`, 
+                        {
+                            headers: { Authorization: `Token ${token}`}
+                        }).then((response) => {
+                        setAllPosts([...response.data.posts_by, ...response.data.posted_to_user])
+                    })
+                }
             })
         }
 
-
+        // if (post) {
+        // like()
+        // }
 
     return (
         <div>
@@ -132,7 +141,7 @@ function UserProfile({ token }) {
 </li>
                 
                 <li className="flex">
-                    <a onClick={() => setPost(post.post_id), like()} className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
+                    <a onClick={() => handleLikeClick(post.post_id)} className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                     </svg>
