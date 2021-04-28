@@ -4,7 +4,14 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import AddVenueComment from './AddVenueComment.js'
 import useLocalStorageState from 'use-local-storage-state'
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    Redirect,
+    useParams,
+    } from 'react-router-dom';
 
 function VenueProfile({ selectedVenue, token }) {
     const [venue, setVenue] = useState([])
@@ -52,15 +59,7 @@ function VenueProfile({ selectedVenue, token }) {
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-2xl filter saturate-200 contrast-40  sepia-0 " style={{ backgroundImage: `url(${venue.prof_pic})` }}> 
-                
-                        
-                            {/* <img
-                            className="max-w-sm max-h-sm rounded-sm shadow-md"
-                            src={venue.prof_pic}
-                            alt=""/>  */}
-                            
-                       
+                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-2xl filter saturate-200 contrast-40  sepia-0 " style={{ backgroundImage: `url(${venue.prof_pic})` }}>
                         
                         <div className='bg-brand-yellow bg-opacity-40 rounded-r-md rounded-l-md pl-20 py-2 text-white contrast-200 backdrop-blur-sm'>
                                 <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
