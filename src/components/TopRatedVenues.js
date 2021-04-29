@@ -44,7 +44,7 @@ function TopRatedVenues({ token }) {
           <div className="flex-1 min-w-0">
             <Link to={`/VenueProfile/${topVenue.venue_id}`}  className="focus:outline-none">
               <span className="absolute inset-0" aria-hidden="true" />
-              <p className="text-sm font-medium text-gray-900">{topVenue.venue_name}</p>
+              <p className="text-sm font-medium text-gray-900 ">{topVenue.venue_name}</p>
               <p className="text-sm text-gray-500 truncate">{topVenue.venue_type}</p>
               <p className='text-sm text-gray-500'>{topVenue.city}, {topVenue.state}</p>
             </Link>
