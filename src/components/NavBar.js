@@ -53,28 +53,28 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-base font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue">
+                    <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-base font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue">
                       Login
                     </Link>
                     <a
                       href="/"
-                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
+                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue"
                     >
                       Discover
                     </a>
                   <Link to={`/Userprofile/${user.user_id}`}
-                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
+                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue"
                       >
                       My Profile
                     </Link>
                     <a
                       href="/"
-                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
+                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue"
                     >
                       Search
                     </a>
                     <>
-                    <a style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()} className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue">
+                    <a style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()} className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue">
                       Sign Out
                     </a>
               
