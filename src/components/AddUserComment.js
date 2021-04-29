@@ -24,7 +24,7 @@ user_id, token, handlePost
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="mt-4">
                 <div>
                     <textarea
                     className='mx-auto max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md'
