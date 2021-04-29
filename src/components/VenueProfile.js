@@ -19,7 +19,7 @@ function VenueProfile({ selectedVenue, token }) {
     let { venueId } = useParams();
 
     useEffect(() => {
-        axios.get(`https://tipsy-backend.herokuapp.com/venues/${venueId}`).then((response) => {
+        axios.get(`https://tipsy-backend.herokuapp.com/venues/${venueId}/`).then((response) => {
             console.log('resp', response)
             setVenue(response.data)
             setPosts(response.data.posted_to_venue)
