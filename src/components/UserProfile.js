@@ -19,7 +19,6 @@ function UserProfile({ token }) {
 
     let { userId } = useParams();
 
-
     useEffect(() => {
         axios.get(
             `https://tipsy-backend.herokuapp.com/users/${userId}/`, 
@@ -29,10 +28,9 @@ function UserProfile({ token }) {
             console.log('resp', response)
             setUser(response.data)
             console.log('user', user)
-            setAllPosts([...response.data.posts_by, ...response.data.posted_to_user])
+            const allPostsTest = [...response.data.posts_by, ...response.data.posted_to_user].filter((v,i,a)=>a.findIndex(t=>(t.post_id === v.post_id))===i)
+            setAllPosts(allPostsTest)
         })}, [])
-
-        console.log(allPosts)
 
         const handleFollow = (newThing) => {
             const isFollowing = newThing.detail === "User Followed"
@@ -52,8 +50,7 @@ function UserProfile({ token }) {
         function follow() {
             axios
             .put(`http://tipsy-backend.herokuapp.com/users/${user.user_id}/`,
-            {
-            },
+            {},
             {
                 headers: { Authorization: `Token ${token}`},
             })
@@ -67,8 +64,7 @@ function UserProfile({ token }) {
         function like(post) {
             axios
             .put(`http://tipsy-backend.herokuapp.com/posts/${post}/`,
-            {
-            },
+            {},
             {
                 headers: { Authorization: `Token ${token}`},
             })
@@ -86,8 +82,6 @@ function UserProfile({ token }) {
             })
         }
 
-
-
     return (
         <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4">
                 <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-2xl filter saturate-200 brightness-90 contrast-45" style={{ backgroundImage: `url(${user.prof_pic})` }}>
@@ -98,8 +92,10 @@ function UserProfile({ token }) {
                     className="inline-block rounded-full shadow-md h-auto w-auto"
                     src={user.prof_pic}
                     alt=""
+
                 /> */}
                 
+
                 </div>
                 <div className='inline-block mr-2'>
                     <h1 className='text-3xl font-black'>{user.first_name}</h1>
@@ -107,17 +103,17 @@ function UserProfile({ token }) {
                     <h2 className='text-2xl'>{user.bio_text}</h2>
                     {/* <h2 className='text-2xl'>Venues Following: {user.venues_following_list.length}</h2> */}
                     <button onClick={() =>follow()} className="bg-brand-red border-black text-white rounded-md p-2 mt-3">{userFollow ? 'Unfollow' : 'Follow'}</button>
-                    
-                
                 </div>
+            </div>
+            </div>
 
-            </div>
-            </div>
 
                 <div className="flex-wrap max-w-auto mx-6 py-7 content-evenly text-brand-dark-blue">{user.first_name}'s Photos:</div>
                 <div class="overflow-x-auto max-w-auto mx-6 py-7 flex-wrap content-evenly h-30">THIS MIGHT BE IMAGE SCROLLQrLmmW69vMQDtCOg48jidqvvWD2FzDt7I7bBoDc98SRP5OwvOScVYbRzFdfp540eF5v1pjogYkyI8NXqu4wY8chgsXIV0LU7XQKWJ98wLaBSHWiBhvkEU1T3sd6KEFo53CLjVjIz8UvZajb8sbsu62xTsF9cRtFdwEvusq6zJHvedymDCUkY6qXHsuL6fOmHo4KKMurZuJZrK3plRPUaI8XVciz8dVq5CEUXjMrTcB76H1w90CnkRER3nYjs3suTa3223xs8aL97m0peQfjlvKbF8HcmQG5mHEitCn1QZnbMZUK3zE9AIjwcVXP7R9V4fw2A93cZD7wj333X6aaiHZdkkTPtst0u05KSob5c0ZuKQi4D3V395NfFKKr8cR27jmpB7dqK2GiWXeOQUFcjmFVwlHWSlH8ZdUoVJpXf1xL6CRUxwZP4EhBbqQZaJm26ijWII6LRxJ5eVU9Y7KKvQsUeX5BawtgeMWRmjeCwQadTLTQG8gLpi2DvGpMtPWCdqHgEglVSB1ZlDrjEEsXYrNx1IOY0053K3pWNaR1ezyz8kahRfNs3byaHcIQu9tWTrcMpBWhZ45DzLjVV1N8Zt96uLnNWK5DvbKW8GgMuwY7fHkZFz85MN4d2gL0j85HmXGx9oPTFRkPWsmMOHUvm5IhB7QqGSAwT1uL7HgBrNX9a1BAWrp9zV1IWAd1q65sKOOCxTZrXJDpxBxYE4rJAGU6pcri9mUf4g49ZiIAwfu9njtZyYimmImCa6TFhk2jQcSmFDHacExxqC2BfYATHFrKSy94dbw6uWT52nM7MSM9JDu4cs9cbfnaf6amt</div>
 
                     <h2 class="font-bold max-w-auto mx-6 pt-7 flex-wrap content-evenly text-brand-dark-blue">{user.first_name} 's Updates:</h2>
+
+               
 
 
 <div className="px-8 mx-6 max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md">
@@ -154,7 +150,7 @@ function UserProfile({ token }) {
             </div>
         </li>
 
-       ))}
+        ))}
             <AddUserComment token={token} handlePost={handlePost} user_id={user.user_id}/>       
 
     </ul>
