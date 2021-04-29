@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
-import Logo from '../media/Tipsy-2.svg'
+import Logo from '../media/Tipsy-redlogo.svg'
 import useLocalStorageState from 'use-local-storage-state'
 
 function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
@@ -53,7 +53,7 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
         <div className="w-full max-w-md space-y-8">
         <div>
         <img
-            className="w-auto h-12 mx-auto"
+            className="w-auto mx-auto mt-8 h-30"
             src={Logo}
             alt="Tipsy"
         />

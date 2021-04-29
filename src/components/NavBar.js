@@ -2,7 +2,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import Logo from '../media/Tipsy-2.svg'
+import Logo from '../media/Tipsylogo.svg'
 import {
   BrowserRouter as Router,
   Switch,
@@ -32,7 +32,7 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
                     alt="Workflow"
                   />
                   <img
-                    className="hidden w-auto h-8 lg:block"
+                    className="hidden w-auto mt-4 h-11 lg:block"
                     src={Logo}
                     alt="Tipsy"
                   /> 
@@ -73,24 +73,23 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
             
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex items-center">
-                  <button className="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  {/* <button className="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">View notifications</span>
-                    <BellIcon className="w-6 h-6" aria-hidden="true" />
-                  </button>
+                  </button> */}
 
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     {({ open }) => (
                       <>
                         <div>
-                          <Menu.Button className="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                          {/* <Menu.Button className="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="w-8 h-8 rounded-full"
                               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                               alt=""
                             />
-                          </Menu.Button>
+                          </Menu.Button> */}
                         </div>
                         <Transition
                           show={open}
@@ -205,10 +204,10 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
                   <div className="text-base font-medium text-white">Tom Cook</div>
                   <div className="text-sm font-medium text-gray-400">tom@example.com</div>
                 </div>
-                <button className="flex-shrink-0 p-1 ml-auto text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                {/* <button className="flex-shrink-0 p-1 ml-auto text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="w-6 h-6" aria-hidden="true" />
-                </button>
+                </button> */}
               </div>
               <div className="px-2 mt-3 space-y-1">
                 <a
