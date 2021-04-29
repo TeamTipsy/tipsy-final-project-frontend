@@ -86,10 +86,6 @@ function UserProfile({ token }) {
             })
         }
 
-        // if (post) {
-        // like()
-        // }
-
     return (
         <div>
                 <div className="flex-wrap max-w-4xl mx-auto py-7 content-evenly bg-brand-yellow rounded-r-md rounded-l-md">
