@@ -1,5 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
+import axios from 'axios'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import Logo from '../media/Tipsylogo.svg'
@@ -18,11 +19,23 @@ function classNames(...classes) {
 
 
 export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, setUsername }) {
+  const [user, setUser] = useState([])
+
+  useEffect (() => {
+    axios.get(`https://tipsy-backend.herokuapp.com/auth/users/me/`,
+    {
+      headers: { Authorization: `Token ${token}`}
+  })
+    .then((response) => {
+        setUser(response.data)
+    })
+  }, [])
+
   return (
     <Disclosure as="nav" className="bg-brand-red">
       {({ open }) => (
         <>
-          <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="px-4 py-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -40,24 +53,23 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue">
+                    <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-base font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue">
                       Login
                     </Link>
                     <a
                       href="/"
-                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
+                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
                     >
                       Discover
                     </a>
-                    <a
-                      href="/userprofile"
-                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
-                    >
-                      Me
-                    </a>
+                  <Link to={`/Userprofile/${user.user_id}`}
+                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
+                      >
+                      My Profile
+                    </Link>
                     <a
                       href="/"
-                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
+                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
                     >
                       Search
                     </a>
