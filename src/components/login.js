@@ -58,7 +58,7 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
         <>
 <h1 style={isLoggedIn ? {} : {display: 'none'}} className="flex items-center justify-center min-h-screen px-4 py-12 text-4xl bg-white text-brand-dark-blue sm:px-6 lg:px-8">Don't worry, you're logged in and ready to get Tipsy.
 </h1>
-<div  style={isLoggedIn ? { display: 'none' } : {}} className="flex items-center justify-center min-h-screen px-4 py-12 bg-brand-beau-blue sm:px-6 lg:px-8">
+<div  style={isLoggedIn ? { display: 'none' } : {}} className="flex items-center justify-center min-h-screen px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
         <div>
         <img
