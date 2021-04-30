@@ -146,15 +146,10 @@ function UserProfile({ token }) {
                             </span>
                         </div>
                     </div>
-               
 
 
 <div className="px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md">
 
-                   
-//                 </div>
-//             </div>
-//             </div>
 
     <ul className="divide-y divide-gray-200">
         {postsFromUser.map((post) => (
