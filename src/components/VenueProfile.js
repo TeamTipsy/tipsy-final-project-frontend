@@ -60,7 +60,7 @@ function VenueProfile({ selectedVenue, token }) {
     return (
         
         <div>
-            <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4">
             <br />
                 <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-2xl filter saturate-200 brightness-90 contrast-45" style={{ backgroundImage: `url(${venue.prof_pic})` }}>
                         
@@ -85,11 +85,22 @@ function VenueProfile({ selectedVenue, token }) {
                                 </div> 
                         </div>
                 </div>   
-            </div>  
+            
                     <br />
                     <br />
-                <div className='px-8 mx-auto max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md'>
-                <div key={venue.venue_id} className='text-brand-dark-blue font-black px-4 py-5 sm:px-6'>{venue.venue_name}'s Board</div>
+                    
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div class="w-full border-t border-brand-yellow"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
+                            {venue.venue_name} 's Updates
+                            </span>
+                        </div>
+                    </div>
+
+                <div className='px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md'>
                     <ul className="divide-y divide-gray-200"> 
                     {posts.map((post) => ( 
                         <li className="py-4">
@@ -117,7 +128,7 @@ function VenueProfile({ selectedVenue, token }) {
                     <br/>
                     
                 </div>    
-                
+                </div>       
         </div>
         
 

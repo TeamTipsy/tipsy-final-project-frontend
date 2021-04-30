@@ -9,6 +9,9 @@ module.exports = {
         'brand-dark-blue': '#004E9A',
         'brand-yellow': '#FFBF00',
         'navbar-gray': '#454442',
+      },
+      fontFamily: {
+        'bebas-neue': ['"Bebas Neue"', 'cursive']
       }
     },
   },
