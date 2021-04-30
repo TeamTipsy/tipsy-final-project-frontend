@@ -15,7 +15,7 @@ import {
 function UserProfile({ token }) {
     const [user, setUser] = useState([])
     const [allPosts, setAllPosts] = useState([])
-    const [selectedPost, setSelectedPost] = useState('')
+
     const [userFollow, setUserFollow] = useLocalStorageState('follows', false)
 
     let { userId } = useParams();
@@ -114,7 +114,6 @@ function UserProfile({ token }) {
 
                     <h2 class="font-bold max-w-auto mx-6 pt-7 flex-wrap content-evenly text-brand-dark-blue">{user.first_name} 's Updates:</h2>
 
-               
 
 
 <div className="px-8 mx-6 max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md">
@@ -144,7 +143,7 @@ function UserProfile({ token }) {
                     <div>{post.post_likers.length} </div>
                     
                   
-                    <DeleteUserComment postId={post.post_id} token={token} selectedPost={selectedPost} />
+                    <DeleteUserComment postId={post.post_id} token={token} />
    
                     </li>
                     </ul> 

@@ -11,6 +11,7 @@ import TopRatedVenues from './components/TopRatedVenues'
 import Registration from './components/registration'
 import NavBar from './components/NavBar'
 import SearchResults from './components/SearchResults'
+import DeleteUserComment from './components/DeleteUserComment'
 // import search from './components/search'
 import {
     BrowserRouter as Router,
@@ -84,6 +85,10 @@ function App() {
                     <Route path="/search" component={search} />
 
                     <Route path="/SearchResults" component={SearchResults} />
+
+                    <Route path="/Delete">
+                        <DeleteUserComment token={token} />
+                    </Route>
 
                     </Switch>
                 </div> 
