@@ -12,6 +12,7 @@ import Registration from './components/registration'
 import NavBar from './components/NavBar'
 import SearchResults from './components/SearchResults'
 import DeleteUserComment from './components/DeleteUserComment'
+import axios from 'axios'
 // import search from './components/search'
 import {
     BrowserRouter as Router,
@@ -27,6 +28,17 @@ function App() {
     const [username, setUsername] = useLocalStorageState('username', '')
     const [token, setToken] = useLocalStorageState('token', '')
     const [email, setEmail] = useLocalStorageState('email', '')
+    const [currentUser, setCurrentUser] = useState([])
+
+    useEffect (() => {
+      axios.get(`https://tipsy-backend.herokuapp.com/auth/users/me/`,
+      {
+        headers: { Authorization: `Token ${token}`}
+    })
+      .then((response) => {
+          setCurrentUser(response.data)
+      })
+    }, [])
 
     function setAuth(username, token) {
 
@@ -52,7 +64,7 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <NavBar setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
+                <NavBar currentUser={currentUser} setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
                 <Switch>
                     <Route path="/" exact>
                     <Home token={token} />

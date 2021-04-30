@@ -18,18 +18,7 @@ function classNames(...classes) {
 }
 
 
-export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, setUsername }) {
-  const [user, setUser] = useState([])
-
-  useEffect (() => {
-    axios.get(`https://tipsy-backend.herokuapp.com/auth/users/me/`,
-    {
-      headers: { Authorization: `Token ${token}`}
-  })
-    .then((response) => {
-        setUser(response.data)
-    })
-  }, [])
+export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
 
   return (
     <Disclosure as="nav" className="bg-brand-red">
@@ -62,7 +51,7 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
                     >
                       Discover
                     </a>
-                  <Link to={`/Userprofile/${user.user_id}`}
+                  <Link to={`/Userprofile/${currentUser.user_id}`}
                       className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue"
                       >
                       My Profile
