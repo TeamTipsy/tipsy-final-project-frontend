@@ -37,19 +37,17 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
 
 
     return (
-        <div className="flex flex-col justify-center min-h-screen py-12 bg-brand-beau-blue sm:px-6 lg:px-8">
+        <div className="flex flex-col justify-center min-h-screen py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
        
         <h2 style={isLoggedIn ? { display: 'none' } :{}} className="mt-6 text-4xl font-extrabold text-center text-bg-brand-dark-blue">Don't Have an Account? Create One Here!</h2>
         <h2 style={isLoggedIn ? {} : { display: 'none' }} className="mt-6 text-4xl font-extrabold text-center text-brand-dark-blue">Taking Too Long to Load?</h2>
-        <Link 
-        className="mt-2 ml-48 text-base font-light text-center hover:text-brand-red text-brand-dark-blue text-bg-brand-dark-blue" to="/">Click Here 
-        </Link>
+  
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit} style={isLoggedIn ? { display: 'none' } : {}}>
+          <form className="space-y-6 " onSubmit={handleSubmit} style={isLoggedIn ? { display: 'none' } : {}}>
             
           <div>
               <label htmlFor="firstname" className="block text-sm font-medium text-gray-700">

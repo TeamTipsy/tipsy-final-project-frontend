@@ -12,6 +12,15 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
     }
 
 
+    function hidePassword() {var x = document.getElementById("userPass");
+    if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+
+
     function handleSubmit (event) {
     event.preventDefault()
     axios
@@ -47,9 +56,9 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
 
     return (
         <>
-<h1 style={isLoggedIn ? {} : {display: 'none'}} className="flex items-center justify-center min-h-screen px-4 py-12 text-4xl text-brand-dark-blue bg-brand-beau-blue sm:px-6 lg:px-8">Don't worry, you're logged in and ready to get Tipsy.
+<h1 style={isLoggedIn ? {} : {display: 'none'}} className="flex items-center justify-center min-h-screen px-4 py-12 text-4xl bg-white text-brand-dark-blue sm:px-6 lg:px-8">Don't worry, you're logged in and ready to get Tipsy.
 </h1>
-<div  style={isLoggedIn ? { display: 'none' } : {}} className="flex items-center justify-center min-h-screen px-4 py-12 bg-brand-beau-blue sm:px-6 lg:px-8">
+<div  style={isLoggedIn ? { display: 'none' } : {}} className="flex items-center justify-center min-h-screen px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
         <div>
         <img
@@ -83,9 +92,9 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
             </label>
             <input
                     className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    type='text'
+                    type='password'
                     placeholder="Password"
-                    id='password'
+                    id='userPass'
                     required
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}

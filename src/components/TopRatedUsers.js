@@ -25,18 +25,7 @@ function TopRatedUsers({ token }) {
         })}, [])
         console.log('top', topUsers)
 
-    // if (selectedUser) {
-    //     return <UserProfile selectedUser={selectedUser} setSelectedUser={setSelectedUser} token={token}/>
-    // }
 
-        // if (selectedUser) {
-        // return <Redirect
-        //     to={{
-        //     pathname: "/UserProfile/",
-        //     state: { selectedUser:selectedUser, setSelectedUser:setSelectedUser, token:token }
-        //     }}
-        // />
-        // }
 
 
 
