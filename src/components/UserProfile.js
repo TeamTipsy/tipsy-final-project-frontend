@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
 import AddUserComment from './AddUserComment.js'
+import DeleteUserComment from './DeleteUserComment.js'
 import {
     Link,
     useParams,
@@ -14,7 +15,7 @@ import {
 function UserProfile({ token }) {
     const [user, setUser] = useState([])
     const [allPosts, setAllPosts] = useState([])
-    const [post, setPost] = useState('')
+    const [selectedPost, setSelectedPost] = useState('')
     const [userFollow, setUserFollow] = useLocalStorageState('follows', false)
 
     let { userId } = useParams();
@@ -126,21 +127,25 @@ function UserProfile({ token }) {
                 <h3 className="text-sm font-medium">{post.post_text}</h3>
 
                 <ul className="text-sm text-gray-500">
-                    <li className="flex">
+                    <li className="flex mb-2">
                         <img className="w-4 h-4 rounded-full mr-2" src={post.post_author_pic}/>
                         <Link 
                         to={`/UserProfile/${post.post_author_id}`} className="hover:text-brand-red mr-2">{post.post_author_username}</Link> 
-                        --> 
-                        <Link className="hover:text-brand-red ml-2">{post.posted_to_username} {post.posted_to_venue_name}</Link>
 </li>
                 
                 <li className="flex">
                     <a onClick={() => handleLikeClick(post.post_id)} className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                    
                     </svg>
+                    
                     </a> 
-                    {post.post_likers.length} likes
+                    <div>{post.post_likers.length} </div>
+                    
+                  
+                    <DeleteUserComment postId={post.post_id} token={token} selectedPost={selectedPost} />
+   
                     </li>
                     </ul> 
 
