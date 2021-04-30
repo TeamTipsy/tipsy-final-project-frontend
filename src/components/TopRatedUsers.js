@@ -42,7 +42,7 @@ function TopRatedUsers({ token }) {
 
     return (
         
-    <div>
+    <div >
             <div className="grid grid-cols-1 gap-4 px-8 py-2 max-w-auto sm:grid-cols-2">
                 {topUsers.map((topUser) => (
         <div
@@ -55,7 +55,7 @@ function TopRatedUsers({ token }) {
             </div>
             <div className="flex-1 min-w-0">
             <Link to={`/UserProfile/${topUser.user_id}`}
-            className="text-md font-md text-brand-dark-blue hover:text-brand-yellow focus:outline-none">
+            className="text-md font-md focus:outline-none">
             <span className="absolute inset-0" aria-hidden="true" />
             <p>{topUser.username}</p>
             <p className='text-sm text-gray-500'>{topUser.city}, {topUser.state}</p>

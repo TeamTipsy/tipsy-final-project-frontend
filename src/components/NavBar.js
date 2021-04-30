@@ -1,8 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
+import axios from 'axios'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import Logo from '../media/Tipsy-2.svg'
+import Logo from '../media/Tipsylogo.svg'
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,11 +19,23 @@ function classNames(...classes) {
 
 
 export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, setUsername }) {
+  const [user, setUser] = useState([])
+
+  useEffect (() => {
+    axios.get(`https://tipsy-backend.herokuapp.com/auth/users/me/`,
+    {
+      headers: { Authorization: `Token ${token}`}
+  })
+    .then((response) => {
+        setUser(response.data)
+    })
+  }, [])
+
   return (
     <Disclosure as="nav" className="bg-brand-red">
       {({ open }) => (
         <>
-          <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="px-4 py-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -32,7 +45,7 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
                     alt="Workflow"
                   />
                   <img
-                    className="hidden w-auto h-8 lg:block"
+                    className="hidden w-auto mt-4 h-11 lg:block"
                     src={Logo}
                     alt="Tipsy"
                   /> 
@@ -40,29 +53,28 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue">
+                    <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-base font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue">
                       Login
                     </Link>
                     <a
                       href="/"
-                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
+                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue"
                     >
                       Discover
                     </a>
-                    <a
-                      href="/userprofile"
-                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
-                    >
-                      Me
-                    </a>
+                  <Link to={`/Userprofile/${user.user_id}`}
+                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue"
+                      >
+                      My Profile
+                    </Link>
                     <a
                       href="/"
-                      className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white"
+                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue"
                     >
                       Search
                     </a>
                     <>
-                    <a style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()} className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue">
+                    <a style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()} className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue">
                       Sign Out
                     </a>
               
@@ -73,24 +85,23 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
             
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex items-center">
-                  <button className="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  {/* <button className="p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">View notifications</span>
-                    <BellIcon className="w-6 h-6" aria-hidden="true" />
-                  </button>
+                  </button> */}
 
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     {({ open }) => (
                       <>
                         <div>
-                          <Menu.Button className="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                          {/* <Menu.Button className="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="w-8 h-8 rounded-full"
                               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                               alt=""
                             />
-                          </Menu.Button>
+                          </Menu.Button> */}
                         </div>
                         <Transition
                           show={open}
@@ -205,10 +216,10 @@ export default function NavBar({ isLoggedIn, token, setAuth, username, logOut, s
                   <div className="text-base font-medium text-white">Tom Cook</div>
                   <div className="text-sm font-medium text-gray-400">tom@example.com</div>
                 </div>
-                <button className="flex-shrink-0 p-1 ml-auto text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                {/* <button className="flex-shrink-0 p-1 ml-auto text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="w-6 h-6" aria-hidden="true" />
-                </button>
+                </button> */}
               </div>
               <div className="px-2 mt-3 space-y-1">
                 <a
