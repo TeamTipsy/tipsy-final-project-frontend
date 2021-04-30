@@ -24,16 +24,16 @@ user_id, token, handlePost
 
     return(
         <div>
-            <form onSubmit={handleSubmit} className="mt-4">
+            <form onSubmit={handleSubmit} className="mt-4 grid grid-cols-2">
                 <div>
                     <textarea
-                    className='mx-auto max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md'
+                    className='mx-auto w-full m:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md border-2 '
                     value={comment}
                     type='text'
                     placeholder='Spill Here'
                     onChange={(e) => setComment(e.target.value)}></textarea>
                 </div>
-                    <button className='items-center w-20 p-3 border border-transparent rounded-full shadow-sm text-white bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-100 w-100' type='submit'>SPILL</button>
+                    <button className='mx-8 items-center w-20 h-7  border border-transparent rounded-md shadow-sm text-center text-white text-xs bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' type='submit'>SPILL</button>
             </form>
         </div>
     )

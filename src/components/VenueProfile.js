@@ -79,7 +79,7 @@ function VenueProfile({ selectedVenue, token }) {
                                     
                                     <button
                                     onClick={() =>follow()}
-                                    className="items-center w-24 p-3 text-white border border-transparent rounded-full shadow-sm bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-200 w-200" 
+                                    className="bg-brand-red border-black text-white rounded-md p-2 mt-3" 
                                     > {followVenue ? 'Unfollow' : 'Follow'}    
                                     </button>
                                 </div> 
@@ -110,10 +110,11 @@ function VenueProfile({ selectedVenue, token }) {
                         
                     
                     ))}
-                    <AddVenueComment token={token} handlePost={handlePost} venue_id={venue.venue_id}/>
+                        <AddVenueComment token={token} handlePost={handlePost} venue_id={venue.venue_id}/>
 
                     </ul>
-                    
+                    <br/>
+                    <br/>
                     
                 </div>    
                 
