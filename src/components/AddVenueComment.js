@@ -28,9 +28,9 @@ function AddVenueComment({ venue_id, token, handlePost }) {
    console.log('token', token)
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <form className='grid grid-cols-2 mt-4' onSubmit={handleSubmit}>
                 <div>
-                    <textarea className='mx-auto'
+                    <textarea className='mx-auto w-full m:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md border-2'
                     value={comment}
                     type='text'
                     placeholder='Spill Here'
@@ -38,7 +38,7 @@ function AddVenueComment({ venue_id, token, handlePost }) {
                     </textarea>
                 </div>
                 <div>
-                    <button className='items-center w-20 p-3 border border-transparent rounded-full shadow-sm text-white bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-100 w-100' type='submit'>SPILL</button>
+                    <button className='mx-8 items-center w-20 h-7  border border-transparent rounded-md shadow-sm text-center text-white text-xs bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' type='submit'>SPILL</button>
                 </div>
             </form>
         
