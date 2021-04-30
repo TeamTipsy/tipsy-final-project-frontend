@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 
 function AddUserComment({
-user_id, token, handlePost   
+user_id, token, reRenderPosts   
 }) {
     const [comment, setComment] = useState('')
     const handleSubmit = (e) => {
@@ -17,7 +17,7 @@ user_id, token, handlePost
             headers: { Authorization: `Token ${token}`},
         })
         .then((data) => {
-            handlePost(data.data)
+            reRenderPosts()
             setComment('')
         })
     }
