@@ -15,9 +15,9 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
     function hidePassword() {var x = document.getElementById("userPass");
     if (x.type === "password") {
         x.type = "text";
-      } else {
+    } else {
         x.type = "password";
-      }
+    }
     }
 
 
