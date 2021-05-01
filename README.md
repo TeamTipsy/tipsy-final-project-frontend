@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+Team Tipsy - End Points Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## (https://tipsy-backend.herokuapp.com/admin) - for access to django admin
+Current URLs:
+Remember, if adding JSON data using Insomnia, to use " instead of '.
 
-## Available Scripts
+# Endpoints 
 
-In the project directory, you can run:
+## Create a user: 
+ [https://tipsy-backend.herokuapp.com/auth/users/] REQUIRED FIELDS username, password, email
 
-### `npm start`
+### Get token: 
+[https://tipsy-backend.herokuapp.com/auth/token/login/]
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Currently logged in user 
+[https://tipsy-backend.herokuapp.com/auth/users/me/] - get the username, email, and user_id of user currently logged in (requires token authentication).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+(https://tipsy-backend.herokuapp.com/users/uuid:pk/) - Development only This is the endpoint for a users 'profile' page.
 
-### `npm test`
+## Endpoint for list of venues
+[https://tipsy-backend.herokuapp.com/venues/] - This is the endpoint for the list of venues.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Venue detail page endpoint
+[https://tipsy-backend.herokuapp.com/venues/uuid:pk/] - This is the endpoint for the venue detail page.
 
-### `npm run build`
+## List of user posts endpoint
+[https://tipsy-backend.herokuapp.com/posts/] - This is the endpoint for the list of user posts (comments/pics left on a user's page).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Endpoint for user post detail page
+[https://tipsy-backend.herokuapp.com/posts/uuid:pk/] - This is the endpoint for the user post detail page- a specific comment/image left on a user's page.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[https://tipsy-backend.herokuapp.com/checkins/] - 
+### Development only This is the endpoint for the list of all checkins. We won't have a front end page for this - it just helps troubleshooting during development.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## To search:
+Right now, search is split- each list view (/posts/, /users/, /venues/) can be appended with "?search= " + {query term- whatever you want} and this query term will be searched on that list.
 
-### `npm run eject`
+## To follow another user or venue:
+You must be logged in as a user.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Send a PUT request to the detail page of the user/venue you want to follow (eg : /venues/10c56a24-0509-4cc8-90ee-b898f0a02b63/). If the user doesn't follow this user/venue, you will get a response that says "user/venue followed", and that user will show up on the user/venues list of followers, and the user/venue will show up on that user's 'following' list. If the user already follows that user/venue, the PUT request will generate a response that the user/venue has been unfollowed (and remove everything from relevant lists of followers/following).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Posts
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## To post: 
+Send a POST request to the /posts/ endpoint. You must be logged in to do this, and you must EITHER provide a "posted_to_venue":"uuid:pk" OR "posted_to_user":"uuid:pk" - this tells the database which user/venue profile you're posting on. You must provide post_img OR post_text OR both. If you don't do these things, you won't get a nice error message- instead you'll probably get a weird page response where you were expecting JSON. I'm working on making response error messages to explain what is needed from sender.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## To EDIT or DELETE a post or venue: 
+Send a PATCH or DELETE request to the /posts/uuid:pk endpoint or venues/uuid:pk . This only works if you are logged in as the user who added the post or venue.
 
-## Learn More
+## You can also "Post" a new venue as a user: 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You send a POST request to the [/venues/] endpoint. The only required field is a [venue_name].
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Venues render with ["posted_to_venue"]- that's all the posts that have been left on that venue's page. Users render with "posted_to_user" and "posts_by"- the first is post's that have been left on their page, the second is posts they have made.
 
-### Code Splitting
+## To like a post:
+This is the same method as 'following' above: As a logged in user, send a 'Put' request to a post's unique url. If you haven't liked that post, you will get a response saying you liked it- if you already like it, the response will tell you that you UnLiked it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Checking in to a venue:
+You must be logged in. Send a "post" request with {"checkedin_venue":"<venue's uuid>"} to the /checkins/ endpoint. You can see all checkins at that endpoint, but we won't make a page of them for the user. The relevant info is attached at the bottom of the user (places they've checked in most recently) and venue (users who've most recently checked in there). NOTE: We just got the basic model working. It is easy for us to add username/venue name if you want it (right now it's just uuids), and we are thinking of ways to limit how many can be made per day/how many render in the API, since right now they get cluttered quickly.

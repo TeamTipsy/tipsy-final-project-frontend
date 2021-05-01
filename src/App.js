@@ -19,6 +19,7 @@ import {
     Link,
     Redirect,
     } from 'react-router-dom';
+import AddVenue from './components/AddVenue'
 
 
 function App() {
@@ -84,6 +85,10 @@ function App() {
                     <Route path="/search" component={search} />
 
                     <Route path="/SearchResults" component={SearchResults} />
+
+                    <Route path="/Addvenue" component={AddVenue} >
+                    <AddVenue token={token} />
+                        </Route>
 
                     </Switch>
                 </div> 
