@@ -32,6 +32,46 @@ function VenueProfile({ selectedVenue, token }) {
         setPosts([...posts, newPosts])
     }    
     
+    const handleLikeClick = (post_id) => {
+        if (post_id) {
+            like(post_id)
+        }
+    }
+
+    function like(post) {
+        axios
+        .put(`http://tipsy-backend.herokuapp.com/posts/${post}/`,
+        {},
+        {
+            headers: { Authorization: `Token ${token}`},
+        })
+        .then((data) => {
+            console.log('like endpoint', data)
+            if (data.data.detail === 'Post Liked' || data.data.detail === 'Post Unliked') {
+                // axios.get(
+                //     `https://tipsy-backend.herokuapp.com/users/${userId}/`, 
+                //     {
+                //         headers: { Authorization: `Token ${token}`}
+                //     }).then((response) => {
+                //     setAllPosts([...response.data.posts_by, ...response.data.posted_to_user])
+                // })
+                reRenderPosts()
+            }
+        })
+    }
+
+    const reRenderPosts = () => {
+        axios.get(
+            `https://tipsy-backend.herokuapp.com/venues/${venueId}/`, 
+            {
+                headers: { Authorization: `Token ${token}`}
+            }).then((response) => {
+                setPosts([...response.data.posted_to_venue])
+            }
+        )
+    }
+
+
     const handleFollow = (newFollow) => {
         const isFollowing = newFollow.detail === 'Venue Followed'
         setFollowVenue(isFollowing)
@@ -60,7 +100,7 @@ function VenueProfile({ selectedVenue, token }) {
     return (
         
         <div>
-            <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4">
             <br />
                 <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-2xl filter saturate-200 brightness-90 contrast-45" style={{ backgroundImage: `url(${venue.prof_pic})` }}>
                         
@@ -85,13 +125,26 @@ function VenueProfile({ selectedVenue, token }) {
                                 </div> 
                         </div>
                 </div>   
-            </div>  
+            
                     <br />
                     <br />
-                <div className='px-8 mx-auto max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md'>
-                <div key={venue.venue_id} className='text-brand-dark-blue font-black px-4 py-5 sm:px-6'>{venue.venue_name}'s Board</div>
+                    
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div class="w-full border-t border-brand-yellow"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
+                            {venue.venue_name} 's Updates
+                            </span>
+                        </div>
+                    </div>
+
+                <div className='px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md'>
                     <ul className="divide-y divide-gray-200"> 
+                
                     {posts.map((post) => ( 
+                        <>
                         <li className="py-4">
                         <div className="flex max-w-5xl space-x-3">
                             <img className="h-16 w-16 rounded-full" src={post.post_author_pic} alt="" />
@@ -105,8 +158,19 @@ function VenueProfile({ selectedVenue, token }) {
                             </p> 
                             </div>
                         </div>
-                        
+                        <div className="flex mt-2 mx-4 justify-end">
+                                <a onClick={() => handleLikeClick(post.post_id)} className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                                </svg>
+                                </a> 
+                                {post.post_likers && post.post_likers.length ? <div>{post.post_likers.length} </div> : <div></div>}
+                                {/* <DeleteUserComment postId={post.post_id} reRenderPosts={reRenderPosts} token={token} user_id={user.user_id} /> */}
+                            </div>
                         </li>
+                        
+                        </>
+                        
                         
                     
                     ))}
@@ -117,7 +181,7 @@ function VenueProfile({ selectedVenue, token }) {
                     <br/>
                     
                 </div>    
-                
+                </div>       
         </div>
         
 

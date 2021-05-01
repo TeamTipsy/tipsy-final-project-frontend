@@ -3,8 +3,6 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 
 
-
-
 function AddVenue({token}) {
     const [addVenue, setAddVenue] = useState('')
     const [streetAddress, setStreetAddress] = useState('')
@@ -89,6 +87,7 @@ function AddVenue({token}) {
    </div>     
 
     )
+
 }
 
 export default AddVenue
