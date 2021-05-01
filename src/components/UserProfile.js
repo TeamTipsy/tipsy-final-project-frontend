@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
 import AddUserComment from './AddUserComment.js'
 import DeleteUserComment from './DeleteUserComment.js'
+import EditUserInfo from './EditUserInfo.js'
 import ImageUpload from './ImageUpload.js'
 import {
     Link,
@@ -13,9 +14,9 @@ import {
 
 
 
-function UserProfile({ token }) {
+function UserProfile({ token, currentUser }) {
     const [user, setUser] = useState([])
-    // const [allPosts, setAllPosts] = useState([])
+    const [bioData, setBioData] = useState([])
     const [postsFromUser, setPostsFromUser] = useState([])
     const [poststToUser, setPostsToUser] = useState([])
     const [userFollow, setUserFollow] = useLocalStorageState('follows', false)
@@ -28,8 +29,6 @@ function UserProfile({ token }) {
                 headers: { Authorization: `Token ${token}`}
             }).then((response) => {
             setUser(response.data)
-            // const allPostsTest = [...response.data.posts_by, ...response.data.posted_to_user].filter((v,i,a)=>a.findIndex(t=>(t.post_id === v.post_id))===i)
-            // setAllPosts(allPostsTest)
             setPostsFromUser([...response.data.posts_by])
             setPostsToUser([...response.data.posted_to_user])
         })
@@ -112,11 +111,17 @@ function UserProfile({ token }) {
                     <h1 className='text-3xl font-black'>{user.first_name}</h1>
                     <h2 className='text-2xl'>{user.city}, {user.state}</h2>
                     <h2 className='text-2xl'>{user.bio_text}</h2>
+                    {/* {currentUser === user ?  */}
+                        
+                        {/* : <div></div>} */}
 
                           {user.venues_following_list && user.venues_following_list.length ? 
                         <h2 className='text-2xl'>Venues Following: {user.venues_following_list.length}</h2> 
                         : <div></div>}
                     <button onClick={() =>follow()} className="bg-brand-red border-black text-white font-bebas-neue rounded-md p-2 mt-3 focus:outline-none focus:border-indigo-500">{userFollow ? 'Unfollow' : 'Follow'}</button>
+                    {currentUser.user_id === user.user_id ? (<EditUserInfo token={token} userId={user.user_id} setUser={setUser} />
+      ) : (<div></div>)}
+                    
                 </div>
             </div>
             <br/>

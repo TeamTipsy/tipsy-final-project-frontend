@@ -71,7 +71,7 @@ function App() {
                     </Route>
 
                     <Route path="/UserProfile/:userId" component={UserProfile}>
-                        <UserProfile token={token}/>
+                        <UserProfile token={token} currentUser={currentUser}/>
                     </Route>
 
                     <Route path="/VenueProfile/:venueId" component={VenueProfile}>
