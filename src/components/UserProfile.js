@@ -16,7 +16,6 @@ import {
 
 function UserProfile({ token, currentUser }) {
     const [user, setUser] = useState([])
-    const [bioData, setBioData] = useState([])
     const [postsFromUser, setPostsFromUser] = useState([])
     const [poststToUser, setPostsToUser] = useState([])
     const [userFollow, setUserFollow] = useLocalStorageState('follows', false)
