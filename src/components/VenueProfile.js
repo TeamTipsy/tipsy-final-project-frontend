@@ -15,6 +15,7 @@ function VenueProfile({ selectedVenue, token }) {
     const [venue, setVenue] = useState([])
     const [posts, setPosts] = useState([]) 
     const [followVenue, setFollowVenue] = useLocalStorageState(false)
+    const [checkIn, setCheckIn] = useState([])
     // const [comment, setComment] =useState(false)
     let { venueId } = useParams();
 
@@ -77,6 +78,11 @@ function VenueProfile({ selectedVenue, token }) {
         setFollowVenue(isFollowing)
     }
 
+    const handleCheckIn = (newCheckIn) => {
+        const isCheckedIn = newCheckIn.detail === 'Checked In'
+        setCheckIn(isCheckedIn)
+    }
+
     function follow() {
         axios
         .put(`https://tipsy-backend.herokuapp.com/venues/${venue.venue_id}/`,
@@ -88,14 +94,22 @@ function VenueProfile({ selectedVenue, token }) {
         }).then((data) => {
             handleFollow(data.data)
         })
+    }   
+    
+    function checkInVenue({ venue_id, token }) {
+        axios
+        .post(`https://tipsy-backend.herokuapp.com/checkins/`,
+        {
+            checkedin_venue: venue_id
+        },
+        {
+            headers: { Authorization: `Token ${token}`}
+        }).then((data) => {
+            handleCheckIn(data.data)
+        })
         
     }
-    const tabs = [
-        { name: 'My Account', href: '#', current: false },
-        { name: 'Company', href: '#', current: false },
-        { name: 'Team Members', href: '#', current: true },
-        { name: 'Billing', href: '#', current: false },
-      ]
+    
 
     return (
         
@@ -122,6 +136,8 @@ function VenueProfile({ selectedVenue, token }) {
                                     className="bg-brand-red border-black text-white rounded-md p-2 mt-3" 
                                     > {followVenue ? 'Unfollow' : 'Follow'}    
                                     </button>
+                                    <br/>
+                                    <button onClick={() =>checkInVenue()} token={token} venue_id={venue.venueId} className='bg-brand-beau-blue border-black text-white rounded-md p-2 mt-3 font-bebas-neue'>{checkIn ? 'Check In' : 'display= none'}</button>
                                 </div> 
                         </div>
                 </div>   
