@@ -21,6 +21,7 @@ import {
     Link,
     Redirect,
     } from 'react-router-dom';
+import AddVenue from './components/AddVenue'
 
 
 function App() {
@@ -98,9 +99,15 @@ function App() {
 
                     <Route path="/SearchResults" component={SearchResults} />
 
+
+                    <Route path="/Addvenue" component={AddVenue} >
+                    <AddVenue token={token} />
+                        </Route>
+
                     <Route path="/Delete">
                         <DeleteUserComment token={token} />
                     </Route>
+
 
                     </Switch>
                 </div> 
