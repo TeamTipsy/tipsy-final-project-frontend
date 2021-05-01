@@ -15,7 +15,7 @@ function VenueProfile({ selectedVenue, token }) {
     const [venue, setVenue] = useState([])
     const [posts, setPosts] = useState([]) 
     const [followVenue, setFollowVenue] = useLocalStorageState(false)
-    const [checkIn, setCheckIn] = useState([])
+    const [checkIn, setCheckIn] = useLocalStorageState('Check In', false)
     // const [comment, setComment] =useState(false)
     let { venueId } = useParams();
 
@@ -96,15 +96,16 @@ function VenueProfile({ selectedVenue, token }) {
         })
     }   
     
-    function checkInVenue({ venue_id, token }) {
+    function checkInVenue(venueId) {
         axios
         .post(`https://tipsy-backend.herokuapp.com/checkins/`,
         {
-            checkedin_venue: venue_id
+            checkedin_venue: venueId
         },
         {
             headers: { Authorization: `Token ${token}`}
         }).then((data) => {
+            console.log('data', data)
             handleCheckIn(data.data)
         })
         
@@ -137,7 +138,7 @@ function VenueProfile({ selectedVenue, token }) {
                                     > {followVenue ? 'Unfollow' : 'Follow'}    
                                     </button>
                                     <br/>
-                                    <button onClick={() =>checkInVenue()} token={token} venue_id={venue.venueId} className='bg-brand-beau-blue border-black text-white rounded-md p-2 mt-3 font-bebas-neue'>{checkIn ? 'Check In' : 'display= none'}</button>
+                                    <button onClick={() =>checkInVenue(venue.venue_id)}className='bg-brand-beau-blue border-black text-white rounded-md p-2 mt-3 font-bebas-neue'>Check-In</button>
                                 </div> 
                         </div>
                 </div>   
