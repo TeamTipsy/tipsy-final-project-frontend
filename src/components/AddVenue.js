@@ -6,7 +6,9 @@ import { useState, useEffect } from 'react'
 function AddVenue({token}) {
     const [addVenue, setAddVenue] = useState('')
     const [streetAddress, setStreetAddress] = useState('')
-    const [tags, setTags] = useState ('')
+    const [city, setCity] = useState('')
+    // const [tag1, setTag1] = useState()
+    // const [tag2, setTag2] =useState()
 
     const handleAddedVenue = (event) => {
         setAddVenue(event.target.value)
@@ -16,9 +18,11 @@ function AddVenue({token}) {
             e.preventDefault()
             axios.post(
             "https://tipsy-backend.herokuapp.com/venues/", 
-            {venue_name: addVenue,
+            {   venue_name: addVenue,
                 street_address: streetAddress,
-                // tags: tags
+                city: city,
+                tags: []
+                
     
             },{
                 headers: { Authorization: `Token ${token}`}
@@ -45,7 +49,7 @@ function AddVenue({token}) {
               />
               </div>
             
-               <div className="mt-1">
+              <div className="mt-1">
                 <label htmlFor="street_address" className="block text-sm font-medium text-gray-700">
                 Address:
                 </label>
@@ -57,6 +61,20 @@ function AddVenue({token}) {
                 placeholder="Address"
                 onChange={(e) => setStreetAddress(e.target.value)}
                 />
+
+                <div className="mt-1">
+                <label htmlFor="street_address" className="block text-sm font-medium text-gray-700">
+                City
+                </label>
+                <input 
+                type="text"
+                id="city"
+                value={city}
+                required
+                placeholder="City"
+                onChange={(e) => setCity(e.target.value)}
+                />
+                </div>
                 {/* <div className="mt-1">
                     <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
                         Select the tags that best describes the atmosphere at this venue:
@@ -65,13 +83,12 @@ function AddVenue({token}) {
                         value={tags}
                         onChange={(e) => setTags(e.target.value)}
                         />
-
                     </label>
 
                 </div> */}
 
-               </div>
-               <div>
+              </div>
+              <div>
               <button
                 type="submit"
                 className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-brand-red hover:bg-brand-yellow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -91,4 +108,13 @@ function AddVenue({token}) {
 }
 
 export default AddVenue
+
+
+
+// city: ["This field is required."]
+// email: ["This field is required."]
+// hours_of_operation: ["This field is required."]
+// state: ["This field is required."]
+// tags: ["This field is required."]
+// web_url: ["This field is required."]
 
