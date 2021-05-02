@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Moment from 'react-moment'
 import { useState, useEffect } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
 import UpdateUserStatus from './UpdateUserStatus.js'
@@ -170,7 +171,10 @@ function UserProfile({ token, currentUser }) {
             <div className="flex space-x-3">
             <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium">{post.post_text}</h3>
+                <ul className="block">
+                <li className="text-sm font-medium">{post.post_text}</li>
+                <li className="text-sm text-gray-500 mt-2"><Moment fromNow>{post.post_date}</Moment></li>
+                </ul>
                 <ul className="text-sm text-gray-500">
                     <li className="flex mb-2">
                         <img className="w-4 h-4 rounded-full mr-2" src={post.post_author_pic}/>
@@ -219,8 +223,10 @@ function UserProfile({ token, currentUser }) {
             <div className="flex space-x-3">
             <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium">{post.post_text}</h3>
-
+                <ul className="block">
+                <li className="text-sm font-medium">{post.post_text}</li>
+                <li className="text-sm text-gray-500 mt-2"><Moment fromNow>{post.post_date}</Moment></li>
+                </ul>
 
                 <ul className="text-sm text-gray-500 overflow-y-auto">
                     <li className="flex">
