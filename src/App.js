@@ -12,6 +12,7 @@ import Registration from './components/registration'
 import NavBar from './components/NavBar'
 import SearchResults from './components/SearchResults'
 import DeleteUserComment from './components/DeleteUserComment'
+import UpdateUserStatus from './components/UpdateUserStatus'
 import axios from 'axios'
 // import search from './components/search'
 import {
@@ -106,6 +107,10 @@ function App() {
 
                     <Route path="/Delete">
                         <DeleteUserComment token={token} />
+                    </Route>
+
+                    <Route path="/AddComment">
+                    <UpdateUserStatus currentUser={currentUser} />
                     </Route>
 
 
