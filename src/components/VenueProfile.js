@@ -9,13 +9,13 @@ import {
     useParams,
     } from 'react-router-dom';
 import Moment from 'react-moment'
-
+import CheckInVenue from './CheckIn.js'
 
 function VenueProfile({ selectedVenue, token }) {
     const [venue, setVenue] = useState([])
     const [posts, setPosts] = useState([]) 
     const [followVenue, setFollowVenue] = useLocalStorageState(false)
-    const [checkIn, setCheckIn] = useLocalStorageState('Check In', false)
+    const [checkIns, setCheckIns] = useState([])
     // const [comment, setComment] =useState(false)
     let { venueId } = useParams();
 
@@ -24,7 +24,7 @@ function VenueProfile({ selectedVenue, token }) {
             console.log('resp', response)
             setVenue(response.data)
             setPosts(response.data.posted_to_venue)
-        
+            setCheckIns(response.data.checkedin_venue)
         })
             
         },[])
@@ -32,7 +32,9 @@ function VenueProfile({ selectedVenue, token }) {
     const handlePost = (newPosts) => {
         setPosts([...posts, newPosts])
     }    
-    
+    const handleCheckIn = (newCheckIn) => {
+        setCheckIns([...checkIns, newCheckIn])
+    }
     const handleLikeClick = (post_id) => {
         if (post_id) {
             like(post_id)
@@ -78,10 +80,8 @@ function VenueProfile({ selectedVenue, token }) {
         setFollowVenue(isFollowing)
     }
 
-    const handleCheckIn = (newCheckIn) => {
-        const isCheckedIn = newCheckIn.detail === 'Checked In'
-        setCheckIn(isCheckedIn)
-    }
+   
+
 
     function follow() {
         axios
@@ -96,22 +96,7 @@ function VenueProfile({ selectedVenue, token }) {
         })
     }   
     
-    function checkInVenue(venueId) {
-        axios
-        .post(`https://tipsy-backend.herokuapp.com/checkins/`,
-        {
-            checkedin_venue: venueId
-        },
-        {
-            headers: { Authorization: `Token ${token}`}
-        }).then((data) => {
-            console.log('data', data)
-            handleCheckIn(data.data)
-        })
-        
-    }
-    
-
+   
     return (
         
         <div>
@@ -138,7 +123,8 @@ function VenueProfile({ selectedVenue, token }) {
                                     > {followVenue ? 'Unfollow' : 'Follow'}    
                                     </button>
                                     <br/>
-                                    <button onClick={() =>checkInVenue(venue.venue_id)}className='bg-brand-beau-blue border-black text-white rounded-md p-2 mt-3 font-bebas-neue'>Check-In</button>
+                                    <CheckInVenue handleCheckIn={handleCheckIn} venueId={venue.venue_id} token={token} />
+                                   
                                 </div> 
                         </div>
                 </div>   
@@ -198,6 +184,40 @@ function VenueProfile({ selectedVenue, token }) {
                     <br/>
                     
                 </div>    
+
+                <div class="flow-root px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md">
+                <ul class="-mb-8">
+                    {checkIns.map((checkin) =>(
+                        <>
+                    <li>
+                    <div class="relative pb-8">
+                        <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                        <div class="relative flex space-x-3">
+                        <div>
+                            <span class="h-8 w-8 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white">
+                            <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                            </span>
+                        </div>
+                        <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                            <div>
+                            <p class="text-sm text-gray-500">{checkin.checkin_username} checked in</p>
+                            </div>
+                            <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                            <time datetime="2020-09-20">{checkin.checkin_time}</time>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </li>
+
+                    </>
+
+                    ))}
+                    
+                </ul>
+                </div> 
                 </div>       
         </div>
         
