@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
+import UpdateUserStatus from './UpdateUserStatus.js'
 import AddUserComment from './AddUserComment.js'
 import DeleteUserComment from './DeleteUserComment.js'
 import EditUserInfo from './EditUserInfo.js'
@@ -17,7 +18,7 @@ import {
 function UserProfile({ token, currentUser }) {
     const [user, setUser] = useState([])
     const [postsFromUser, setPostsFromUser] = useState([])
-    const [poststToUser, setPostsToUser] = useState([])
+    const [postsToUser, setPostsToUser] = useState([])
     const [userFollow, setUserFollow] = useLocalStorageState('follows', false)
     let { userId } = useParams();
 
@@ -29,9 +30,17 @@ function UserProfile({ token, currentUser }) {
             }).then((response) => {
             setUser(response.data)
             setPostsFromUser([...response.data.posts_by])
-            setPostsToUser([...response.data.posted_to_user])
+            const filteredPostsToUser = response.data.posted_to_user.filter(post => {
+                return post.post_author_id !== userId
+            })
+            console.log('filtered', filteredPostsToUser)
+            setPostsToUser([...filteredPostsToUser])
         })
         }, [])
+
+        console.log('userr', user)
+        console.log('postTo', postsToUser)
+        console.log('postFrom', postsFromUser)
 
         const handleFollow = (newThing) => {
             const isFollowing = newThing.detail === "User Followed"
@@ -44,15 +53,16 @@ function UserProfile({ token, currentUser }) {
                 {
                     headers: { Authorization: `Token ${token}`}
                 }).then((response) => {
+                    const filteredPostsToUser = response.data.posted_to_user.filter(post => {
+                        return post.post_author_id !== userId
+                    })
                     setPostsFromUser([...response.data.posts_by])
-                    setPostsToUser([...response.data.posted_to_user])
+                    setPostsToUser([...filteredPostsToUser])
                 }
             )
         }
 
-        // const handlePost = (newPosts) => {
-        //     setAllPosts([...allPosts, newPosts])
-        // } 
+
 
         const handleLikeClick = (post_id) => {
             if (post_id) {
@@ -82,20 +92,13 @@ function UserProfile({ token, currentUser }) {
             .then((data) => {
                 console.log('like endpoint', data)
                 if (data.data.detail === 'Post Liked' || data.data.detail === 'Post Unliked') {
-                    // axios.get(
-                    //     `https://tipsy-backend.herokuapp.com/users/${userId}/`, 
-                    //     {
-                    //         headers: { Authorization: `Token ${token}`}
-                    //     }).then((response) => {
-                    //     setAllPosts([...response.data.posts_by, ...response.data.posted_to_user])
-                    // })
                     reRenderPosts()
                 }
             })
         }
 
     return (
-        <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4">
+        <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4 mb-28">
 
                 <div className="px-8 mx-6 max-w-auto sm:px-6 lg:px-8 grid grid-cols-2">
                 
@@ -110,17 +113,18 @@ function UserProfile({ token, currentUser }) {
                     <h1 className='text-3xl font-black'>{user.first_name}</h1>
                     <h2 className='text-2xl'>{user.city}, {user.state}</h2>
                     <h2 className='text-2xl'>{user.bio_text}</h2>
-                    {/* {currentUser === user ?  */}
-                        
-                        {/* : <div></div>} */}
 
-                          {user.venues_following_list && user.venues_following_list.length ? 
+                        {user.venues_following_list && user.venues_following_list.length ? 
                         <h2 className='text-2xl'>Venues Following: {user.venues_following_list.length}</h2> 
                         : <div></div>}
-                    <button onClick={() =>follow()} className="bg-brand-red border-black text-white font-bebas-neue rounded-md p-2 mt-3 focus:outline-none focus:border-indigo-500">{userFollow ? 'Unfollow' : 'Follow'}</button>
+
+{currentUser.user_id === user.user_id ? (<div></div>
+      ) : (<button onClick={() =>follow()} className="bg-brand-red border-black text-white font-bebas-neue rounded-md p-2 mt-3 focus:outline-none focus:border-indigo-500">{userFollow ? 'Unfollow' : 'Follow'}</button>)}
+                    
                     {currentUser.user_id === user.user_id ? (<EditUserInfo token={token} userId={user.user_id} setUser={setUser} />
       ) : (<div></div>)}
-                    
+                    {currentUser.user_id === user.user_id ? (<UpdateUserStatus token={token} reRenderPosts={reRenderPosts} user_id={user.user_id}/>
+      ) : (<div></div>)}
                 </div>
             </div>
             <br/>
@@ -158,9 +162,10 @@ function UserProfile({ token, currentUser }) {
 
 <div className="px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md">
 
-
     <ul className="divide-y divide-gray-200">
+
         {postsFromUser.map((post) => (
+            
         <li className="py-4 h-20">
             <div className="flex space-x-3">
             <div className="flex-1 space-y-1">
@@ -179,7 +184,10 @@ function UserProfile({ token, currentUser }) {
                         </svg>
                         </a> 
                         {post.post_likers && post.post_likers.length ? <div>{post.post_likers.length} </div> : <div></div>}
-                        <DeleteUserComment postId={post.post_id} reRenderPosts={reRenderPosts} token={token} user_id={user.user_id} />
+
+                        {currentUser.user_id === post.post_author_id ? (<DeleteUserComment postId={post.post_id} reRenderPosts={reRenderPosts} token={token} user_id={user.user_id} />
+      ) : (<div></div>)}
+                        
                     </li>
                     </ul> 
                 </div>
@@ -191,10 +199,22 @@ function UserProfile({ token, currentUser }) {
     </div>
 
 
-<div className="mt-20">POSTS TO USER</div>
+    <div class="relative">
+                        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div class="w-full border-t border-brand-yellow"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
+                            Posts to {user.first_name}
+                            </span>
+                        </div>
+                    </div>
+
 <div className="px-8 mx-6 max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md">
     <ul className="divide-y divide-gray-200">
-        {poststToUser.map((post) => (
+        {postsToUser.map((post) => (
+
+
         <li className="py-4 h-20">
             <div className="flex space-x-3">
             <div className="flex-1 space-y-1">
@@ -215,7 +235,10 @@ function UserProfile({ token, currentUser }) {
                         </svg>
                         </a> 
                         {post.post_likers && post.post_likers.length ? <div>{post.post_likers.length} </div> : <div></div>}
-                        <DeleteUserComment postId={post.post_id} reRenderPosts={reRenderPosts} token={token} user_id={user.user_id} />
+
+                        
+                        {currentUser.user_id === post.post_author_id ? (<DeleteUserComment postId={post.post_id} reRenderPosts={reRenderPosts} token={token} user_id={user.user_id} />
+      ) : (<div></div>)}
                     </li>
                     </ul> 
                 </div>
@@ -223,7 +246,10 @@ function UserProfile({ token, currentUser }) {
             </div>
         </li>
         ))}
-        <AddUserComment token={token} reRenderPosts={reRenderPosts} user_id={user.user_id}/>       
+
+{currentUser.user_id === user.user_id ? (<div></div>
+      ) : (<AddUserComment token={token} reRenderPosts={reRenderPosts} user_id={user.user_id}/>)}
+              
     </ul>
     </div>
     </div>
