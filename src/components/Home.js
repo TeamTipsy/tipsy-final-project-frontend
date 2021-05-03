@@ -24,7 +24,9 @@ function Home({ token }) {
        className="col-span-1"
        token={token}
        />
+    <button className="inline-flex items-center content-center px-4 py-2 pl-2 pr-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm p15 bg-brand-yellow hover:bg-brand-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
     <Link to="/AddVenue">Add Venue</Link>
+    </button>
     </div>
    
  
