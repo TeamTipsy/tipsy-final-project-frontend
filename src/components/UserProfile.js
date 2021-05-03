@@ -37,7 +37,7 @@ function UserProfile({ token, currentUser }) {
             console.log('filtered', filteredPostsToUser)
             setPostsToUser([...filteredPostsToUser])
         })
-        }, [])
+        }, [userId])
 
         console.log('userr', user)
         console.log('postTo', postsToUser)
