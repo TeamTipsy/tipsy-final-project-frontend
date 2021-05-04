@@ -1,18 +1,13 @@
 import { useState } from 'react'
 import axios from 'axios'
-import {
-    Link,
-    useParams,
-    } from 'react-router-dom';
-import Moment from 'react-moment'
-
 
 
 
 
  function CheckInVenue({ token, venueId, handleCheckIn }) {
     const [checkInNew, setCheckInNew] = useState('')
-    
+       
+      
     const handleSubmit = (e) => {
         e.preventDefault()
         axios
@@ -30,8 +25,14 @@ import Moment from 'react-moment'
         })
     }
     return(
-        <button onClick={(e) => handleSubmit(e)} className='bg-brand-beau-blue border-black text-white rounded-md p-2 mt-3 font-bebas-neue'>Check-In</button>
+        
+        <button onClick={(e) => handleSubmit(e)} className='bg-brand-dark-blue border-black text-white rounded-md p-2 mt-3 font-bebas-neue'>Check-In</button>
+
+        
     )
 }
+
+
+
 
 export default CheckInVenue

@@ -4,18 +4,17 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import AddVenueComment from './AddVenueComment.js'
 import useLocalStorageState from 'use-local-storage-state'
-import {
-    Link,
-    useParams,
-    } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Moment from 'react-moment'
 import CheckInVenue from './CheckIn.js'
+import CheckInAlert from './CheckinAlert.js'
 
 function VenueProfile({ selectedVenue, token }) {
     const [venue, setVenue] = useState([])
     const [posts, setPosts] = useState([]) 
     const [followVenue, setFollowVenue] = useLocalStorageState(false)
     const [checkIns, setCheckIns] = useState([])
+    const [showAlert, setShowAlert] = useState(false)
     let { venueId } = useParams();
 
     useEffect(() => {
@@ -31,7 +30,9 @@ function VenueProfile({ selectedVenue, token }) {
         setPosts([...posts, newPosts])
     }    
     const handleCheckIn = (newCheckIn) => {
+        setShowAlert(true)
         setCheckIns([...checkIns, newCheckIn])
+
     }
     const handleLikeClick = (post_id) => {
         if (post_id) {
@@ -110,9 +111,9 @@ function VenueProfile({ selectedVenue, token }) {
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4">
             <br />
-                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-md filter saturate-200 brightness-90 contrast-45" style={{ backgroundImage: `url(${venue.prof_pic})` }}>
+                {showAlert && <CheckInAlert venue={venue.venue_name}setShowAlert={setShowAlert}/>}
                         
-                        <div className='bg-brand-yellow bg-opacity-50 bg-gradient-to-r from-brand-yellow rounded-r-lg rounded-l-lg pl-20 py-2 text-white contrast-200 backdrop-blur-sm brightness-100'>
+                        <div className='bg-brand-red bg-opacity-50 bg-gradient-to-r from-brand-red rounded-r-lg rounded-l-lg pl-6 py-2 text-white contrast-200 backdrop-blur-sm font-roboto'>
                                 <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
                                 <div className='info'>
 
@@ -127,11 +128,12 @@ function VenueProfile({ selectedVenue, token }) {
                                     
                                     <button
                                     onClick={() =>follow()}
-                                    className="bg-brand-red border-black text-white rounded-md p-2 mt-3 font-bebas-neue" 
+                                    className="bg-brand-yellow border-black text-white rounded-md p-2 mt-3  font-bebas-neue" 
                                     > {followVenue ? 'Unfollow' : 'Follow'}    
                                     </button>
                                     <br/>
                                     <CheckInVenue handleCheckIn={handleCheckIn} venueId={venue.venue_id} token={token} />
+                                    
                                    
                                 </div> 
                         </div>
@@ -201,7 +203,7 @@ function VenueProfile({ selectedVenue, token }) {
                             </span>
                         </div>
                     </div> 
-                <div className=" tabcontent flow-root px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md" id='Checkins'>
+                <div className=" tabcontent flow-root px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-20 shadow-md rounded-r-md rounded-l-md" id='Checkins'>
                 <ul class="-mb-8">
                     {checkIns.map((checkin) =>(
                         <>
@@ -221,7 +223,7 @@ function VenueProfile({ selectedVenue, token }) {
                             <p class="text-sm text-gray-500">{checkin.checkin_username} checked in</p>
                             </div>
                             <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                            <time datetime="2020-09-20">{checkin.checkin_time}</time>
+                            <p class="text-sm text-gray-500"><Moment fromNow>{checkin.checkin_time}</Moment></p>
                             </div>
                         </div>
                         </div>
@@ -235,7 +237,7 @@ function VenueProfile({ selectedVenue, token }) {
                 </ul>
                 </div> 
                 </div>       
-        </div>
+       
         
 
     )     
