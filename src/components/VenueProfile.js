@@ -16,12 +16,10 @@ function VenueProfile({ selectedVenue, token }) {
     const [posts, setPosts] = useState([]) 
     const [followVenue, setFollowVenue] = useLocalStorageState(false)
     const [checkIns, setCheckIns] = useState([])
-    // const [comment, setComment] =useState(false)
     let { venueId } = useParams();
 
     useEffect(() => {
         axios.get(`https://tipsy-backend.herokuapp.com/venues/${venueId}/`).then((response) => {
-            console.log('resp', response)
             setVenue(response.data)
             setPosts(response.data.posted_to_venue)
             setCheckIns(response.data.checkedin_venue)
@@ -49,15 +47,7 @@ function VenueProfile({ selectedVenue, token }) {
             headers: { Authorization: `Token ${token}`},
         })
         .then((data) => {
-            console.log('like endpoint', data)
             if (data.data.detail === 'Post Liked' || data.data.detail === 'Post Unliked') {
-                // axios.get(
-                //     `https://tipsy-backend.herokuapp.com/users/${userId}/`, 
-                //     {
-                //         headers: { Authorization: `Token ${token}`}
-                //     }).then((response) => {
-                //     setAllPosts([...response.data.posts_by, ...response.data.posted_to_user])
-                // })
                 reRenderPosts()
             }
         })
@@ -248,10 +238,10 @@ function VenueProfile({ selectedVenue, token }) {
         </div>
         
 
-     )     
+    )     
                 
 }
 
 export default VenueProfile
-  
+
 

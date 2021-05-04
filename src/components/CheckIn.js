@@ -24,13 +24,11 @@ import Moment from 'react-moment'
         {
             headers: { Authorization: `Token ${token}`},
         }).then((data) => {
-                console.log('check in', data)
             handleCheckIn(data.data)
             
            setCheckInNew('')
         })
     }
-//    console.log('new checkin', checkInNew)
     return(
         <button onClick={(e) => handleSubmit(e)} className='bg-brand-beau-blue border-black text-white rounded-md p-2 mt-3 font-bebas-neue'>Check-In</button>
     )

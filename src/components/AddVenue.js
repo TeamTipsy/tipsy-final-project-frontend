@@ -35,21 +35,20 @@ function AddVenue({token}) {
             },{
                 headers: { Authorization: `Token ${token}`}
             }).then((response) => {
-            console.log('resp', response)
         
         })
         }
     return (
 <div className="flex items-center justify-center min-h-screen px-4 py-8">
 <div className="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
-       <h1 className="pt-8 text-3xl font-bold text-center text-brand-dark-blue">Don't See a Venue that Should Be Here?</h1>
-       <h2 className="pb-8 text-lg font-bold text-center">Add it here!</h2>
+        <h1 className="pt-8 text-3xl font-bold text-center text-brand-dark-blue">Don't See a Venue that Should Be Here?</h1>
+        <h2 className="pb-8 text-lg font-bold text-center">Add it here!</h2>
           <form className="space-y-6 " onSubmit={postVenue}>
           <label htmlFor="venue-name" className="block text-sm font-bold text-gray-700">
                 Name of the venue:
               </label>
-           <div className="mt-1">
-           <input 
+            <div className="mt-1">
+            <input 
                 className="relative block w-full px-3 py-2 mb-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 type="text"
                 id="venue_name"
@@ -58,8 +57,7 @@ function AddVenue({token}) {
                 placeholder="Name of venue"
                 onChange={(e) => setAddVenue(e.target.value)}
                 /> 
-           </div>
-            
+          </div>
               <div className="mt-1">
                 <label htmlFor="street_address" className="block text-sm font-bold text-gray-700">
                 Address:
@@ -104,7 +102,7 @@ function AddVenue({token}) {
                 </div>
                 <div className="mt-1"> 
                 <label htmlFor="hours-of-operation" className="block text-sm font-bold text-gray-700">
-               Hours of operations:
+                Hours of operations:
                 </label>
                 <input 
                 className="relative block w-full px-3 py-2 mb-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -118,7 +116,7 @@ function AddVenue({token}) {
                 </div>
                 <div className="mt-1"> 
                 <label htmlFor="email" className="block text-sm font-bold text-gray-700">
-               Email address:
+                Email address:
                 </label>
                 <input 
                 className="relative block w-full px-3 py-2 mb-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -132,17 +130,17 @@ function AddVenue({token}) {
                 <div className="mt-1">
                 <label htmlFor="venue-URL" className="block text-sm font-bold text-gray-700">
                 Website address:
-                 </label>
-                 <input 
-                 className="relative block w-full px-3 py-2 mb-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                 type="url"
-                 id="venue-URL"
-                 value={venueURL}
-                 placeholder="Venue website"
-                 onChange={(e) => setVenueURL(e.target.value)}
-                 />
-                 </div>
-                 
+                </label>
+                <input 
+                className="relative block w-full px-3 py-2 mb-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                type="url"
+                id="venue-URL"
+                value={venueURL}
+                placeholder="Venue website"
+                onChange={(e) => setVenueURL(e.target.value)}
+                />
+                </div>
+                
                 {/* <div className="mt-1">
                     <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
                         Select the tags that best describes the atmosphere at this venue:
@@ -167,13 +165,9 @@ function AddVenue({token}) {
             </div>  
                 
           </form>
-
     </div>
-   </div>     
-
-    )
-
-}
+  </div>     
+)}
 
 export default AddVenue
 
@@ -185,4 +179,3 @@ export default AddVenue
 // state: ["This field is required."]
 // tags: ["This field is required."]
 // web_url: ["This field is required."]
-

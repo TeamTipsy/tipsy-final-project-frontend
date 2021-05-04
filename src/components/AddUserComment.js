@@ -27,9 +27,7 @@ user_id, token, reRenderPosts
             <form onSubmit={handleSubmit} className="mt-4 grid grid-cols-2">
                 <div>
                     <textarea
-
                     className='mx-auto w-full sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md border-2 focus:outline-none focus:border-indigo-500 '
-
                     value={comment}
                     type='text'
                     placeholder='Spill Here'
