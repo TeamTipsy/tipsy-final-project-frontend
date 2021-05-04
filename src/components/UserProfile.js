@@ -94,13 +94,13 @@ console.log(postsFromUser)
         }
 
     return (
-        <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4 mb-28">
+        <div className="px-8 mx-auto mt-4 max-w-7xl sm:px-6 lg:px-8 mb-28">
 
-                <div className="px-8 mx-6 max-w-auto sm:px-6 lg:px-8 grid grid-cols-2">
+                <div className="grid grid-cols-2 px-8 mx-6 max-w-auto sm:px-6 lg:px-8">
                 
                 <div className='pl-2 image'>
                     <img
-                        className="rounded-r-md rounded-l-md shadow-md h-auto w-auto"
+                        className="w-auto h-auto shadow-md rounded-r-md rounded-l-md"
                         src={user.prof_pic}
                         alt=""
                     /> 
@@ -115,7 +115,7 @@ console.log(postsFromUser)
                         : <div></div>}
 
 {currentUser.user_id === user.user_id ? (<div></div>
-      ) : (<button onClick={() =>follow()} className="bg-brand-red border-black text-white font-bebas-neue rounded-md p-2 mt-3 focus:outline-none focus:border-indigo-500">{userFollow ? 'Unfollow' : 'Follow'}</button>)}
+      ) : (<button onClick={() =>follow()} className="p-2 mt-3 text-white border-black rounded-md bg-brand-red font-bebas-neue focus:outline-none focus:border-indigo-500">{userFollow ? 'Unfollow' : 'Follow'}</button>)}
                     
                     {currentUser.user_id === user.user_id ? (<EditUserInfo token={token} userId={user.user_id} setUser={setUser} />
       ) : (<div></div>)}
@@ -137,7 +137,7 @@ console.log(postsFromUser)
 
                 </div>
                 <ImageUpload user={user.user_id}/>
-                {/* <div className="flex-wrap max-w-auto mx-6 py-7 content-evenly text-brand-dark-blue font-bebas-neue text-xl">{user.first_name}'s Photos</div> */}
+                {/* <div className="flex-wrap mx-6 text-xl max-w-auto py-7 content-evenly text-brand-dark-blue font-bebas-neue">{user.first_name}'s Photos</div> */}
                 <div class="overflow-x-auto max-w-auto mx-6 py-7 flex-wrap content-evenly h-30 shadow-md rounded-r-md rounded-l-md">THIS MIGHT BE IMAGE SCROLLQrLmmW69vMQDtCOg48jidqvvWD2FzDt7I7bBoDc98SRP5OwvOScVYbRzFdfp540eF5v1pjogYkyI8NXqu4wY8chgsXIV0LU7XQKWJ98wLaBSHWiBhvkEU1T3sd6KEFo53CLjVjIz8UvZajb8sbsu62xTsF9cRtFdwEvusq6zJHvedymDCUkY6qXHsuL6fOmHo4KKMurZuJZrK3plRPUaI8XVciz8dVq5CEUXjMrTcB76H1w90CnkRER3nYjs3suTa3223xs8aL97m0peQfjlvKbF8HcmQG5mHEitCn1QZnbMZUK3zE9AIjwcVXP7R9V4fw2A93cZD7wj333X6aaiHZdkkTPtst0u05KSob5c0ZuKQi4D3V395NfFKKr8cR27jmpB7dqK2GiWXeOQUFcjmFVwlHWSlH8ZdUoVJpXf1xL6CRUxwZP4EhBbqQZaJm26ijWII6LRxJ5eVU9Y7KKvQsUeX5BawtgeMWRmjeCwQadTLTQG8gLpi2DvGpMtPWCdqHgEglVSB1ZlDrjEEsXYrNx1IOY0053K3pWNaR1ezyz8kahRfNs3byaHcIQu9tWTrcMpBWhZ45DzLjVV1N8Zt96uLnNWK5DvbKW8GgMuwY7fHkZFz85MN4d2gL0j85HmXGx9oPTFRkPWsmMOHUvm5IhB7QqGSAwT1uL7HgBrNX9a1BAWrp9zV1IWAd1q65sKOOCxTZrXJDpxBxYE4rJAGU6pcri9mUf4g49ZiIAwfu9njtZyYimmImCa6TFhk2jQcSmFDHacExxqC2BfYATHFrKSy94dbw6uWT52nM7MSM9JDu4cs9cbfnaf6amt
                 </div>
 
@@ -151,37 +151,38 @@ console.log(postsFromUser)
                         <div class="relative flex justify-center">
                             <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
 
-                            {user.username} 's Posts
+                            {user.username}'s Posts
 
                             </span>
                         </div>
                     </div>
 
 
-<div className="px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md">
+<div className="px-8 mx-6 mb-4 shadow-md max-w-auto sm:px-6 lg:px-8 rounded-r-md rounded-l-md">
 
     <ul className="divide-y divide-gray-200">
 
         {postsFromUser.map((post) => (
             
-        <li className="py-4 h-20">
+        <li className="h-20 py-4">
             <div className="flex space-x-3">
             <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
                 <ul className="block">
                 <li className="text-sm font-medium">{post.post_text}</li>
+                <li className="mt-2 text-sm text-gray-500"><Moment fromNow>{post.post_date}</Moment></li>
                 {post.post_author_id !== post.posted_to_user ? (<li className="mt-2 text-xs text-gray-500">posted to <Link className="hover:text-brand-red" to={`/UserProfile/${post.posted_to_user}`}>{post.posted_to_username}</Link>'s profile <Moment fromNow>{post.post_date}</Moment></li>) : (<li className="mt-2 text-xs text-gray-500"><Moment fromNow>{post.post_date}</Moment></li>)}
        
                 </ul>
                 <ul className="text-sm text-gray-500">
                     <li className="flex mb-2">
-                        <img className="w-4 h-4 rounded-full mr-2" src={post.post_author_pic}/>
+                        <img className="w-4 h-4 mr-2 rounded-full" src={post.post_author_pic}/>
                         <Link 
-                        to={`/UserProfile/${post.post_author_id}`} className="hover:text-brand-red mr-2">{post.post_author_username}</Link> 
+                        to={`/UserProfile/${post.post_author_id}`} className="mr-2 hover:text-brand-red">{post.post_author_username}</Link> 
                     </li>
                     <li className="flex">
-                        <a onClick={() => handleLikeClick(post.post_id)} className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <a onClick={() => handleLikeClick(post.post_id)} className="inline-block hover:text-brand-dark-blue text-brand-beau-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                         </svg>
                         </a> 
@@ -212,29 +213,29 @@ console.log(postsFromUser)
                         </div>
                     </div>
 
-<div className="px-8 mx-6 max-w-auto sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md">
+<div className="px-8 mx-6 shadow-md max-w-auto sm:px-6 lg:px-8 rounded-r-md rounded-l-md">
     <ul className="divide-y divide-gray-200">
         {postsToUser.map((post) => (
 
 
-        <li className="py-4 h-20">
+        <li className="h-20 py-4">
             <div className="flex space-x-3">
             <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
                 <ul className="block">
                 <li className="text-sm font-medium">{post.post_text}</li>
-                <li className="text-sm text-gray-500 mt-2"><Moment fromNow>{post.post_date}</Moment></li>
+                <li className="mt-2 text-sm text-gray-500"><Moment fromNow>{post.post_date}</Moment></li>
                 </ul>
 
-                <ul className="text-sm text-gray-500 overflow-y-auto">
+                <ul className="overflow-y-auto text-sm text-gray-500">
                     <li className="flex">
-                        <img className="w-4 h-4 rounded-full mr-2" src={post.post_author_pic}/>
+                        <img className="w-4 h-4 mr-2 rounded-full" src={post.post_author_pic}/>
                         <Link 
-                        to={`/UserProfile/${post.post_author_id}`} className="hover:text-brand-red mr-2">{post.post_author_username}</Link> 
+                        to={`/UserProfile/${post.post_author_id}`} className="mr-2 hover:text-brand-red">{post.post_author_username}</Link> 
                     </li>
                     <li className="flex">
-                        <a onClick={() => handleLikeClick(post.post_id)} className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <a onClick={() => handleLikeClick(post.post_id)} className="inline-block hover:text-brand-dark-blue text-brand-beau-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                         </svg>
                         </a> 
