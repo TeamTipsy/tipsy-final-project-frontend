@@ -24,7 +24,6 @@ function Home({ token }) {
        className="col-span-1 mb-20"
        token={token}
        />
-    
     </div>
    
     <Link style={token ? {} : {display: 'none'}} to="/AddVenue" className="flex px-12 py-4 w-40 ml-24 mt-10 bg-brand-red rounded-md text-white font-bebas-neue hover:bg-brand-yellow">Add Venue</Link>

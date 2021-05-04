@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
-import Logo from '../media/Tipsy-redlogo.svg'
+import Logo from '../media/tipsyLogo.png'
 import useLocalStorageState from 'use-local-storage-state'
 
 function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {

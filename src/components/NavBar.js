@@ -3,7 +3,7 @@ import { Fragment, useState, useEffect } from 'react'
 import axios from 'axios'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import Logo from '../media/Tipsylogo.svg'
+import Logo from '../media/tipsyLogo.png'
 import {
   BrowserRouter as Router,
   Switch,

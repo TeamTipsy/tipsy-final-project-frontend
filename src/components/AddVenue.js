@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { Redirect } from 'react-router'
 
 
 function AddVenue({token}) {
@@ -11,12 +12,17 @@ function AddVenue({token}) {
     const [email, setEmail] = useState('')
     const [hoursOfOperation, setHoursOfOperation] = useState('')
     const [venueURL, setVenueURL] = useState('')
+    const [venueAdded, setVenueAdded] = useState(false)
     // const [tag1, setTag1] = useState()
     // const [tag2, setTag2] =useState()
+    
+   if (venueAdded === true) {return <Redirect to="/" 
+     />
+   }
 
-    const handleAddedVenue = (event) => {
-        setAddVenue(event.target.value)
-        }
+    // const handleAddedVenue = (event) => {
+    //     setAddVenue(event.target.value)
+    //     }
     
         const postVenue = (e) => {
             e.preventDefault()
@@ -31,11 +37,12 @@ function AddVenue({token}) {
                 state: state,
                 web_url: venueURL,
                 
-    
             },{
                 headers: { Authorization: `Token ${token}`}
             }).then((response) => {
-        
+            console.log('resp', response)
+        setVenueAdded(!venueAdded)
+
         })
         }
     return (
@@ -96,7 +103,7 @@ function AddVenue({token}) {
                 id="state"
                 value={state}
                 required
-                placeholder="Days and hours of operations"
+                placeholder="State"
                 onChange={(e) => setState(e.target.value)}
                 />
                 </div>
@@ -130,29 +137,18 @@ function AddVenue({token}) {
                 <div className="mt-1">
                 <label htmlFor="venue-URL" className="block text-sm font-bold text-gray-700">
                 Website address:
-                </label>
-                <input 
-                className="relative block w-full px-3 py-2 mb-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                type="url"
-                id="venue-URL"
-                value={venueURL}
-                placeholder="Venue website"
-                onChange={(e) => setVenueURL(e.target.value)}
-                />
-                </div>
-                
-                {/* <div className="mt-1">
-                    <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
-                        Select the tags that best describes the atmosphere at this venue:
-                        <input 
-                        id="tags"
-                        value={tags}
-                        onChange={(e) => setTags(e.target.value)}
-                        />
-                    </label>
 
-                </div> */}
-
+                 </label>
+                 <input 
+                 className="relative block w-full px-3 py-2 mb-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 type="url"
+                 id="venue-URL"
+                 value={venueURL}
+                 placeholder="Venue website"
+                 onChange={(e) => setVenueURL(e.target.value)}
+                 />
+                 </div>
+                 
               </div>
               <div>
               <button
@@ -170,6 +166,8 @@ function AddVenue({token}) {
 )}
 
 export default AddVenue
+          
+
 
 
 
