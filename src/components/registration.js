@@ -8,12 +8,22 @@ import useLocalStorageState from 'use-local-storage-state'
 
 function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
     const [password, setPassword] = useState('')
-
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [firstname, setFirstName] = useState('')
+    const [lastname, setLastName] = useState('')
+    const [email, setEmail] = useState('')
     function handleSubmit(e) {
       e.preventDefault()
       axios.post(`https://tipsy-backend.herokuapp.com/auth/users/`, {
-        username,
-        password,
+        username: username,
+        password: password,
+        city: city,
+        state: state,
+        first_name: firstname,
+        last_name: lastname,
+        email: email
+        
       })
       .then((respone) => {
         return axios
@@ -57,7 +67,9 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                 <input
                   id="firstname"
                   type="text"
+                  value={firstname}
                   autoComplete="firstname"
+                  onChange={(e) => setFirstName(e.target.value)}
                   required
                   className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
@@ -71,8 +83,10 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                 <input
                   id="lastname"
                   name="lastname"
+                  value={lastname}
                   type="text"
                   autoComplete="lasttname"
+                  onChange={(e) => setLastName(e.target.value)}
                   required
                   className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
@@ -87,8 +101,10 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   id="email"
                   name="email"
                   type="email"
+                  value={email}
                   autoComplete="email"
                   required
+                  onChange={(e) => setEmail(e.target.value)}
                   className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
@@ -120,8 +136,10 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   id="city"
                   name="city"
                   type="text"
+                  value={city}
                   autoComplete="city"
                   required
+                  onChange={(e) => setCity(e.target.value)}
                   className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
@@ -135,8 +153,10 @@ function Registration({token, username, setAuth, isLoggedIn, setUsername}) {
                   id="state"
                   name="state"
                   type="text"
+                  value={state}
                   autoComplete="state"
                   required
+                  onChange={(e) => setState(e.target.value)}
                   className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>

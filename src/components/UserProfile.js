@@ -37,11 +37,7 @@ function UserProfile({ token, currentUser }) {
             console.log('filtered', filteredPostsToUser)
             setPostsToUser([...filteredPostsToUser])
         })
-        }, [])
-
-        console.log('userr', user)
-        console.log('postTo', postsToUser)
-        console.log('postFrom', postsFromUser)
+        }, [token, userId])
 
         const handleFollow = (newThing) => {
             const isFollowing = newThing.detail === "User Followed"
@@ -63,7 +59,7 @@ function UserProfile({ token, currentUser }) {
             )
         }
 
-
+console.log(postsFromUser)
 
         const handleLikeClick = (post_id) => {
             if (post_id) {
@@ -91,7 +87,6 @@ function UserProfile({ token, currentUser }) {
                 headers: { Authorization: `Token ${token}`},
             })
             .then((data) => {
-                console.log('like endpoint', data)
                 if (data.data.detail === 'Post Liked' || data.data.detail === 'Post Unliked') {
                     reRenderPosts()
                 }
@@ -111,7 +106,7 @@ function UserProfile({ token, currentUser }) {
                     /> 
                 </div>
                 <div className='px-8 mx-6 mr-2 text-black'>
-                    <h1 className='text-3xl font-black'>{user.first_name}</h1>
+                    <h1 className='text-3xl font-black'>{user.username}</h1>
                     <h2 className='text-2xl'>{user.city}, {user.state}</h2>
                     <h2 className='text-2xl'>{user.bio_text}</h2>
 
@@ -136,7 +131,7 @@ function UserProfile({ token, currentUser }) {
                     </div>
                     <div class="relative flex justify-center">
                         <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
-                        {user.first_name}'s Photos
+                        {user.username}'s Photos
                         </span>
                     </div>
 
@@ -155,7 +150,9 @@ function UserProfile({ token, currentUser }) {
                         </div>
                         <div class="relative flex justify-center">
                             <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
-                            {user.first_name} 's Updates
+
+                            {user.username} 's Posts
+
                             </span>
                         </div>
                     </div>
@@ -173,7 +170,8 @@ function UserProfile({ token, currentUser }) {
                 <div className="flex items-center justify-between">
                 <ul className="block">
                 <li className="text-sm font-medium">{post.post_text}</li>
-                <li className="text-sm text-gray-500 mt-2"><Moment fromNow>{post.post_date}</Moment></li>
+                {post.post_author_id !== post.posted_to_user ? (<li className="mt-2 text-xs text-gray-500">posted to <Link className="hover:text-brand-red" to={`/UserProfile/${post.posted_to_user}`}>{post.posted_to_username}</Link>'s profile <Moment fromNow>{post.post_date}</Moment></li>) : (<li className="mt-2 text-xs text-gray-500"><Moment fromNow>{post.post_date}</Moment></li>)}
+       
                 </ul>
                 <ul className="text-sm text-gray-500">
                     <li className="flex mb-2">
@@ -209,7 +207,7 @@ function UserProfile({ token, currentUser }) {
                         </div>
                         <div class="relative flex justify-center">
                             <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
-                            Posts to {user.first_name}
+                            Posts to {user.username}
                             </span>
                         </div>
                     </div>
@@ -262,31 +260,3 @@ function UserProfile({ token, currentUser }) {
     )
 }
 export default UserProfile
-
-// {allPosts.map((post) => (
-//     <li className="py-4 h-20">
-//         <div className="flex space-x-3">
-//         <div className="flex-1 space-y-1">
-//             <div className="flex items-center justify-between">
-//             <h3 className="text-sm font-medium">{post.post_text}</h3>
-//             <ul className="text-sm text-gray-500">
-//                 <li className="flex mb-2">
-//                     <img className="w-4 h-4 rounded-full mr-2" src={post.post_author_pic}/>
-//                     <Link 
-//                     to={`/UserProfile/${post.post_author_id}`} className="hover:text-brand-red mr-2">{post.post_author_username}</Link> 
-//                 </li>
-//                 <li className="flex">
-//                     <a onClick={() => handleLikeClick(post.post_id)} className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
-//                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-//                     <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-//                     </svg>
-//                     </a> 
-//                     {post.post_likers && post.post_likers.length ? <div>{post.post_likers.length} </div> : <div></div>}
-//                     <DeleteUserComment postId={post.post_id} handlePost={handlePost} token={token} user_id={user.user_id} />
-//                 </li>
-//                 </ul> 
-//             </div>
-//         </div>
-//         </div>
-//     </li>
-//     ))}

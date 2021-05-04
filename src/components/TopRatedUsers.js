@@ -20,14 +20,8 @@ function TopRatedUsers({ token }) {
             {
                 headers: { Authorization: `Token ${token}`}
             }).then((response) => {
-            console.log('resp', response)
             setTopUsers(response.data)
         })}, [])
-        console.log('top', topUsers)
-
-
-
-
 
     return (
         
@@ -38,7 +32,6 @@ function TopRatedUsers({ token }) {
         key={topUser.email}
         className="relative flex items-center px-6 py-5 space-x-3 border rounded-lg shadow-md bg-brand-beau-blue hover:border-white focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
         >
-        
             <div className="flex-shrink-0">
             <img className="w-10 h-10 rounded-full" src={topUser.prof_pic} alt="" />
             </div>

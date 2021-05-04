@@ -6,8 +6,6 @@ function AddVenueComment({ venue_id, token, handlePost }) {
     const [comment, setComment] = useState('')
 
     const handleSubmit = (e) => {
-        // console.log('venue id', venue_id)
-        console.log('comment in handleSubmit', comment)
         e.preventDefault()
         axios
         .post(`https://tipsy-backend.herokuapp.com/posts/`,
@@ -24,8 +22,6 @@ function AddVenueComment({ venue_id, token, handlePost }) {
 
         })
     }
-   console.log('comment', comment)
-   console.log('token', token)
     return(
         <div>
             <form className='grid grid-cols-2 mt-4' onSubmit={handleSubmit}>
@@ -38,7 +34,7 @@ function AddVenueComment({ venue_id, token, handlePost }) {
                     </textarea>
                 </div>
                 <div>
-                    <button className='mx-8 items-center w-20 h-7  border border-transparent rounded-md shadow-sm text-center text-white text-xs bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' type='submit'>SPILL</button>
+                    <button className='mx-8 items-center w-20 h-7  border border-transparent font-bebas-neue rounded-md shadow-sm text-center text-white text-md bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' type='submit'>SPILL</button>
                 </div>
             </form>
         

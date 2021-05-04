@@ -10,13 +10,13 @@ export default function SearchResults(props) {
     const search = props.location.state.search
     const searchResults = props.location.state.searchResults
     const endpoint = props.location.state.endpoint
-    console.log(searchResults)
+    const token = props.location.state.token
 
     function ContentRenderer() {
         if (endpoint === 'venues') {
             return <div className="mt-5 mx-10 ">
-                        <Search/>
-                            <div className="center text-4xl mt-3 text-brand-dark-blue">Results:</div>
+                        <Search token={token}/>
+                            <div className="center text-4xl mt-3 text-brand-dark-blue font-bebas-neue">Results:</div>
                             <ul className="divide-y divide-gray-200 text-brand-dark-blue h-28">
                             {searchResults.map((result)=> (
                                 <li className="py-8 w-full">
@@ -35,8 +35,8 @@ export default function SearchResults(props) {
                         </div>
         } else if (endpoint === 'users') {
             return <div className="mt-5 mx-10 ">
-                        <Search/>
-                        <div className="center text-4xl mt-3 text-brand-dark-blue">Results:</div>
+                        <Search token={token}/>
+                        <div className="center text-4xl mt-3 text-brand-dark-blue font-bebas-neue">Results:</div>
                         <ul className="divide-y divide-gray-200 text-brand-dark-blue h-28">
                         {searchResults.map((result)=> (
                             <li className="py-8 w-full">

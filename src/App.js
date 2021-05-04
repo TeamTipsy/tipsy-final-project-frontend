@@ -36,13 +36,13 @@ function App() {
     const [currentUser, setCurrentUser] = useState([])
 
     useEffect (() => {
-      axios.get(`https://tipsy-backend.herokuapp.com/auth/users/me/`,
-      {
+        axios.get(`https://tipsy-backend.herokuapp.com/auth/users/me/`,
+    {
         headers: { Authorization: `Token ${token}`}
     })
-      .then((response) => {
-          setCurrentUser(response.data)
-      })
+    .then((response) => {
+        setCurrentUser(response.data)
+    })
     }, [])
 
     function setAuth(username, token) {
@@ -56,15 +56,11 @@ function App() {
         }
     
     const isLoggedIn = username && token 
-
     
-
     function logOut() {
         setUsername(null)
         setToken(null)
-        }
-        
-        console.log('token', token)
+    }
     
     return (
         <Router>
@@ -72,7 +68,7 @@ function App() {
                 <NavBar currentUser={currentUser} setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
                 <Switch>
                     <Route path="/" exact>
-                    <Home token={token} />
+                    <Home token={token} currentUser={currentUser}/>
                     </Route>
 
                     <Route path="/UserProfile/:userId" component={UserProfile}>
@@ -99,7 +95,9 @@ function App() {
                     <Registration setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
                     </Route>
 
-                    <Route path="/search" component={search} />
+                    <Route path="/search">
+                    <search token={token} />
+                    </Route>
 
                     <Route path="/SearchResults" component={SearchResults} />
 
