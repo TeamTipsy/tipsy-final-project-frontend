@@ -59,7 +59,7 @@ function Search({ token }) {
         <Redirect
           to={{
             pathname: "/SearchResults/",
-            state: { searchResults: searchResults, search:search, endpoint: endpoint }
+            state: { searchResults: searchResults, search:search, endpoint: endpoint, token: token }
           }}
         />
       ) : (<div></div>)}
