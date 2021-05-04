@@ -3,7 +3,7 @@ import { Fragment, useState, useEffect } from 'react'
 import axios from 'axios'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import Logo from '../media/tipsyLogo.png'
+import Logo from '../media/Tipsy-main-logo.png'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,7 +21,7 @@ function classNames(...classes) {
 export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
 
   return (
-    <Disclosure as="nav" className="bg-brand-red">
+    <Disclosure as="nav" className="bg-brand-yellow">
       {({ open }) => (
         <>
           <div className="px-4 py-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -29,12 +29,12 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <img
-                    className="block w-auto h-8 lg:hidden"
+                    className="block w-auto h-8 pb-2 lg:hidden"
                     src={Logo}
                     alt="Workflow"
                   />
                   <img
-                    className="hidden w-auto mt-4 h-11 lg:block"
+                    className="hidden w-auto pb-4 mt-4 h-11 lg:block"
                     src={Logo}
                     alt="Tipsy"
                   /> 
@@ -42,17 +42,17 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-base font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue font-bebas-neue">
+                    <Link style={isLoggedIn ? {display: 'none'} : {}} to ="/login" className="px-3 py-2 text-base font-medium text-white rounded-md bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue font-bebas-neue">
                       Login
                     </Link>
                     <a
                       href="/"
-                      className="px-3 py-2 text-base font-medium text-white rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
+                      className="px-3 py-2 text-base font-medium rounded-md to-brand-dark-blue hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
                     >
                       Discover
                     </a>
                   <Link style={token ? {} : {display: 'none'}} to={`/Userprofile/${currentUser.user_id}`}
-                      className="px-3 py-2 text-base font-medium text-white rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
+                      className="px-3 py-2 text-base font-medium rounded-md text-brand-dark-blue hover:bg-brand-red hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
                       >
                       My Profile
                     </Link>
@@ -63,7 +63,7 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                       Search
                     </a> */}
                     <>
-                    <a style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()} className="px-3 py-2 text-sm font-medium text-white rounded-md bg-brand-yellow hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue font-bebas-neue">
+                    <a style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()} className="px-3 py-2 text-sm font-medium rounded-md text-brand-dark-blue bg-brand-yellow hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue font-bebas-neue">
                       Sign Out
                     </a>
               
@@ -83,15 +83,14 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                     {({ open }) => (
                       <>
                         <div>
-                          <Menu.Button className="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                          {/* <Menu.Button className="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span className="sr-only">Open user menu</span>
                             <img
-                            style={isLoggedIn ? {} : {display: 'none'}}
                               className="w-8 h-8 rounded-full"
-                              src={currentUser.prof_pic}
+                              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                               alt=""
                             />
-                          </Menu.Button>
+                          </Menu.Button> */}
                         </div>
                         <Transition
                           show={open}
@@ -109,18 +108,18 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                           >
                             <Menu.Item>
                               {({ active }) => (
-                                <Link
-                                to={`/Userprofile/${currentUser.user_id}`}
+                                <a
+                                  href="#"
                                   className={classNames(
                                     active ? 'bg-gray-100' : '',
                                     'block px-4 py-2 text-sm text-gray-700'
                                   )}
                                 >
                                   Your Profile
-                                </Link>
+                                </a>
                               )}
                             </Menu.Item>
-                            {/* <Menu.Item>
+                            <Menu.Item>
                               {({ active }) => (
                                 <a
                                   href="#"
@@ -132,7 +131,7 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                                   Settings
                                 </a>
                               )}
-                            </Menu.Item> */}
+                            </Menu.Item>
                             <Menu.Item>
                               {({ active }) => (
                                 <a
@@ -171,23 +170,40 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-              <a href="/" className="block px-3 py-2 text-base font-medium text-white bg-brand-red rounded-md">
-                Discover
+              <a href="#" className="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md">
+                Dashboard
+              </a>
+              <a
+                href="#"
+                className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+              >
+                Team
+              </a>
+              <a
+                href="#"
+                className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+              >
+                Projects
+              </a>
+              <a
+                href="#"
+                className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+              >
+                Calendar
               </a>
             </div>
             <div className="pt-4 pb-3 border-t border-gray-700">
               <div className="flex items-center px-5">
                 <div className="flex-shrink-0">
                   <img
-                  style={isLoggedIn ? {} : {display: 'none'}}
                     className="w-10 h-10 rounded-full"
-                    src={currentUser.prof_pic}
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt=""
                   />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-white font-bebas-neue">{currentUser.username}</div>
-                  <div className="text-sm font-medium text-gray-400">{currentUser.email}</div>
+                  <div className="text-base font-medium text-white">Tom Cook</div>
+                  <div className="text-sm font-medium text-gray-400">tom@example.com</div>
                 </div>
                 {/* <button className="flex-shrink-0 p-1 ml-auto text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span className="sr-only">View notifications</span>
@@ -195,17 +211,21 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                 </button> */}
               </div>
               <div className="px-2 mt-3 space-y-1">
-                <Link
-                style={isLoggedIn ? {} : {display: 'none'}}
-                  to={`/Userprofile/${currentUser.user_id}`}
-                  className="block px-3 py-2 font-bebas-neue text-base font-medium text-white rounded-md hover:text-white hover:bg-gray-700"
+                <a
+                  href="#"
+                  className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700"
                 >
                   Your Profile
-                </Link>
+                </a>
                 <a
-                  href="/"
-                  style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()}
-                  className="block px-3 py-2 text-base font-medium font-bebas-neue text-white rounded-md hover:text-white hover:bg-gray-700"
+                  href="#"
+                  className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700"
+                >
+                  Settings
+                </a>
+                <a
+                  href="#"
+                  className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700"
                 >
                   Sign out
                 </a>
