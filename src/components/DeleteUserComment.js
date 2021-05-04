@@ -15,12 +15,10 @@ function DeleteUserComment({ token, postId, reRenderPosts, user_id }) {
             headers: { Authorization: `Token ${token}`},
         })
         .then(res => {
-            console.log('res ', res.data)
             if (res.status === 204) {
                 getPosts()
             }
         }).catch(err => {
-            console.log('err ', err)
         })
         }
 

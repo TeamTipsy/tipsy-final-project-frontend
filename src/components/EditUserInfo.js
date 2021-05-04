@@ -23,13 +23,10 @@ const [error, setError] = useState('')
             headers: { Authorization: `Token ${token}`},
         })
         .then(res => {
-            console.log('res ', res.data)
             setUpdate(!update)
             reRenderUser()
-
         }).catch(err => {
             setError(err.message)
-            console.log('err ', err)
         })
         }
 

@@ -11,46 +11,33 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
 
 
     function hidePassword() {var x = document.getElementById("userPass");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
     }
 
 
     function handleSubmit (event) {
-    event.preventDefault()
-    axios
-    .post('https://tipsy-backend.herokuapp.com/auth/token/login/', {
-        username: username,
-        password: password
-    })
-    .then((data) => {
-        console.log(data)
-        if (data && data.data.auth_token) {
-        setAuth(username, data.data.auth_token)
-        return 
-        // setCurrentUSer(data.user)
-        }
-    })
-    .catch((error) => {
-        setErrors(error.message)
-    
-        
-    })
-    
-   
-    
-
-}
-
-
-
-// when a user logs in the backend api needs to return key fields for that user, such as 
-//username and profile pic. const [loggedInUser, setLoggedInUser]
-// an object for the user containing username, profile picture, etc.
-// data.user = { username: 'myusername', profile_picture_link: 'http://linktomypick.blah/blah' }
+        event.preventDefault()
+        axios
+        .post('https://tipsy-backend.herokuapp.com/auth/token/login/', {
+            username: username,
+            password: password
+        })
+        .then((data) => {
+            console.log(data)
+            if (data && data.data.auth_token) {
+            setAuth(username, data.data.auth_token)
+            return 
+            }
+        })
+        .catch((error) => {
+            setErrors(error.message)
+            
+        })
+    }
 
     return (
         <>

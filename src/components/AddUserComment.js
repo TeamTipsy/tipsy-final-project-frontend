@@ -27,16 +27,14 @@ user_id, token, reRenderPosts
             <form onSubmit={handleSubmit} className="mt-4 grid grid-cols-2">
                 <div>
                     <textarea
-
                     className='mx-auto w-full sm:px-6 lg:px-8 shadow-md rounded-r-md rounded-l-md border-2 focus:outline-none focus:border-indigo-500 '
-
                     value={comment}
                     type='text'
                     placeholder='Spill Here'
                     onChange={(e) => setComment(e.target.value)}></textarea>
                 </div>
 
-                    <button className='mx-8 items-center w-20 h-7  border border-transparent rounded-md shadow-sm text-center text-white font-bebas-neue text-xs bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' type='submit'>SPILL</button>
+                    <button onClick={(e) => handleSubmit(e)} className='mx-8 items-center w-20 h-7  border border-transparent rounded-md shadow-sm text-center text-white font-bebas-neue text-xs bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' type='submit'>SPILL</button>
 
             </form>
         </div>

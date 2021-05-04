@@ -16,12 +16,10 @@ function VenueProfile({ selectedVenue, token }) {
     const [posts, setPosts] = useState([]) 
     const [followVenue, setFollowVenue] = useLocalStorageState(false)
     const [checkIns, setCheckIns] = useState([])
-    // const [comment, setComment] =useState(false)
     let { venueId } = useParams();
 
     useEffect(() => {
         axios.get(`https://tipsy-backend.herokuapp.com/venues/${venueId}/`).then((response) => {
-            console.log('resp', response)
             setVenue(response.data)
             setPosts(response.data.posted_to_venue)
             setCheckIns(response.data.checkedin_venue)
@@ -49,15 +47,7 @@ function VenueProfile({ selectedVenue, token }) {
             headers: { Authorization: `Token ${token}`},
         })
         .then((data) => {
-            console.log('like endpoint', data)
             if (data.data.detail === 'Post Liked' || data.data.detail === 'Post Unliked') {
-                // axios.get(
-                //     `https://tipsy-backend.herokuapp.com/users/${userId}/`, 
-                //     {
-                //         headers: { Authorization: `Token ${token}`}
-                //     }).then((response) => {
-                //     setAllPosts([...response.data.posts_by, ...response.data.posted_to_user])
-                // })
                 reRenderPosts()
             }
         })
@@ -96,13 +86,31 @@ function VenueProfile({ selectedVenue, token }) {
         })
     }   
     
+    // function openContent(e, venueBlurb) {
+    //     
+    //     var i, tabcontent, tablinks;
+      
+    //     tabcontent = document.getElementsByClassName("tabcontent");
+    //     for (i = 0; i < tabcontent.length; i++) {
+    //       tabcontent[i].style.display = "none";
+    //     }
+      
+    //     tablinks = document.getElementsByClassName("tablinks");
+    //     for (i = 0; i < tablinks.length; i++) {
+    //       tablinks[i].className = tablinks[i].className.replace(" active", "");
+    //     }
+      
+    //     
+    //     document.getElementById(venueBlurb).style.display = "block";
+    //     e.currentTarget.className += " active";
+    //   }
    
     return (
         
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4">
             <br />
-                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-2xl filter saturate-200 brightness-90 contrast-45" style={{ backgroundImage: `url(${venue.prof_pic})` }}>
+                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-md filter saturate-200 brightness-90 contrast-45" style={{ backgroundImage: `url(${venue.prof_pic})` }}>
                         
                         <div className='bg-brand-yellow bg-opacity-50 bg-gradient-to-r from-brand-yellow rounded-r-lg rounded-l-lg pl-20 py-2 text-white contrast-200 backdrop-blur-sm brightness-100'>
                                 <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
@@ -119,7 +127,7 @@ function VenueProfile({ selectedVenue, token }) {
                                     
                                     <button
                                     onClick={() =>follow()}
-                                    className="bg-brand-red border-black text-white rounded-md p-2 mt-3" 
+                                    className="bg-brand-red border-black text-white rounded-md p-2 mt-3 font-bebas-neue" 
                                     > {followVenue ? 'Unfollow' : 'Follow'}    
                                     </button>
                                     <br/>
@@ -131,19 +139,19 @@ function VenueProfile({ selectedVenue, token }) {
             
                     <br />
                     <br />
+
                     
                     <div class="relative">
                         <div class="absolute inset-0 flex items-center" aria-hidden="true">
                             <div class="w-full border-t border-brand-yellow"></div>
                         </div>
                         <div class="relative flex justify-center">
-                            <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
-                            {venue.venue_name} 's Updates
+                            <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue"> What's Happening at {venue.venue_name} 
                             </span>
                         </div>
-                    </div>
+                    </div> 
 
-                <div className='px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md'>
+                <div className='tabcontent px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md' id='Posts'>
                     <ul className="divide-y divide-gray-200"> 
                 
                     {posts.map((post) => ( 
@@ -163,7 +171,7 @@ function VenueProfile({ selectedVenue, token }) {
                         </div>
                         <div className="flex mt-2 mx-4 justify-end">
                                 <a onClick={() => handleLikeClick(post.post_id)} className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="brand-dark-blue">
                                 <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                                 </svg>
                                 </a> 
@@ -182,10 +190,18 @@ function VenueProfile({ selectedVenue, token }) {
                     </ul>
                     <br/>
                     <br/>
-                    
                 </div>    
-
-                <div class="flow-root px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md">
+                <div class="relative">
+                        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div class="w-full border-t border-brand-yellow"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
+                            {venue.venue_name} Check-Ins
+                            </span>
+                        </div>
+                    </div> 
+                <div className=" tabcontent flow-root px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md" id='Checkins'>
                 <ul class="-mb-8">
                     {checkIns.map((checkin) =>(
                         <>
@@ -195,8 +211,8 @@ function VenueProfile({ selectedVenue, token }) {
                         <div class="relative flex space-x-3">
                         <div>
                             <span class="h-8 w-8 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white">
-                            <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                             </svg>
                             </span>
                         </div>
@@ -222,10 +238,10 @@ function VenueProfile({ selectedVenue, token }) {
         </div>
         
 
-     )     
+    )     
                 
 }
 
 export default VenueProfile
-  
+
 

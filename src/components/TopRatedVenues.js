@@ -21,14 +21,6 @@ function TopRatedVenues({ token }) {
             setTopVenues(response.data)
         })
     }, [])
-    console.log('venues', topVenues)
-
-    // if (selectedVenue) {
-    //     return <VenueProfile selectedVenue={selectedVenue} token={token} setSelectedVenue={setSelectedVenue}/>
-    // }
-
-
-    console.log('token', token)
 
   return (
       <div>
