@@ -51,7 +51,7 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                     >
                       Discover
                     </a>
-                  <Link to={`/Userprofile/${currentUser.user_id}`}
+                  <Link style={token ? {} : {display: 'none'}} to={`/Userprofile/${currentUser.user_id}`}
                       className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue"
                       >
                       My Profile

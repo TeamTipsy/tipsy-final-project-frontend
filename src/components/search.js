@@ -11,9 +11,9 @@ import {
   } from 'react-router-dom';
 
 
-function Search() {
+function Search({ token }) {
     const [search, setSearch] = useState('')
-    const [endpoint, setEndpoint] = useState('')
+    const [endpoint, setEndpoint] = useState('venues')
     const [searchResults, setSearchResults] = useState([])
 
     const doSearch = (search) => {
@@ -34,6 +34,13 @@ function Search() {
       console.log(endpoint)
     }
 
+    // function noEndpoint () {
+    //   if (!token) {
+    //     setEndpoint('venues')
+  
+    //   }
+    // }
+
 
   return (
     <>
@@ -42,11 +49,11 @@ function Search() {
       <button onClick={() => doSearch(search)} className="px-3 text-sm font-medium leading-4 text-white border border-transparent rounded-full focus:outline-none focus:border-indigo-500 h-10px bg-brand-red hover:bg-brand-yellow">Search</button>
       </div>
       <label for="search" className="h-auto ml-2"></label>
-      <form name="searchfilter" id="search" className="flex h-6 mt-3 mr-3">
+      <form style={token ? {} : {display: 'none'}} name="searchfilter" id="search" className="flex h-6 mt-3 mr-3">
         <input onChange={handleEndpoint} type="radio" value="users"  className="p-4 mr-1 focus:outline-none focus:border-indigo-500" checked={endpoint === 'users'}/>
         <div>{'users'}</div>
         <input onChange={handleEndpoint} type="radio" value="venues" className="mr-1 focus:outline-none focus:border-indigo-500" checked={endpoint === 'venues'}/>
-        {'venues'}
+        <div>{'venues'}</div>
       </form> 
       {searchResults && searchResults.length > 0 ? (
         <Redirect

@@ -69,7 +69,7 @@ function App() {
                 <NavBar currentUser={currentUser} setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} setToken={setToken}/>
                 <Switch>
                     <Route path="/" exact>
-                    <Home token={token} />
+                    <Home token={token} currentUser={currentUser}/>
                     </Route>
 
                     <Route path="/UserProfile/:userId" component={UserProfile}>
@@ -96,7 +96,9 @@ function App() {
                     <Registration setAuth={setAuth} isLoggedIn={isLoggedIn} token={token} username={username} logOut={logOut} setUsername={setUsername} />
                     </Route>
 
-                    <Route path="/search" component={search} />
+                    <Route path="/search">
+                    <search token={token} />
+                    </Route>
 
                     <Route path="/SearchResults" component={SearchResults} />
 
