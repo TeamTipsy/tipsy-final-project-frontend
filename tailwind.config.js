@@ -11,7 +11,8 @@ module.exports = {
         'navbar-gray': '#454442',
       },
       fontFamily: {
-        'bebas-neue': ['"Bebas Neue"', 'cursive']
+        'bebas-neue': ['"Bebas Neue"', 'cursive'],
+        'roboto': ['"Roboto"', 'sans-serif']
       }
     },
   },
