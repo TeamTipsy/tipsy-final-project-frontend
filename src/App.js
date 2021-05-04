@@ -12,7 +12,10 @@ import Registration from './components/registration'
 import NavBar from './components/NavBar'
 import SearchResults from './components/SearchResults'
 import DeleteUserComment from './components/DeleteUserComment'
+import UpdateUserStatus from './components/UpdateUserStatus'
 import axios from 'axios'
+// import CreatableSelect from './components/LoadTags.js'
+
 // import search from './components/search'
 import {
     BrowserRouter as Router,
@@ -22,6 +25,7 @@ import {
     Redirect,
     } from 'react-router-dom';
 import AddVenue from './components/AddVenue'
+// import { Tag_List } from './components/VenueTags'
 
 
 function App() {
@@ -100,12 +104,19 @@ function App() {
                     <Route path="/SearchResults" component={SearchResults} />
 
 
-                    <Route path="/Addvenue" component={AddVenue} >
+                    <Route path="/Addvenue" component={() => <AddVenue postVenue={true} />} >
                     <AddVenue token={token} />
                         </Route>
 
+                     {/* <Route path="/Addtags" token={token} component={CreatableSelect} >
+                    </Route>  */}
+
                     <Route path="/Delete">
                         <DeleteUserComment token={token} />
+                    </Route>
+
+                    <Route path="/AddComment">
+                    <UpdateUserStatus currentUser={currentUser} />
                     </Route>
 
 

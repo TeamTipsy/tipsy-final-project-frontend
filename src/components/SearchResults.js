@@ -1,6 +1,8 @@
 import React from 'react';
-import QueryFromSearch from './QueryFromSearch.js';
-import { useState, useEffect } from 'react'
+import {
+    Link,
+
+    } from 'react-router-dom';
 import Search from './search.js';
 
 
@@ -18,15 +20,15 @@ export default function SearchResults(props) {
                             <ul className="divide-y divide-gray-200 text-brand-dark-blue h-28">
                             {searchResults.map((result)=> (
                                 <li className="py-8 w-full">
-                                    <div className="flex space-x-3">
+                                    <Link to={`/VenueProfile/${result.venue_id}`} className="flex space-x-3">
                                     <img src={result.prof_pic} className="h-10 w-12 rounded-full"/>
-                                    <div className="text-2xl"><a className="hover:text-brand-red">{result.venue_name}</a><div className="text-sm">{result.venue_type}</div></div>
+                                    <div className="text-2xl">{result.venue_name}<div className="text-sm">{result.venue_type}</div></div>
                                     <div className="py-4 pl-36">
                                     <div>{result.phone_num}</div>
                                     <p>{result.street_address}, {result.city}, {result.state}</p>
                                     <a className="hover:text-brand-red" href={result.web_url}>{result.web_url}</a>
                                     </div>
-                                    </div>
+                                    </Link>
                                 </li>
                             ))}
                             </ul>
@@ -38,15 +40,15 @@ export default function SearchResults(props) {
                         <ul className="divide-y divide-gray-200 text-brand-dark-blue h-28">
                         {searchResults.map((result)=> (
                             <li className="py-8 w-full">
-                                <div className="flex space-x-3">
+                                <Link to={`/UserProfile/${result.user_id}`} className="flex space-x-3">
                                 <img src={result.prof_pic} className="h-10 w-12 rounded-full"/>
-                                <div className="text-2xl"><a className="hover:text-brand-red">{result.username}</a><div className="text-sm">{result.venue_type}</div></div>
+                                <div className="text-2xl">{result.username}<div className="text-sm">{result.venue_type}</div></div>
                                 <div className="py-4 pl-36">
                                 
                                 <p>{result.city}, {result.state}</p>
                                 <a className="hover:text-brand-red" href={result.web_url}>{result.web_url}</a>
                                 </div>
-                                </div>
+                                </Link>
                             </li>
                         ))}
                         </ul>
