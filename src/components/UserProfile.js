@@ -100,7 +100,7 @@ console.log(postsFromUser)
                 
                 <div className='pl-2 image'>
                     <img
-                        className="w-auto h-auto shadow-md rounded-r-md rounded-l-md"
+                        className="h-auto shadow-md rounded-r-md rounded-l-md lg:max-w-sm"
                         src={user.prof_pic}
                         alt=""
                     /> 
@@ -150,13 +150,13 @@ console.log(postsFromUser)
 
         {postsFromUser.map((post) => (
             
-        <li className="h-20 py-4">
+        <li className="h-30 py-4">
             <div className="flex space-x-3">
             <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
                 <ul className="block">
                 <li className="text-sm font-medium">{post.post_text}</li>
-                <li className="mt-2 text-sm text-gray-500"><Moment fromNow>{post.post_date}</Moment></li>
+
                 {post.post_author_id !== post.posted_to_user ? (<li className="mt-2 text-xs text-gray-500">posted to <Link className="hover:text-brand-red" to={`/UserProfile/${post.posted_to_user}`}>{post.posted_to_username}</Link>'s profile <Moment fromNow>{post.post_date}</Moment></li>) : (<li className="mt-2 text-xs text-gray-500"><Moment fromNow>{post.post_date}</Moment></li>)}
        
                 </ul>
@@ -199,12 +199,12 @@ console.log(postsFromUser)
                         </div>
                     </div>
 
-<div className="px-8 mx-6 shadow-md max-w-auto sm:px-6 lg:px-8 rounded-r-md rounded-l-md">
-    <ul className="divide-y divide-gray-200">
+<div className="px-8 mx-6 shadow-md max-w-auto sm:px-6 lg:px-8  rounded-r-md rounded-l-md">
+    <ul className="divide-y divide-gray-200 my-3">
         {postsToUser.map((post) => (
 
 
-        <li className="h-20 py-4">
+        <li className="h-30 py-4">
             <div className="flex space-x-3">
             <div className="flex-1 space-y-1">
                 <div className="flex items-center justify-between">
