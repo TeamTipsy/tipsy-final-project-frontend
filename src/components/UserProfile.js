@@ -111,7 +111,7 @@ function UserProfile({ token, currentUser }) {
                     /> 
                 </div>
                 <div className='px-8 mx-6 mr-2 text-black'>
-                    <h1 className='text-3xl font-black'>{user.first_name}</h1>
+                    <h1 className='text-3xl font-black'>{user.username}</h1>
                     <h2 className='text-2xl'>{user.city}, {user.state}</h2>
                     <h2 className='text-2xl'>{user.bio_text}</h2>
 
@@ -136,7 +136,7 @@ function UserProfile({ token, currentUser }) {
                     </div>
                     <div class="relative flex justify-center">
                         <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
-                        {user.first_name}'s Photos
+                        {user.username}'s Photos
                         </span>
                     </div>
 
@@ -155,7 +155,7 @@ function UserProfile({ token, currentUser }) {
                         </div>
                         <div class="relative flex justify-center">
                             <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
-                            {user.first_name} 's Updates
+                            {user.username} 's Updates
                             </span>
                         </div>
                     </div>
@@ -209,7 +209,7 @@ function UserProfile({ token, currentUser }) {
                         </div>
                         <div class="relative flex justify-center">
                             <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
-                            Posts to {user.first_name}
+                            Posts to {user.username}
                             </span>
                         </div>
                     </div>
