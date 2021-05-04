@@ -14,16 +14,18 @@ import {
 function Search({ token }) {
     const [search, setSearch] = useState('')
     const [endpoint, setEndpoint] = useState('venues')
-    const [searchResults, setSearchResults] = useState([])
+    const [searchResults, setSearchResults] = useState(null)
 
     const doSearch = (search) => {
-      axios.get(
-          `https://tipsy-backend.herokuapp.com/${endpoint}/?search=${search}`, 
-          {
-          }).then((response) => {
-          console.log('resp', response)
-          setSearchResults([...response.data])
-      })}
+      if (search) {
+        axios.get(
+            `https://tipsy-backend.herokuapp.com/${endpoint}/?search=${search}`, 
+            {
+            }).then((response) => {
+            setSearchResults([...response.data])
+        })
+      }
+    }
 
     const handleChange = (event) => {
       setSearch(event.target.value)
@@ -31,38 +33,31 @@ function Search({ token }) {
 
     const handleEndpoint = (event) => {
       setEndpoint(event.target.value)
-      console.log(endpoint)
     }
 
-    // function noEndpoint () {
-    //   if (!token) {
-    //     setEndpoint('venues')
-  
-    //   }
-    // }
 
 
   return (
     <>
       <div className="flex h-12 lg:mx-72 sm:mx-12">
       <input type="text" value={search} onChange={handleChange} className="w-full h-12 pl-4 mr-3 border-2 rounded-full focus:outline-none focus:border-indigo-500 border-brand-beau-blue" placeholder="Find a brewery, winery, or distillery" />
-      <button onClick={() => doSearch(search)} className="px-3 text-sm font-medium leading-4 text-white border border-transparent rounded-full focus:outline-none focus:border-indigo-500 h-10px bg-brand-red hover:bg-brand-yellow">Search</button>
+      <button onClick={() => doSearch(search)} className="px-3 text-sm font-medium leading-4 text-white border border-transparent rounded-md font-bebas-neue focus:outline-none focus:border-indigo-500 h-10px bg-brand-red hover:bg-brand-yellow">Search</button>
       </div>
       <label for="search" className="h-auto ml-2"></label>
-      <form style={token ? {} : {display: 'none'}} name="searchfilter" id="search" className="flex h-6 mt-3 mr-3">
-        <input onChange={handleEndpoint} type="radio" value="users"  className="p-4 mr-1 focus:outline-none focus:border-indigo-500" checked={endpoint === 'users'}/>
-        <div>{'users'}</div>
-        <input onChange={handleEndpoint} type="radio" value="venues" className="mr-1 focus:outline-none focus:border-indigo-500" checked={endpoint === 'venues'}/>
-        <div>{'venues'}</div>
+      <form style={token ? {} : {display: 'none'}} name="searchfilter" id="search" className="flex justify-center">
+        <input onChange={handleEndpoint} type="radio" value="users"  className="p-4 mr-2 mt-1.5 focus:outline-none focus:border-indigo-500" checked={endpoint === 'users'}/>
+        <label className="mr-3">{'users'}</label>
+        <input onChange={handleEndpoint} type="radio" value="venues" className="mr-1 mt-1.5 focus:outline-none focus:border-indigo-500 align-middle" checked={endpoint === 'venues'}/>
+        <label>{'venues'}</label>
       </form> 
-      {searchResults && searchResults.length > 0 ? (
+      {searchResults && searchResults.length ? (
         <Redirect
           to={{
             pathname: "/SearchResults/",
             state: { searchResults: searchResults, search:search, endpoint: endpoint, token: token }
           }}
         />
-      ) : (<div></div>)}
+      ) : searchResults && searchResults.length === 0 ? (<div className="font-bold text-brand-dark-blue text-2xl mt-4">Sorry, your search for "{search}" did not yield any results.</div>) : (<div></div>)}
     </>
   )
 }

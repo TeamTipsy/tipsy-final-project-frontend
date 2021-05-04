@@ -33,13 +33,13 @@ function App() {
     const [currentUser, setCurrentUser] = useState([])
 
     useEffect (() => {
-      axios.get(`https://tipsy-backend.herokuapp.com/auth/users/me/`,
-      {
+        axios.get(`https://tipsy-backend.herokuapp.com/auth/users/me/`,
+    {
         headers: { Authorization: `Token ${token}`}
     })
-      .then((response) => {
-          setCurrentUser(response.data)
-      })
+    .then((response) => {
+        setCurrentUser(response.data)
+    })
     }, [])
 
     function setAuth(username, token) {
@@ -53,15 +53,11 @@ function App() {
         }
     
     const isLoggedIn = username && token 
-
     
-
     function logOut() {
         setUsername(null)
         setToken(null)
-        }
-        
-        console.log('token', token)
+    }
     
     return (
         <Router>
