@@ -7,8 +7,7 @@ import useLocalStorageState from 'use-local-storage-state'
 function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState('')
-    if(isLoggedIn) {return <Redirect to="/" />
-    }
+    
 
 
     function hidePassword() {var x = document.getElementById("userPass");
@@ -103,7 +102,19 @@ function Login ({isLoggedIn, token, setAuth, username, logOut, setUsername}) {
         </div>
         </form>
         </div>
-        {errors && <p>{errors}</p>}
+        <div>
+{isLoggedIn ? ( 
+  <Redirect to="/" 
+/> ) : (<div className="text-sm, text-red-500 pt-36 pl-4">
+{ errors && <p>Sorry! Wrong username or password entered.</p> }
+</div>)
+
+
+}
+
+        </div>
+        
+    
     </div>
 
 
