@@ -69,7 +69,7 @@ console.log(postsFromUser)
 
         function follow() {
             axios
-            .put(`http://tipsy-backend.herokuapp.com/users/${user.user_id}/`,
+            .put(`https://tipsy-backend.herokuapp.com/users/${user.user_id}/`,
             {},
             {
                 headers: { Authorization: `Token ${token}`},
@@ -81,7 +81,7 @@ console.log(postsFromUser)
 
         function like(post) {
             axios
-            .put(`http://tipsy-backend.herokuapp.com/posts/${post}/`,
+            .put(`https://tipsy-backend.herokuapp.com/posts/${post}/`,
             {},
             {
                 headers: { Authorization: `Token ${token}`},
