@@ -38,7 +38,7 @@ function AddVenueComment({ venue_id, token, handlePost }) {
                     </textarea>
                 </div>
                 <div>
-                    <button className='mx-8 items-center w-20 h-7  border border-transparent rounded-md shadow-sm text-center text-white text-xs bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' type='submit'>SPILL</button>
+                    <button className='mx-8 items-center w-20 h-7  border border-transparent font-bebas-neue rounded-md shadow-sm text-center text-white text-md bg-brand-dark-blue hover:bg-brand-beau-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' type='submit'>SPILL</button>
                 </div>
             </form>
         

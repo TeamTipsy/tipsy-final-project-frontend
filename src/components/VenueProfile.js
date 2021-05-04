@@ -120,7 +120,7 @@ function VenueProfile({ selectedVenue, token }) {
         <div>
             <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4">
             <br />
-                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-2xl filter saturate-200 brightness-90 contrast-45" style={{ backgroundImage: `url(${venue.prof_pic})` }}>
+                <div className="max-w-auto py-2 px-8 grid grid-cols-2 rounded-r-md rounded-l-md shadow-md filter saturate-200 brightness-90 contrast-45" style={{ backgroundImage: `url(${venue.prof_pic})` }}>
                         
                         <div className='bg-brand-yellow bg-opacity-50 bg-gradient-to-r from-brand-yellow rounded-r-lg rounded-l-lg pl-20 py-2 text-white contrast-200 backdrop-blur-sm brightness-100'>
                                 <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
@@ -156,8 +156,7 @@ function VenueProfile({ selectedVenue, token }) {
                             <div class="w-full border-t border-brand-yellow"></div>
                         </div>
                         <div class="relative flex justify-center">
-                            <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
-                            {venue.venue_name} 's Posts
+                            <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue"> What's Happening at {venue.venue_name} 
                             </span>
                         </div>
                     </div> 
@@ -182,7 +181,7 @@ function VenueProfile({ selectedVenue, token }) {
                         </div>
                         <div className="flex mt-2 mx-4 justify-end">
                                 <a onClick={() => handleLikeClick(post.post_id)} className="hover:text-brand-dark-blue text-brand-beau-blue inline-block">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="brand-dark-blue">
                                 <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                                 </svg>
                                 </a> 
@@ -208,7 +207,7 @@ function VenueProfile({ selectedVenue, token }) {
                         </div>
                         <div class="relative flex justify-center">
                             <span class="px-3 bg-white text-xl font-bebas-neue text-brand-dark-blue">
-                            {venue.venue_name} 's Check Ins
+                            {venue.venue_name} Check-Ins
                             </span>
                         </div>
                     </div> 
