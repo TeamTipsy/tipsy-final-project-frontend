@@ -109,7 +109,7 @@ function VenueProfile({ selectedVenue, token }) {
     return (
         
         <div>
-            <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4">
+            <div className="px-8 mx-auto max-w-7xl sm:px-6 lg:px-8 mt-4 mb-28">
             <br />
                 {showAlert && <CheckInAlert venue={venue.venue_name}setShowAlert={setShowAlert}/>}
                         
@@ -152,8 +152,11 @@ function VenueProfile({ selectedVenue, token }) {
                             </span>
                         </div>
                     </div> 
-
-                <div className='tabcontent px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md' id='Posts'>
+                    {posts && posts.length === 0 && 
+                    <div className='empty-message text-lg text-gray-400 font-roboto px-10 mx-6 max-w-auto sm:px-6 lg:px-8'><h1>Be the first to tell us what's happening at this venue!</h1>
+                    </div>
+                    }
+                <div className='px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-4 shadow-md rounded-r-md rounded-l-md' id='Posts'>
                     <ul className="divide-y divide-gray-200"> 
                 
                     {posts.map((post) => ( 
@@ -203,6 +206,10 @@ function VenueProfile({ selectedVenue, token }) {
                             </span>
                         </div>
                     </div> 
+                    {checkIns && checkIns.length === 0 && 
+                    <div className='empty-message text-lg text-gray-400 font-roboto px-10 mx-6 max-w-auto sm:px-6 lg:px-8'><h1>Be the first to check-in at this venue!</h1>
+                    </div>
+                    }
                 <div className=" tabcontent flow-root px-8 mx-6 max-w-auto sm:px-6 lg:px-8 mb-20 shadow-md rounded-r-md rounded-l-md" id='Checkins'>
                 <ul class="-mb-8">
                     {checkIns.map((checkin) =>(
