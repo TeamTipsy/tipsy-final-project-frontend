@@ -31,14 +31,14 @@ function TopRatedVenues({ token }) {
           className="relative rounded-lg border bg-brand-beau-blue px-6 py-5 shadow-md flex items-center space-x-3 hover:border-white focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
         >
           <div className="flex-shrink-0">
-            <img className="h-10 w-10 rounded-full" src={topVenue.prof_pic} alt="" />
+            <img className="h-10 w-10 rounded-full" src={topVenue.v_prof_pic} alt="" />
           </div>
           <div className="flex-1 min-w-0">
             <Link to={`/VenueProfile/${topVenue.venue_id}`}  className="focus:outline-none">
               <span className="absolute inset-0" aria-hidden="true" />
-              <p className="text-sm font-medium text-gray-900 ">{topVenue.venue_name}</p>
-              <p className="text-sm text-gray-500 truncate">{topVenue.venue_type}</p>
-              <p className='text-sm text-gray-500'>{topVenue.city}, {topVenue.state}</p>
+              <p className="text-lg font-black font-roboto text-black ">{topVenue.venue_name}</p>
+              <p className="text-md font-roboto font-medium text-black truncate">{topVenue.venue_type}</p>
+              <p className='text-md font-roboto font-medium text-black'>{topVenue.city}, {topVenue.state}</p>
             </Link>
           </div>
         </div>

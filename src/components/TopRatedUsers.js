@@ -37,10 +37,10 @@ function TopRatedUsers({ token }) {
             </div>
             <div className="flex-1 min-w-0">
             <Link to={`/UserProfile/${topUser.user_id}`}
-            className="text-md font-md focus:outline-none">
+            className="text-md font-roboto font-md focus:outline-none">
             <span className="absolute inset-0" aria-hidden="true" />
-            <p>{topUser.username}</p>
-            <p className='text-sm text-gray-500'>{topUser.city}, {topUser.state}</p>
+            <p className="text-lg font-black font-roboto text-black ">{topUser.username}</p>
+            <p className='text-md font-roboto font-medium text-black'>{topUser.city}, {topUser.state}</p>
             </Link>
             </div>
         </div>
