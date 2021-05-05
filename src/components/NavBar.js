@@ -34,7 +34,7 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                     alt="Workflow"
                   />
                   <img
-                    className="hidden h-20 pb-4 mt-4 w-15 lg:block"
+                    className="hidden pb-4 mt-4 h-28 w-15 lg:block"
                     src={Logo}
                     alt="Tipsy"
                   /> 
@@ -52,7 +52,7 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                       Discover
                     </a>
                   <Link style={token ? {} : {display: 'none'}} to={`/Userprofile/${currentUser.user_id}`}
-                      className="px-3 py-2 text-base font-medium rounded-md text-brand-dark-blue hover:bg-brand-red hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
+                      className="px-3 py-2 text-base font-medium tracking-wider rounded-md text-brand-dark-blue hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
                       >
                       My Profile
                     </Link>
@@ -64,7 +64,7 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                     </a> */}
                    <>
                    {   isLoggedIn ? (
-          <a className="px-3 py-2 text-base font-medium tracking-wider rounded-md to-brand-dark-blue hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue" onClick={logOut}>Sign Out</a>
+          <a className="px-3 py-2 text-base font-medium tracking-wider rounded-md hover:bg-brand-red text-brand-dark-blue hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue" onClick={logOut}>Sign Out</a>
         ) : ( 
           <Redirect to="/login" 
         /> )}
@@ -84,16 +84,15 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                   <Menu as="div" className="relative ml-3">
                     {({ open }) => (
                       <>
-                        <div>
-                          {/* <Menu.Button className="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                        {/* <div>
+                        <Menu.Button className="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="w-8 h-8 rounded-full"
-                              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                              alt=""
+                              src={currentUser.prof_pic}                         
                             />
-                          </Menu.Button> */}
-                        </div>
+                          </Menu.Button> 
+                        </div> */}
                         <Transition
                           show={open}
                           as={Fragment}
@@ -199,8 +198,7 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                 <div className="flex-shrink-0">
                   <img
                     className="w-10 h-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
+                // src={{currentUser.prof_pic}}              
                   />
                 </div>
                 <div className="ml-3">
