@@ -21,7 +21,7 @@ export default function SearchResults(props) {
                             {searchResults.map((result)=> (
                                 <li className="py-8 w-full">
                                     <Link to={`/VenueProfile/${result.venue_id}`} className="flex space-x-3">
-                                    <img src={result.prof_pic} className="h-10 w-12 rounded-full"/>
+                                    <img src={result.v_prof_pic} className="h-10 w-12 rounded-full"/>
                                     <div className="text-2xl">{result.venue_name}<div className="text-sm">{result.venue_type}</div></div>
                                     <div className="py-4 pl-36">
                                     <div>{result.phone_num}</div>
