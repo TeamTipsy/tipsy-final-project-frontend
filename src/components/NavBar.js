@@ -19,7 +19,7 @@ function classNames(...classes) {
 
 
 export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
-  // console.log(currentUser)
+
   return (
     <Disclosure as="nav" className="bg-brand-yellow">
       {({ open }) => (
@@ -56,19 +56,10 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                       >
                       My Profile
                     </Link>
-                    {/* <a
-                      href="/"
-                      className="px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue"
-                    >
-                      Search
-                    </a> */}
-                    <>
-                   {   isLoggedIn ? (
-          <a className="px-3 py-2 text-base font-medium text-white rounded-md bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue font-bebas-neue" onClick={logOut}>Sign Out</a>
-        ) : ( 
-          <Redirect to="/login" 
-        /> )}
-        </>
+
+                    <a style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()} className="px-3 py-2 text-sm font-medium rounded-md text-brand-dark-blue bg-brand-yellow hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue font-bebas-neue">
+                      Sign Out
+                    </a>
                   </div>
                 </div>
               </div>
