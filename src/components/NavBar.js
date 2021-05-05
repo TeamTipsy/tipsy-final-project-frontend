@@ -3,7 +3,7 @@ import { Fragment, useState, useEffect } from 'react'
 import axios from 'axios'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import Logo from '../media/Tipsy-main-logo.png'
+import Logo from '../media/tipsybrand-logo.png'
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,12 +29,12 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <img
-                    className="block w-auto h-8 pb-2 lg:hidden"
+                    className="block w-auto h-12 pb-2 lg:hidden"
                     src={Logo}
                     alt="Workflow"
                   />
                   <img
-                    className="hidden w-auto pb-4 mt-4 h-11 lg:block"
+                    className="hidden w-auto pb-4 mt-4 h-14 lg:block"
                     src={Logo}
                     alt="Tipsy"
                   /> 
@@ -47,12 +47,12 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                     </Link>
                     <a
                       href="/"
-                      className="px-3 py-2 text-base font-medium rounded-md to-brand-dark-blue hover:bg-brand-yellow hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
+                      className="px-3 py-2 text-base font-medium tracking-wider rounded-md text-brand-dark-blue hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
                     >
                       Discover
                     </a>
                   <Link style={token ? {} : {display: 'none'}} to={`/Userprofile/${currentUser.user_id}`}
-                      className="px-3 py-2 text-base font-medium rounded-md text-brand-dark-blue hover:bg-brand-red hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
+                      className="px-3 py-2 text-base font-medium tracking-wider rounded-md text-brand-dark-blue hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue"
                       >
                       My Profile
                     </Link>
@@ -64,7 +64,7 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                     </a> */}
                     <>
                    {   isLoggedIn ? (
-          <a className="px-3 py-2 text-base font-medium tracking-wider rounded-md hover:bg-brand-red text-brand-dark-blue hover:text-white focus:outline-none focus:border-brand-beau-blue font-bebas-neue" onClick={logOut}>Sign Out</a>
+          <a className="px-3 py-2 text-base font-medium text-white rounded-md bg-brand-red hover:bg-brand-beau-blue focus:outline-none focus:border-brand-beau-blue font-bebas-neue" onClick={logOut}>Sign Out</a>
         ) : ( 
           <Redirect to="/login" 
         /> )}
@@ -170,14 +170,14 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                 <Link
                 style={isLoggedIn ? {} : {display: 'none'}}
                   to={`/Userprofile/${currentUser.user_id}`}
-                  className="block px-3 py-2 font-bebas-neue text-base font-medium text-white rounded-md hover:text-white hover:bg-gray-700"
+                  className="block px-3 py-2 text-base font-medium text-white rounded-md font-bebas-neue hover:text-white hover:bg-gray-700"
                 >
                   Your Profile
                 </Link>
                 <a
                   href="/"
                   style={isLoggedIn ? {} : {display: 'none'}} onClick={() => logOut()}
-                  className="block px-3 py-2 text-base font-medium font-bebas-neue text-white rounded-md hover:text-white hover:bg-gray-700"
+                  className="block px-3 py-2 text-base font-medium text-white rounded-md font-bebas-neue hover:text-white hover:bg-gray-700"
                 >
                   Sign out
                 </a>
