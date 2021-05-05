@@ -95,29 +95,29 @@ function VenueProfile({ selectedVenue, token }) {
             <br />
                 {showAlert && <CheckInAlert venue={venue.venue_name}setShowAlert={setShowAlert}/>}
                         
-                        <div className='bg-brand-red bg-opacity-50 bg-gradient-to-r from-brand-red rounded-r-lg rounded-l-lg pl-6 py-2 text-white contrast-200 backdrop-blur-sm font-roboto'>
-                                <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
-                                <div className='info'>
-
-                                    {/* <h2 className='text-4xl'>{venue.followers_list.length}</h2> */}
-                                    <h2 className='text-4xl'>{venue.hours_of_operation}</h2>
-                                    <h2 className='text-2xl'>{venue.phone_num}</h2>
-                                    <h2 className='text-2xl'>{venue.street_address}</h2>
-                                    <h2 className='text-2xl'>{venue.city}, {venue.state}</h2> 
-                                    
-                                    <h4>{venue.venue_type}</h4>
-                                    <h4>{venue.venue_added_by}</h4>
-                                    
-                                    <button
-                                    onClick={() =>follow()}
-                                    className="bg-brand-yellow border-black text-white rounded-md p-2 mt-3  font-bebas-neue" 
-                                    > {followVenue ? 'Unfollow' : 'Follow'}    
-                                    </button>
-                                    <br/>
-                                    <CheckInVenue handleCheckIn={handleCheckIn} venueId={venue.venue_id} token={token} />
-                                    
-                                   
-                                </div> 
+                        <div className='bg-brand-red bg-opacity-50 bg-gradient-to-r from-brand-red rounded-r-lg rounded-l-lg  text-white contrast-200 backdrop-blur-sm font-roboto px-px' style={{ backgroundImage: `url(${venue.v_prof_pic})`}}>
+                            <div className='bg-gray-900 bg-opacity-80 rounded-r-lg rounded-l-lg'>
+                                    <div className=' pl-4 py-2 info'>
+                                    <h1 className='font-black text-7xl'>{venue.venue_name}</h1>
+                                        {/* <h2 className='text-4xl'>{venue.followers_list.length}</h2> */}
+                                        <h2 className='text-4xl'>{venue.hours_of_operation}</h2>
+                                        <h2 className='text-2xl'>{venue.phone_num}</h2>
+                                        <h2 className='text-2xl'>{venue.web_url}</h2>
+                                        <h2 className='text-2xl'>{venue.street_address}</h2>
+                                        <h2 className='text-2xl'>{venue.city}, {venue.state}</h2> 
+                                        
+                                        <h4>{venue.venue_type}</h4>
+                                        <h4>{venue.venue_added_by}</h4>
+                                        
+                                        <button
+                                        onClick={() =>follow()}
+                                        className="bg-brand-yellow border-black text-white rounded-md p-2 mt-3  font-bebas-neue" 
+                                        > {followVenue ? 'Unfollow' : 'Follow'}    
+                                        </button>
+                                        <br/>
+                                        <CheckInVenue handleCheckIn={handleCheckIn} venueId={venue.venue_id} token={token} />
+                                    </div> 
+                            </div> 
                         </div>
                 </div>   
             
