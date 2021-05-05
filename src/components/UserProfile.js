@@ -143,7 +143,10 @@ console.log(postsFromUser)
                         </div>
                     </div>
 
-
+                    {postsFromUser && postsFromUser.length === 0 && 
+                    <div className='empty-message text-lg text-gray-400 font-roboto px-10 mx-6 max-w-auto sm:px-6 lg:px-8'><h1>No posts from {user.username} yet!</h1>
+                    </div>
+                    }
 <div className="px-8 mx-6 mb-4 shadow-md max-w-auto sm:px-6 lg:px-8 rounded-r-md rounded-l-md">
 
     <ul className="divide-y divide-gray-200">
@@ -198,7 +201,10 @@ console.log(postsFromUser)
                             </span>
                         </div>
                     </div>
-
+                    {postsToUser && postsToUser.length === 0 && 
+                    <div className='empty-message text-lg text-gray-400 font-roboto px-10 mx-6 max-w-auto sm:px-6 lg:px-8'><h1>Be the first to say hello to {user.username}!</h1>
+                    </div>
+                    }
 <div className="px-8 mx-6 shadow-md max-w-auto sm:px-6 lg:px-8  rounded-r-md rounded-l-md">
     <ul className="divide-y divide-gray-200 my-3">
         {postsToUser.map((post) => (
