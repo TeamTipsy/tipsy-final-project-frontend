@@ -42,7 +42,7 @@ function VenueProfile({ selectedVenue, token }) {
 
     function like(post) {
         axios
-        .put(`http://tipsy-backend.herokuapp.com/posts/${post}/`,
+        .put(`https://tipsy-backend.herokuapp.com/posts/${post}/`,
         {},
         {
             headers: { Authorization: `Token ${token}`},
