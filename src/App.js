@@ -41,6 +41,7 @@ function App() {
         headers: { Authorization: `Token ${token}`}
     })
     .then((response) => {
+        console.log(response)
         setCurrentUser(response.data)
     })
     }, [])
@@ -61,6 +62,7 @@ function App() {
         setUsername(null)
         setToken(null)
     }
+    // console.log(currentUser)
     
     return (
         <Router>
