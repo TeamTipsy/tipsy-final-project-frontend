@@ -85,11 +85,7 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
                         <div>
                           <Menu.Button className="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span className="sr-only">Open user menu</span>
-                            <img
-                              className="w-8 h-8 rounded-full"
-                              src={currentUser.prof_pic}
-                              alt=""
-                            />
+
                           </Menu.Button>
                         </div>
                         <Transition
@@ -163,22 +159,11 @@ export default function NavBar({ isLoggedIn, token, logOut, currentUser }) {
             </div>
             <div className="pt-4 pb-3 border-t border-gray-700">
               <div className="flex items-center px-5">
-                <div className="flex-shrink-0">
-                  <img
-                    style={isLoggedIn ? {} : {display: 'none'}}
-                    className="w-10 h-10 rounded-full"
-                    src={currentUser.prof_pic}
-                    alt=""
-                  />
-                </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-white font-bebas-neue">{currentUser.username}</div>
                   <div className="text-sm font-medium text-gray-400">{currentUser.email}</div>
                 </div>
-                {/* <button className="flex-shrink-0 p-1 ml-auto text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="w-6 h-6" aria-hidden="true" />
-                </button> */}
+
               </div>
               <div className="px-2 mt-3 space-y-1">
                 <Link
