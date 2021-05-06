@@ -58,6 +58,7 @@ function UserProfile({ token, currentUser }) {
                 }
             )
         }
+        console.log('from', postsFromUser)
 
 console.log(postsFromUser)
 
@@ -115,12 +116,12 @@ console.log(postsFromUser)
                         : <div></div>}
 
 {currentUser.user_id === user.user_id ? (<div></div>
-      ) : (<button onClick={() =>follow()} className="bg-brand-red ml-1 w-20 h-10 border-black text-white font-bebas-neue rounded-md p-2 mt-3 focus:outline-none focus:border-indigo-500">{userFollow ? 'Unfollow' : 'Follow'}</button>)}
+    ) : (<button onClick={() =>follow()} className="bg-brand-red ml-1 w-20 h-10 border-black text-white font-bebas-neue rounded-md p-2 mt-3 focus:outline-none focus:border-indigo-500">{userFollow ? 'Unfollow' : 'Follow'}</button>)}
                     
                     {currentUser.user_id === user.user_id ? (<EditUserInfo token={token} userId={user.user_id} setUser={setUser} />
-      ) : (<div></div>)}
+    ) : (<div></div>)}
                     {currentUser.user_id === user.user_id ? (<UpdateUserStatus token={token} reRenderPosts={reRenderPosts} user_id={user.user_id}/>
-      ) : (<div></div>)}
+    ) : (<div></div>)}
                 </div>
             </div>
             <br/>
@@ -160,7 +161,7 @@ console.log(postsFromUser)
                 <ul className="block">
                 <li className="text-sm font-medium">{post.post_text}</li>
 
-                {post.post_author_id !== post.posted_to_user ? (<li className="mt-2 text-xs text-gray-500">posted to <Link className="hover:text-brand-red" to={`/UserProfile/${post.posted_to_user}`}>{post.posted_to_username}</Link>'s profile <Moment fromNow>{post.post_date}</Moment></li>) : (<li className="mt-2 text-xs text-gray-500"><Moment fromNow>{post.post_date}</Moment></li>)}
+                {post.post_author_id !== post.posted_to_user ? (<li className="mt-2 text-xs text-gray-500">posted to <Link className="hover:text-brand-red" to={`/UserProfile/${post.posted_to_user}`}>{post.posted_to_username}</Link>  <Link className="hover:text-brand-red mr-1" to={`/VenueProfile/${post.posted_to_venue}`}>{post.posted_to_venue_name}</Link> <Moment fromNow>{post.post_date}</Moment></li>) : (<li className="mt-2 text-xs text-gray-500"><Moment fromNow>{post.post_date}</Moment></li>)}
        
                 </ul>
                 <ul className="text-sm text-gray-500">
